@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18  # Adjust based on your app
+        node-version: 18
         cache: "npm"
 
     - name: Install Dependencies & Build
@@ -24,14 +24,18 @@ jobs:
         npm install
         npm run build
 
-    - name: Deploy to AWS EC2
+    - name: Deploy to AWS EC2 (Without node_modules)
       uses: appleboy/scp-action@v0.1.4
       with:
         host: 13.49.222.113
         username: "ubuntu"
         key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
-        source: "."
+        source: "./*"
         target: "~/app"
+        rm: true
+        overwrite: true
+        strip_components: 1
+        exclude: "node_modules,.next/cache"
 
     - name: Restart App on EC2
       uses: appleboy/ssh-action@v0.1.6
@@ -41,7 +45,8 @@ jobs:
         key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
         script: |
           cd ~/app
-          npm install --production
+          npm install --omit=dev  # Install only production dependencies
           npm run build
           pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
           pm2 save
+          sudo chown -R ubuntu:ubuntu ~/app  # Fix permissions
