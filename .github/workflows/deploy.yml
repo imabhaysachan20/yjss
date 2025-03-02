@@ -1,0 +1,48 @@
+name: Deploy Next.js App to AWS
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18  # Adjust based on your app
+        cache: "npm"
+
+    - name: Install Dependencies & Build
+      run: |
+        npm install
+        npm run build
+        npm run export # If using static export
+
+    - name: Deploy to AWS EC2
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: 13.49.222.113
+        username: "ubuntu"
+        key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+        source: "."
+        target: "~/app"
+
+    - name: Restart App on EC2
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: 13.49.222.113
+        username: "ubuntu"
+        key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/app
+          npm install --production
+          npm run build
+          pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
+          pm2 save

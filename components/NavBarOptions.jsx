@@ -8,6 +8,14 @@ import {
     NavigationMenuTrigger,
     NavigationMenuViewport,
   } from "@/components/ui/navigation-menu"
+  import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
   
   const navItems = [
     {
@@ -63,10 +71,7 @@ import {
                 <NavigationMenuList>
                     {navItems.map((item, index) => (
                         <NavigationMenuItem key={index}>
-                            <NavigationMenuTrigger href={item.link}>{item.name}</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                {item.content}
-                            </NavigationMenuContent>
+                            
                         </NavigationMenuItem>
                     ))}
                 </NavigationMenuList>
