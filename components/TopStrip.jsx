@@ -4,7 +4,6 @@ import Container from "./Container";
 
 const TopStrip = () => {
   return (
-    
     <div className="bg-[rgb(245,61,61)] text-white py-2 px-4">
       <Container>
       <div className="flex items-center justify-between p-1">
