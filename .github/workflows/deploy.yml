@@ -23,7 +23,6 @@ jobs:
       run: |
         npm install
         npm run build
-        npm run export # If using static export
 
     - name: Deploy to AWS EC2
       uses: appleboy/scp-action@v0.1.4
