@@ -1,4 +1,4 @@
-import {Noto_Sans_Devanagari, Noto_Sans_Devanagari} from "next/font/google";
+import {Noto_Sans_Devanagari} from "next/font/google";
 import "./globals.css";
 import Container from "@/components/Container";
 import Header from "@/components/Header";

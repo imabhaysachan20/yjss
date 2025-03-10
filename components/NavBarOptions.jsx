@@ -71,7 +71,7 @@ import { usePathname } from "next/navigation";
             <div className="flex gap-x-8">
            <nav className="flex flex-row items-center gap-x-6 ">
             {navItems.map((item)=>{
-                return <div className={`flex items-center justify-center text-gray-700 gap-x-1 hover:text-black ${pathname==item.link?"font-bold text-black":""}`} key={item.name}>
+                return <div className={`flex items-center text-lg justify-center text-gray-700 gap-x-1.5 hover:text-black ${pathname==item.link?"font-bold text-black":""}`} key={item.name}>
                     {item.icon}
                     {item.name}
                     </div>
