@@ -62,7 +62,7 @@ export default function SupportForm() {
     }
   };
 
-  return (<>
+  return (<div className="mb-24">
   <div className="flex justify-center mt-16 mb-16">
   <h1 className="text-3xl  font-bold bg-yellow-200 px-4 py-2 inline-block rounded-md mb-8">
     <div className="flex items-center gap-x-2">
@@ -83,8 +83,8 @@ export default function SupportForm() {
           </div>
         </h1>
         </div>
-  <div className="flex items-center">
-  <div className="w-[40%]">
+  <div className="flex justify-between border items-center">
+  <div className="w-[20%] grow-1">
         <img className="w-full" src="/contact.png"/>
     </div>
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-lg grow-1 rounded-xl">
@@ -101,7 +101,7 @@ export default function SupportForm() {
       {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
       
       <Select onValueChange={setSelectedDistrict}>
-        <SelectTrigger className="mb-3"><SelectValue placeholder="Select District" /></SelectTrigger>
+        <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select District" /></SelectTrigger>
         <SelectContent>
           {Object.keys(districts).map((district) => (
             <SelectItem key={district} value={district}>{district}</SelectItem>
@@ -153,6 +153,6 @@ export default function SupportForm() {
     </form>
  
     </div>
-    </>
+    </div>
   );
 }

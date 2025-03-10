@@ -3,6 +3,7 @@ import "./globals.css";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import TopStrip from "@/components/TopStrip";
+import Footer from "@/components/Footer";
 
 
 const Noto_Sans_DevanagariSans = Noto_Sans_Devanagari({
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
         <TopStrip/>
         <Header/>
         {children}
-        
+        <Footer/>        
       </body>
     </html>
   );
