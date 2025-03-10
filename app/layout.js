@@ -1,17 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {Noto_Sans_Devanagari, Noto_Sans_Devanagari} from "next/font/google";
 import "./globals.css";
 import Container from "@/components/Container";
+import Header from "@/components/Header";
+import TopStrip from "@/components/TopStrip";
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const Noto_Sans_DevanagariSans = Noto_Sans_Devanagari({
+  variable: "--font-Noto_Sans_Devanagari-sans",
+  subsets: ["devanagari"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
 
 export const metadata = {
   title: "Yuva Janta Sanghars Samiti",
@@ -22,9 +21,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${Noto_Sans_DevanagariSans.className} antialiased`}
       >
-        
+        <TopStrip/>
+        <Header/>
         {children}
         
       </body>

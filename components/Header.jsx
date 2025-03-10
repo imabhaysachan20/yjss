@@ -4,8 +4,8 @@ import NavBar from './NavBar'
 
 function Header() {
   return (
-    <header>
-      <TopStrip/>
+    <header className='z-20'>
+
       <NavBar/>
     </header>
   )

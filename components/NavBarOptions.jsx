@@ -1,14 +1,5 @@
+"use client"
 import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-  } from "@/components/ui/navigation-menu"
-  import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
@@ -16,19 +7,20 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { ArrowBigRight, BookAIcon, BookOpen, Contact, Globe, Home, Image, PersonStanding, PersonStandingIcon, Presentation } from "lucide-react";
+import { usePathname } from "next/navigation";
+
   
   const navItems = [
     {
-        name: "Home",
+        name: "होम",
+        icon:<Home className="w-4 relative -top-0.5"/>,
         link: "/",
-        content: (
-            <>
-                <p>यह होम पेज है।</p>
-            </>
-        )
+        content: null
     },
     {
         name: "हमारे बारे में",
+        icon:<BookOpen className="w-4 relative -top-0.5"/>,
         link: "/about",
         content: (
             <>
@@ -39,15 +31,20 @@ import {
     {
         name: "अध्यक्ष",
         link: "/president",
-        content: (
-            <>
-                <p>यह अध्यक्ष पेज है।</p>
-            </>
-        )
+        icon:<Presentation className="w-4 relative -top-0.5"/>,
+        content: null
+    },
+    {
+        name: "संगठन",
+        link: "/group",
+        icon:<Globe className="w-4 relative -top-0.5"/>,
+        content: (<>
+        </>)
     },
     {
         name: "गैलरी",
         link: "/gallery",
+        icon:<Image className="w-4 relative -top-0.5"/>,
         content: (
             <>
                 <p>यह गैलरी पेज है।</p>
@@ -56,6 +53,7 @@ import {
     },
     {
         name: "संपर्क करें",
+        icon:<Contact className="w-4 relative -top-0.5"/>,
         link: "/contact",
         content: (
             <>
@@ -66,16 +64,27 @@ import {
 ];
     
     function NavBarOptions() {
+        const pathname = usePathname();
+        console.log(pathname);
+        
         return (
-            <NavigationMenu>
-                <NavigationMenuList>
-                    {navItems.map((item, index) => (
-                        <NavigationMenuItem key={index}>
-                            
-                        </NavigationMenuItem>
-                    ))}
-                </NavigationMenuList>
-            </NavigationMenu>
+            <div className="flex gap-x-8">
+           <nav className="flex flex-row items-center gap-x-6 ">
+            {navItems.map((item)=>{
+                return <div className={`flex items-center justify-center text-gray-700 gap-x-1 hover:text-black ${pathname==item.link?"font-bold text-black":""}`} key={item.name}>
+                    {item.icon}
+                    {item.name}
+                    </div>
+            })}
+            
+           </nav>
+           <div className=" relative -top-0.5 font-semibold flex flex-row text-white bg-[#F63D3E] p-4 rounded-b-md gap-x-2">
+            <div className="flex">
+           <BookAIcon/> सदास्यता कार्ड 
+           </div>
+           <ArrowBigRight className=""/>
+           </div>
+           </div>
         )
     }
 

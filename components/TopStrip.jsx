@@ -4,9 +4,9 @@ import Container from "./Container";
 
 const TopStrip = () => {
   return (
-    <div className="bg-[rgb(245,61,61)] text-white py-2 px-4">
+    <div className="bg-[rgb(245,61,61)] text-white py-1 px-4 font-bold">
       <Container>
-      <div className="flex items-center justify-between p-1">
+      <div className="flex items-center justify-between p-0.5">
         {/* Left Section - Contact Info */}
         <div className="flex items-center gap-6 text-sm">
           <div className="flex items-center gap-2">
