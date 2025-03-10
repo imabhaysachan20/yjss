@@ -1,3 +1,4 @@
+import AboutHome from "@/components/AboutHome";
 import Banner_below_options from "@/components/banner_below_options";
 import Container from "@/components/Container";
 import GoogleTranslate from "@/components/GoogleTranslate";
@@ -13,6 +14,7 @@ export default function Home() {
     </div>
     <Container>
       <Banner_below_options/>
+      <AboutHome/>
       </Container>
       </div>
   );
