@@ -22,13 +22,13 @@ const TopStrip = () => {
 
         {/* Right Section - Social Media */}
         <div className="flex items-center gap-4">
-          <Link href="#" className="hover:text-blue-500">
+          <Link href="https://www.facebook.com/profile.php?id=100080998327055" className="hover:text-blue-500">
             <Facebook className="w-5 h-5" />
           </Link>
-          <Link href="#" className="hover:text-blue-400">
+          <Link href="https://twitter.com/Yjssofficial?t=0Hl5WsKcSwMc6ZTuDWAgnA&s=09" className="hover:text-blue-400">
             <Twitter className="w-5 h-5" />
           </Link>
-          <Link href="#" className="hover:text-pink-500">
+          <Link href="https://www.instagram.com/invites/contact/?i=15jlewpdj562k&utm_content=lsrolsh" className="hover:text-pink-500">
             <Instagram className="w-5 h-5" />
           </Link>
         </div>

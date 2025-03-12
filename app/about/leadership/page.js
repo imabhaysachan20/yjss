@@ -26,7 +26,7 @@ function page() {
         </div>
       ))}
     </div>
-    </Container>
+  </Container>
     </div>
   )
 }
