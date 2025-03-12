@@ -83,7 +83,7 @@ export default function SupportForm() {
           </div>
         </h1>
         </div>
-  <div className="flex justify-between border items-center">
+  <div className="flex justify-between items-center">
   <div className="w-[20%] grow-1">
         <img className="w-full" src="/contact.png"/>
     </div>
