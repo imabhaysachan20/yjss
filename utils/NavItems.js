@@ -13,15 +13,15 @@ const navItems = [
         content: [
             {
                 name:"संगठन के बारे में",
-                link:"/"
+                link:"/about/organisation"
             },
             {
                 name:"हमारी विचारधारा",
-                link:"/"
+                link:"/about/ideology"
             },
             {
                 name:"नेतृत्व ",
-                link:"/"
+                link:"/about/leadership"
             },
            
         ]

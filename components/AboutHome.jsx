@@ -6,7 +6,7 @@ export default function AboutUs() {
        
       <div className="w-full md:w-1/2 flex justify-center">
         <img 
-          src="png.png" 
+          src="/png.png" 
           alt="About Us" 
           className="w-full max-w-md"
         />

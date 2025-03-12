@@ -13,7 +13,7 @@ const PresidentQuote = () => {
         {/* Image Section */}
         <div className="w-1/2 md:w-1/2 relative">
           <img
-            src="president.png" // Replace with actual image path
+            src="/president.png" // Replace with actual image path
             alt="President"
             className="w-full h-auto object-cover opacity-80"
           />
@@ -33,7 +33,7 @@ const PresidentQuote = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
           अध्यक्ष का संदेश
           </h2>
-          <p className="text-gray-600 mb-12 text-lg">
+          <p className="text-gray-600 mb-16 text-lg">
           युवा जनता संघर्ष समिति सामाजिक दल है यह भारतीय राज्य उत्तर प्रदेश में सक्रिय है युवा जनता संघर्ष समिति के संस्थापक मानस तिवारी है । 
           </p>
           <div className="text-gray-600 mt-10 italic leading-relaxed relative text-justify">

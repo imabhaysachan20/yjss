@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
     <div className="-z-10 mt-[3px]">
-      <video src="banner.mp4" autoPlay muted loop playsInline  className="w-full"></video>  
+      <video src="/banner.mp4" autoPlay muted loop playsInline  className="w-full"></video>  
     </div>
     <Container>
       <Banner_below_options/>
