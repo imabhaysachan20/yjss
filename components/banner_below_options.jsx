@@ -18,12 +18,12 @@ const Banner_below_options = () => {
     {
       name:"सहयोग करें",
       icon:<HelpingHand/>,
-      link:"/"
+      link:"/join/help"
     },
     {
       name:"सक्रिय सदस्य",
       icon:<ActivitySquare/>,
-      link:"/"
+      link:"/join/permanent"
     },
   ]
 
