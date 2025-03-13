@@ -10,6 +10,7 @@ function page() {
     <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
     </div>
       <FormComponent/>
+      {/* made res */}
     </div>
   )
 }
