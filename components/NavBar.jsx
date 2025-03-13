@@ -9,7 +9,7 @@ const NavBar = () => {
     <header className="py-1.5 px-2 sm:px-1.5 md:px-1.5 md:px-0 shadow-md">
       <Container className={"flex items-center justify-between"}>
         <Link href={"/"}>
-      <Image src="/logo.png" alt="logo" height={80} width={80} className="hover:opacity-90 transition transition-opacity"/>
+      <Image src="/logo.png" alt="logo" height={80} width={80} className="hover:opacity-90 transition transition-opacity w-16 md:w-20"/>
       </Link>
       
     <NavBarOptions/>

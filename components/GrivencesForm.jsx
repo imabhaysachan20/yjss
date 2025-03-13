@@ -63,11 +63,11 @@ export default function SupportForm() {
   };
 
   return (<div className="mb-24">
-  <div className="flex justify-center mt-16 mb-16">
-  <h1 className="text-3xl  font-bold bg-yellow-200 px-4 py-2 inline-block rounded-md mb-8">
+  <div className="flex justify-center mt-8 md:mt-16 mb-16">
+  <h1 className="text-lg md:text-3xl  font-bold bg-yellow-200 px-4 py-2 inline-block rounded-md -mb-8 md:mb-8">
     <div className="flex items-center gap-x-2">
 
-          <PenTool className="relative -top-0.5"/>
+          <PenTool className="relative -top-0.5 w-4 md:w-8"/>
           <TypeAnimation
       sequence={[
         // Same substring at the start will only be typed out once, initially
@@ -76,15 +76,15 @@ export default function SupportForm() {
         'सपोर्ट फॉर्म भर के',3000
       ]}
       wrapper="span"
-      speed={75}
-      style={{ fontSize: '36px', display: 'inline-block' }}
+      speed={50}
+      style={{ display: 'inline-block' }}
       repeat={Infinity}
     />
           </div>
         </h1>
         </div>
   <div className="flex justify-between items-center">
-  <div className="w-[20%] grow-1">
+  <div className="hidden md:block w-[20%] grow-1">
         <img className="w-full" src="/contact.png"/>
     </div>
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-lg grow-1 rounded-xl">

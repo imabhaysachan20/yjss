@@ -11,13 +11,13 @@ const PresidentQuote = () => {
     <div className="flex items-center justify-center pb-24">
       <div className="flex flex-col md:flex-row items-center bg-white p-6 rounded-lg shadow-lg max-w-3xl relative">
         {/* Image Section */}
-        <div className="w-1/2 md:w-1/2 relative">
+        <div className="w-2/3 md:w-1/2 relative">
           <img
             src="/president.png" // Replace with actual image path
             alt="President"
             className="w-full h-auto object-cover opacity-80"
           />
-          <div className="bg-[rgba(255,255,255,0.8)] p-2 rounded-2xl shadow-2xs absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 flex items-center justify-center flex-col">
+          <div className="bg-[rgba(255,255,255,0.8)] p-2 rounded-2xl shadow-2xs w-full absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 flex items-center justify-center flex-col">
           <p className="text-gray-800 font-bold text-lg">
             मानस तिवारी
           </p>
@@ -29,7 +29,7 @@ const PresidentQuote = () => {
         </div>
         
         {/* Text Section */}
-        <div className="ml-4 w-full text-center md:text-left">
+        <div className="ml-4 w-full mt-14 md:mt-0 text-center md:text-left">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
           अध्यक्ष का संदेश
           </h2>

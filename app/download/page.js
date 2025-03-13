@@ -25,13 +25,13 @@ function Page() {
     <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-8 relative -top-4"></div>
     </div>
 
-    <div className="text-3xl font-bold pb-16 pt-8 px-8  rounded-lg mb-8 shadow-xl">
-    <h1 className="flex items-center gap-x-2 justify-center mb-8 px-4 py-2 rounded-sm">
+    <div className="text-xl md:text-3xl font-bold pb-16 pt-8  md:w-auto px-2  mb-8 shadow-xl">
+    <h1 className="flex items-center gap-x-2 justify-center mb-8 px-4 py-2">
           <Download className="relative -top-0.5"/>
           पूराना सदास्यता कार्ड डाउनलोड करें
     </h1>
     <div className="flex items-center justify-center">
-      <Card className="w-96 p-4">
+      <Card className="w-full p-4">
         <CardContent>
           <h2 className="text-xl font-semibold mb-4">Download Card</h2>
           <Input

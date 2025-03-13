@@ -9,8 +9,8 @@ function page() {
           <h1 className="text-4xl font-bold pt-10 pb-8"><Globe2></Globe2> संगठन के बारे में</h1>
           <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
           </div>
-    <div className="flex items-center justify-center p-6 bg-white">
-        <Card className="max-w-7xl p-8 shadow-2xl bg-white rounded-3xl border border-gray-300">
+    <div className="flex items-center justify-center p-2 md:p-6 bg-white">
+        <Card className="max-w-7xl md:p-8 shadow-2xl bg-white rounded-lg md:rounded-xl leading-6.5 border border-gray-300">
           <CardContent>
             <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
               युवा जनता संघर्ष संगठन
