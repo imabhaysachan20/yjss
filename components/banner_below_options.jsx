@@ -13,7 +13,7 @@ const Banner_below_options = () => {
     {
       name:"संकल्प पत्र",
       icon:<NotebookPen/>,
-      link:"/"
+      link:"/join/sankalppatra"
     },
     {
       name:"सहयोग करें",
