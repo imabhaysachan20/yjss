@@ -66,7 +66,7 @@ const navItems = [
     },
     {
         name: "गैलरी",
-        link: "",
+        link: null,
         icon:<Image className="w-4 relative -top-0.5"/>,
         content: [
             {
