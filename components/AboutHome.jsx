@@ -21,7 +21,7 @@ export default function AboutUs() {
 
       <div className="w-full md:w-1/2 p-8 mt-4 md:mt-0 relative bg-white shadow-lg rounded-xl">
         <span className="absolute -top-2 -left-0 text-[6rem] text-gray-300 font-serif -translate-x-3 -translate-y-4 select-none">
-          "
+        “
         </span>
         <h1 className="text-gray-700 text-md md:text-lg mb-1">संगठन के बारे में</h1>
         <h2 className="leading-11 md:leading-14 text-4xl md:text-5xl font-bold text-gray-800 mb-4">युवा जनता संघर्ष संगठन </h2>

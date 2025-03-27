@@ -6,30 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { PenTool } from "lucide-react";
+import districts from "@/utils/updata";
 
-const districts = {
-  "Lucknow": { 
-    loksabha: ["Lucknow"],
-    vidansabha: {
-      "Lucknow": ["Lucknow East", "Lucknow Central", "Lucknow North"]
-    },
-    ward: {
-      "Lucknow East": ["Ward 1", "Ward 2"],
-      "Lucknow Central": ["Ward 3", "Ward 4"],
-      "Lucknow North": ["Ward 5", "Ward 6"]
-    }
-  },
-  "Kanpur": {
-    loksabha: ["Kanpur"],
-    vidansabha: {
-      "Kanpur": ["Govind Nagar", "Arya Nagar"]
-    },
-    ward: {
-      "Govind Nagar": ["Ward 7", "Ward 8"],
-      "Arya Nagar": ["Ward 9", "Ward 10"]
-    }
-  }
-};
+
 
 export default function SupportForm() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -40,6 +19,8 @@ export default function SupportForm() {
   const [phone, setPhone] = useState("");
   const [problem, setProblem] = useState("");
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const validateForm = () => {
     let newErrors = {};
@@ -55,10 +36,54 @@ export default function SupportForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      alert("Form submitted successfully");
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const formData = {
+        name,
+        phone,
+        district: selectedDistrict,
+        loksabha: selectedLoksabha,
+        vidansabha: selectedVidansabha,
+        ward: selectedWard,
+        problem,
+        submittedAt: new Date().toISOString()
+      };
+
+      const response = await fetch('/api/submit/supportForm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      const data = await response.json();
+      setSubmitStatus('success');
+      
+      // Reset form
+      setName('');
+      setPhone('');
+      setSelectedDistrict('');
+      setSelectedLoksabha('');
+      setSelectedVidansabha('');
+      setSelectedWard('');
+      setProblem('');
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -149,7 +174,25 @@ export default function SupportForm() {
       <Textarea placeholder="Write your problem..." value={problem} onChange={(e) => setProblem(e.target.value)} className="mb-3 w-full" />
       {errors.problem && <p className="text-red-500 text-sm">{errors.problem}</p>}
       
-      <Button type="submit" className="w-full">Submit</Button>
+      {submitStatus === 'success' && (
+        <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-md">
+          आपकी समस्या सफलतापूर्वक जमा कर दी गई है। हम जल्द ही आपसे संपर्क करेंगे।
+        </div>
+      )}
+      
+      {submitStatus === 'error' && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+          कुछ गलत हो गया। कृपया बाद में पुनः प्रयास करें।
+        </div>
+      )}
+      
+      <Button 
+        type="submit" 
+        className="w-full" 
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'जमा कर रहे हैं...' : 'जमा करें'}
+      </Button>
     </form>
  
     </div>

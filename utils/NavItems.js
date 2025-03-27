@@ -66,12 +66,12 @@ const navItems = [
     },
     {
         name: "गैलरी",
-        link: "/gallery",
+        link: "",
         icon:<Image className="w-4 relative -top-0.5"/>,
         content: [
             {
                 name:"फोटो गैलरी",
-                link:"/"
+                link:"/gallery/images"
             },
             {
                 name:"वीडियो गैलरी",
