@@ -39,7 +39,7 @@ const PresidentQuote = () => {
           </p>
           <div className="text-gray-600 mt-10 italic leading-relaxed relative text-justify">
           <span className="absolute -top-15 -left-0 text-[6rem] text-gray-300 font-serif -translate-x-3 -translate-y-4 select-none">
-          "
+          &quot;
           </span>
           <p className="font-bold text-lg mb-2">युवाशक्ति: बदलाव की अग्रदूत</p>
           आज के दौर में भारत की सबसे बड़ी ताकत उसकी युवा शक्ति है। यही वह पीढ़ी है जो देश के भूत, वर्तमान और भविष्य की नींव रखती है। भारतीय युवा न केवल जोश और उत्साह से भरे हुए हैं, बल्कि वे सत्य, संघर्ष और समर्पण का उदाहरण भी प्रस्तुत करते हैं। उनका हौसला हर कठिनाई से लड़ने की क्षमता रखता है, और उनका धैर्य हर बदलाव की राह बनाता है।
@@ -58,7 +58,7 @@ const PresidentQuote = () => {
           आइए, हम सब मिलकर युवाशक्ति को एक नई दिशा दें और एक सशक्त, आत्मनिर्भर और विकसित भारत के निर्माण में अपना योगदान दें।
 
           <div className="mt-6 text-center">
-            <p className="text-lg font-semibold mb-2">"युवा बढ़े, देश बढ़े!"</p>
+            <p className="text-lg font-semibold mb-2">&quot;युवा बढ़े, देश बढ़े!&quot;</p>
             <p className="text-lg font-semibold">जय हिंद! जय भारत!</p>
           </div>
           </div>
