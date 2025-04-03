@@ -20,7 +20,7 @@ function DashboardPage() {
       title: "ऑनलाइन सदास्यता",
       description: "Handle new membership applications",
       icon: ClipboardList,
-      link: "/admin/entries/membership",
+      link: "/admin/entries/members",
       color: "text-green-500"
     },
     {
@@ -34,7 +34,7 @@ function DashboardPage() {
       title: "सक्रिय सदस्य",
       description: "Track and manage donation submissions",
       icon: FileSpreadsheet,
-      link: "/admin/entries/donation",
+      link: "/admin/entries/active",
       color: "text-purple-500"
     }
   ]

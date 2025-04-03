@@ -18,4 +18,4 @@ const memberSchema = new mongoose.Schema({
   membershipDate: { type: Date, default: Date.now }
 });
 
-export default mongoose.models.Member || mongoose.model('Doner', memberSchema);
+export default mongoose.models.Doner || mongoose.model('Doner', memberSchema);

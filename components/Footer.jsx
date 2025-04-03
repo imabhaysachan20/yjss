@@ -37,7 +37,7 @@ const Footer = () => {
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/"}>गैलरी</Link>
+                <Link href={"/gallery/images"}>गैलरी</Link>
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
@@ -45,7 +45,7 @@ const Footer = () => {
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/"}>एडमिन लागइन</Link>
+                <Link href={"/login"}>एडमिन लागइन</Link>
               </p>
               
             </div>
@@ -69,7 +69,7 @@ const Footer = () => {
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/"}>एडमिन लागइन</Link>
+                <Link href={"/login"}>एडमिन लागइन</Link>
               </p>
             </div>
             <div>
