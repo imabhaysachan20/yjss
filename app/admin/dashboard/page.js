@@ -17,14 +17,21 @@ function DashboardPage() {
       color: "text-blue-500"
     },
     {
-      title: "Membership Form",
+      title: "ऑनलाइन सदास्यता",
       description: "Handle new membership applications",
       icon: ClipboardList,
       link: "/admin/entries/membership",
       color: "text-green-500"
     },
     {
-      title: "Donation Form",
+      title: "सहयोग करें",
+      description: "Track and manage donation submissions",
+      icon: FileSpreadsheet,
+      link: "/admin/entries/donation",
+      color: "text-purple-500"
+    },
+    {
+      title: "सक्रिय सदस्य",
       description: "Track and manage donation submissions",
       icon: FileSpreadsheet,
       link: "/admin/entries/donation",

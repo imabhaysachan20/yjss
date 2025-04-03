@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import Header from "@/components/Header";
 import TopStrip from "@/components/TopStrip";
 import Footer from "@/components/Footer";
-
+import { Toaster } from "@/components/ui/sonner"
 
 const Noto_Sans_DevanagariSans = Noto_Sans_Devanagari({
   variable: "--font-Noto_Sans_Devanagari-sans",
@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
         <Header/>
         {children}
         <Footer/>        
+        <Toaster position="top-center"  richColors/>
       </body>
     </html>
   );
