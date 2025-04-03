@@ -53,24 +53,21 @@ const Footer = () => {
               <h1 className="text-xl sm:text-2xl font-bold">लोकप्रिय सम्पर्क</h1>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/"}>होम</Link>
+                <Link href={"/president"}>अध्यक्ष</Link>
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/contact"}>संपर्क करें</Link>
+                <Link href={"/about/organisation"}>संगठन के बारे में</Link>
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/"}>गैलरी</Link>
+                <Link href={"/about/ideology"}>हमारी विचारधारा</Link>
               </p>
               <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
                 <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/join/new"}>सदस्यता ग्रहण करें</Link>
+                <Link href={"/about/leadership"}>नेतृत्व</Link>
               </p>
-              <p className="flex gap-x-1 mt-4 text-sm sm:text-base">
-                <ArrowRightIcon className="w-5 h-5 flex-shrink-0" />
-                <Link href={"/login"}>एडमिन लागइन</Link>
-              </p>
+              
             </div>
             <div>
               <h1 className="text-xl sm:text-2xl font-bold">फालो करे</h1>
