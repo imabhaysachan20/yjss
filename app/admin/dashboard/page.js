@@ -37,6 +37,14 @@ function DashboardPage() {
       link: "/admin/entries/active",
       color: "text-purple-500"
     }
+    ,
+    {
+      title: "Contact US Form",
+      description: "Track and manage donation submissions",
+      icon: FileSpreadsheet,
+      link: "/admin/entries/contact",
+      color: "text-purple-500"
+    }
   ]
 
   return (
