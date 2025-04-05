@@ -122,4 +122,20 @@
     @apply bg-background text-foreground;
   }
 }
+#google_translate_element .goog-logo-link,
+#google_translate_element .goog-te-gadget span {
+  display: none !important;
+}
 
+/* Force dropdown to be inline and clean */
+#google_translate_element .goog-te-gadget {
+  font-size: 0; /* hide weird injected text */
+}
+
+#google_translate_element select.goog-te-combo {
+  font-size: 14px !important;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 30px;
+}

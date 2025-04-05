@@ -1,3 +1,4 @@
+
 import AboutHome from "@/components/AboutHome";
 import Banner_below_options from "@/components/banner_below_options";
 import Container from "@/components/Container";
@@ -7,7 +8,9 @@ import Header from "@/components/Header";
 import Slider from "@/components/Slider";
 
 
+
 export default function Home() {
+
   return (
     <div>
     <div className="-z-10 mt-[3px]">

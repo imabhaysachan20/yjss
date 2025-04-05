@@ -1,8 +1,13 @@
+"use client"
 import { Mail, Phone, Facebook, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
 import Container from "./Container";
+import { useEffect } from "react";
+import GoogleTranslate from "./GoogleTranslate";
 
 const TopStrip = () => {
+  
+
   return (
     <div className="bg-[rgb(245,61,61)] text-white py-1 px-2 sm:px-4 font-bold">
       <Container>
@@ -32,6 +37,9 @@ const TopStrip = () => {
               <Instagram className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
           </div>
+
+          {/* Google Translate Dropdown */}
+          <GoogleTranslate/>
         </div>
       </Container>
     </div>
