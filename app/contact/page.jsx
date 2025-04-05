@@ -2,7 +2,7 @@
 import { Feather, PhoneIcon } from 'lucide-react';
 import React, { useState } from 'react';
 
-function page() {
+function Page() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -138,4 +138,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
