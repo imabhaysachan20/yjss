@@ -37,7 +37,7 @@ const Banner_below_options = () => {
           href={option.link} 
           key={option.name}
         >
-          <div className="h-full flex flex-col justify-center items-center gap-y-5 md:text-2xl text-center px-2 active:bg-gray-200">
+          <div className="h-full flex flex-col justify-center items-center gap-y-5 text-xs md:text-2xl text-center px-2 active:bg-gray-200">
             {option.icon}
             {option.name}
           </div>

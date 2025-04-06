@@ -1,8 +1,10 @@
 "use client"
+import { useTranslation } from '@/contexts/TranslationContext';
 import { Feather, PhoneIcon } from 'lucide-react';
 import React, { useState } from 'react';
 
 function Page() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,7 +61,7 @@ function Page() {
     <div>
       <div className="flex items-center flex-col">
         <h1 className="text-4xl font-bold pt-10 pb-8">
-          <PhoneIcon className="w-4" /> संपर्क करें
+          <PhoneIcon className="w-4" /> {t('contact.heading')}
         </h1>
         <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-8 relative -top-4"></div>
       </div>
@@ -77,14 +79,14 @@ function Page() {
 
         {/* Right: Contact Form */}
         <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Us</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">{t('contact.heading')}</h2>
           {error && <p className="text-red-500">{error}</p>}
           {success && <p className="text-green-500">{success}</p>}
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={t('contact.name')}
               className="w-full p-3 border border-gray-300 rounded"
               value={formData.name}
               onChange={handleChange}
@@ -93,7 +95,7 @@ function Page() {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('contact.email')}
               className="w-full p-3 border border-gray-300 rounded"
               value={formData.email}
               onChange={handleChange}
@@ -102,7 +104,7 @@ function Page() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
+              placeholder={t('contact.phone')}
               className="w-full p-3 border border-gray-300 rounded"
               value={formData.phone}
               onChange={handleChange}
@@ -111,7 +113,7 @@ function Page() {
             <input
               type="text"
               name="subject"
-              placeholder="Subject"
+              placeholder={t('contact.subject')}
               className="w-full p-3 border border-gray-300 rounded"
               value={formData.subject}
               onChange={handleChange}
@@ -119,7 +121,7 @@ function Page() {
             />
             <textarea
               name="message"
-              placeholder="Message"
+              placeholder={t('contact.message')}
               className="w-full p-3 border border-gray-300 rounded h-32"
               value={formData.message}
               onChange={handleChange}
@@ -129,7 +131,7 @@ function Page() {
               type="submit"
               className="w-full bg-[#FF3d3d] text-white p-3 rounded-lg hover:bg-[red] cursor-pointer transition"
             >
-              Send Message
+              {t('contact.submit')}
             </button>
           </form>
         </div>

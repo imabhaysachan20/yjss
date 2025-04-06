@@ -5,8 +5,10 @@ import Image from 'next/image'
 import { Skeleton } from "@/components/ui/skeleton"
 import { ImageModal } from '@/components/ImageModal'
 import { ImageIcon } from 'lucide-react'
+import { useTranslation } from '@/contexts/TranslationContext'
 
 function GalleryPage() {
+  const {t} = useTranslation()
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -75,7 +77,7 @@ function GalleryPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center flex-col">
-        <h1 className="text-4xl font-bold pt-10 pb-8"><ImageIcon className="inline-block mr-2" /> फोटो गैलरी</h1>
+        <h1 className="text-4xl font-bold pt-10 pb-8"><ImageIcon className="inline-block mr-2" />{t('gallery.heading')}</h1>
         <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
       </div>
       

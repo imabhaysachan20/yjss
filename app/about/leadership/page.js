@@ -1,7 +1,11 @@
+"use client"
 import Container from '@/components/Container';
+import { useTranslation } from '@/contexts/TranslationContext';
 import React from 'react'
 import { FaPeopleCarry } from 'react-icons/fa'
+
 function page() {
+  const { t } = useTranslation();
   const images = [
     "/img1.jpg",
     "/img2.jpg",
@@ -11,7 +15,7 @@ function page() {
   return (
     <div>
  <div className="flex items-center flex-col">
-    <h1 className="text-4xl font-bold pt-10 pb-8"><FaPeopleCarry></FaPeopleCarry> हमारा नेतृत्व </h1>
+    <h1 className="text-4xl font-bold pt-10 pb-8"><FaPeopleCarry></FaPeopleCarry> {t('leadership.heading')}</h1>
     <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
     </div>
     <Container>

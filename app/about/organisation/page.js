@@ -1,43 +1,50 @@
-import { FlipHorizontal2, Globe2, OrigamiIcon } from 'lucide-react'
-import React from 'react'
+"use client"
+import { Globe2 } from 'lucide-react';
+import React from 'react';
 import { FaUsers, FaBookOpen, FaBriefcase, FaGlobeAsia } from "react-icons/fa";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from '@/contexts/TranslationContext';
+
 function page() {
+  const { t } = useTranslation();
+
   return (
     <div className="pb-24">
       <div className="flex items-center flex-col">
-          <h1 className="text-4xl font-bold pt-10 pb-8"><Globe2></Globe2> संगठन के बारे में</h1>
-          <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
-          </div>
-    <div className="flex items-center justify-center p-2 md:p-6 bg-white">
+        <h1 className="text-4xl font-bold pt-10 pb-8">
+          <Globe2 /> {t('aboutPage.title')}
+        </h1>
+        <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>
+      </div>
+      <div className="flex items-center justify-center p-2 md:p-6 bg-white">
         <Card className="max-w-7xl md:p-8 shadow-2xl bg-white rounded-lg md:rounded-xl leading-6.5 border border-gray-300">
           <CardContent>
             <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
-              युवा जनता संघर्ष संगठन
+              {t('aboutPage.organizationName')}
             </h1>
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <FaBookOpen className="text-blue-500 text-2xl" />
                 <p className="text-gray-700 text-justify">
-                युवा जनता संघर्ष राजनैतिक संगठन का मुख्य उद्देश्य सामाजिक और आर्थिक परिवर्तन करना है यह परिवर्तन शिक्षा स्वास्थ्य और रोजगार के क्षेत्र में विशेष व्यवस्थाएं करने से होगा। युवा संगठन शिक्षा के क्षेत्र में परिवर्तन करने के लिए संपूर्ण देश के कोने-कोने में गरीब असहाय बच्चों को निःशुल्क बेहतर डिजिटल शिक्षा प्रदान कराने के लिए पाठशालायें, प्राईमरी व जूनियर स्कूल, इंटर कॉलेज, डिग्री कॉलेज इंजीनियरिंग कॉलेज, मेडिकल कॉलेज, लॉ कॉलेज, विश्वविद्यालय और स्वास्थ्य के क्षेत्र में परिवर्तन करने के लिए प्रत्येक गरीब असहाय व्यक्ति को निशुल्क बेहतर इलाज उपलब्ध कराने के लिए हॉस्पीटल व मेंडिकेयर बनबाने कार्य करना। देश में बढ़ती हुई बेरोजगारी को देखते हुए देश के युवाओं को रोजगार उपलब्ध कराने के लिए की के लिए भी मजबूती से कार्य कर रहा है गरीब अनाथ एवं विधवा के जीवन यापन की व्यवस्था संगठन द्वारा उपलब्ध कराना। गरीब कन्याओं के विवाह को संपन्न कराना और उचित अनुदान उपलब्ध कराना, महिला शोषण को रोकने के लिए विशेष महिला सशक्तिकरण टीम को बनाना संगठन की प्राथमिकता है सम्पूर्ण गरीब जाति के उत्थान के लिये एक मात्र उपाय है कि एक मजबूत संगठन और उसके उचित नेतृत्व केे साथ निःस्वार्थ भाव से तन से, मन से, धन से,बुद्विसे और विवेक से जो भी सम्भव हो अपना सहयोग व समर्थन प्रदान करें। । अपनें अपनें समाज के उत्थान के लिए हम सबका फर्ज है कि हम निम्नलिखित बातों पर खुद अमल करें और सभी भाइयों,बहनों,बच्चों को इस सच्चाई से अवगत करायें । मेरा भारत महान है। परन्तु यह भी निर्विवाद सत्य है कि यहां अन्न उपजाने वाला अन्न के लिये मरता है,कुआ खोदने वाला प्यासा मरता है, कपड़ा बुनने वाला नंगा रहकर गर्मी,धूप,सर्दी और उपहास सहता है,महल अटारी उठाने वाले फुटपात पर रहते हैं,आजीवन सबका आदर सत्कार करने वाला मार,धक्का,और अपमान पता है। अतःगरीबी और शोषण से बचने का मात्र एक ही रास्ता है शिक्षा,संगठन,और संघर्ष। हमारा समाज जिस दिन इन तीनों तत्वों को अपना लेगा हमारा कल्याण सुनिश्चित हो जायेगा।
+                  {t('aboutPage.section1')}
                 </p>
               </div>
               <div className="flex items-center space-x-3">
                 <FaBriefcase className="text-green-500 text-5xl" />
                 <p className="text-gray-700 text-justify">
-                  देश में बढ़ती हुई बेरोजगारी को देखते हुए देश के युवाओं को रोजगार उपलब्ध कराने के लिए भी मजबूती से कार्य कर रहा है। गरीब अनाथ एवं विधवा के जीवन यापन की व्यवस्था संगठन द्वारा उपलब्ध कराना। गरीब कन्याओं के विवाह को संपन्न कराना और उचित अनुदान उपलब्ध कराना, महिला शोषण को रोकने के लिए विशेष महिला सशक्तिकरण टीम को बनाना संगठन की प्राथमिकता है।
+                  {t('aboutPage.section2')}
                 </p>
               </div>
               <div className="flex items-center space-x-3">
                 <FaUsers className="text-red-500 text-3xl" />
                 <p className="text-gray-700 text-justify">
-                  सम्पूर्ण गरीब जाति के उत्थान के लिये एक मात्र उपाय है कि एक मजबूत संगठन और उसके उचित नेतृत्व केे साथ निःस्वार्थ भाव से तन से, मन से, धन से, बुद्विसे और विवेक से जो भी सम्भव हो अपना सहयोग व समर्थन प्रदान करें।
+                  {t('aboutPage.section3')}
                 </p>
               </div>
               <div className="flex items-center space-x-3">
                 <FaGlobeAsia className="text-purple-500 text-3xl" />
                 <p className="text-gray-700 text-justify">
-                  शिक्षा, संगठन और संघर्ष ही गरीबी और शोषण से बचने का मात्र एक ही रास्ता है। हमारा समाज जिस दिन इन तीनों तत्वों को अपना लेगा हमारा कल्याण सुनिश्चित हो जायेगा।
+                  {t('aboutPage.section4')}
                 </p>
               </div>
             </div>
@@ -45,7 +52,7 @@ function page() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

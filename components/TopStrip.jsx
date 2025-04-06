@@ -26,7 +26,7 @@ const TopStrip = () => {
       <Container>
         <div className="flex sm:flex-row items-center justify-between p-0.5 gap-2 sm:gap-0">
           {/* Left Section - Contact Info */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs md:text-sm">
             <div className="hidden sm:flex items-center gap-2">
               <Mail className="w-4 h-4" />
               <span className="hidden sm:inline">yuvajantasangharssamiti@gmail.com</span>
@@ -39,7 +39,7 @@ const TopStrip = () => {
           </div>
 
           {/* Right Section - Social Media */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2  md:gap-4">
             <Link href="https://www.facebook.com/profile.php?id=100080998327055" className="hover:text-blue-500">
               <Facebook className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
@@ -49,10 +49,10 @@ const TopStrip = () => {
             <Link href="https://www.instagram.com/invites/contact/?i=15jlewpdj562k&utm_content=lsrolsh" className="hover:text-pink-500">
               <Instagram className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
+          <LanguageSwitcher />
           </div>
 
           {/* Language Switcher */}
-          <LanguageSwitcher />
         </div>
       </Container>
     </div>

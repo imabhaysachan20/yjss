@@ -4,15 +4,14 @@ import { languageService } from "@/utils/languageService";
 
 export const LanguageSwitcher = () => {
   const handleLanguageChange = (event) => {
-    const selectedLanguage = event.target.value;
-    languageService.setLanguage(selectedLanguage); // Update the language
+    languageService.setLanguage(event.target.value); // Update the language
   };
 
   return (
     <select
       onChange={handleLanguageChange}
       defaultValue={languageService.getCurrentLanguage()}
-      className="bg-white text-black p-1 rounded"
+      className="bg-white text-gray-800 font-medium text-xs sm:text-base rounded px-2 py-1 shadow-md"
     >
       <option value="en">English</option>
       <option value="hi">हिंदी</option>

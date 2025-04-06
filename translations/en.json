@@ -31,42 +31,41 @@
     "leadership": "Leadership"
   },
   "dialog": {
-      "title": "Yuva Janta Sangharsh Samiti",
-      "intro1": "The influence of youth can be clearly seen in various fields. These are the same youth who determine India's past, present, and future. The role of youth in nation-building is extremely important because they are full of innovation, courage, and confidence.",
-      "intro2": "Youth have no shortage of tolerance, courage, and fighting spirit; they are energetic and never leave the side of truth. Their ability to deal with struggles and challenges motivates them to move forward in every field.",
-      "objectives": {
-        "title": "Main Objectives and Functions of the Organization",
-        "list": [
-          "Social Justice and Equality – Fighting to provide equal rights to every section of society.",
-          "Education and Awareness – Educating youth to spread awareness in society and eliminate inequality.",
-          "Employment and Self-employment – Raising voice against unemployment and encouraging youth towards self-employment.",
-          "Women Empowerment – Working for women's safety, education, and protection of their rights.",
-          "Fight Against Corruption – Campaigning against corruption prevalent in government and non-government institutions.",
-          "Environmental Protection – Promoting cleanliness drives, tree plantation, and water conservation.",
-          "Health and Sports – Promoting availability of health services and sports activities."
-        ]
-      },
-      "commitment": {
-        "title": "Our Commitment",
-        "text1": "Yuva Janta Sangharsh Samiti motivates youth to organize and work for social upliftment, justice, and equality. This organization is committed to directing youth power in the right direction and bringing positive change in society.",
-        "text2": "Together we will build an India where everyone gets equal opportunities and no one is a victim of injustice."
-      },
-      "slogan": "Struggle is our resolution, youth power is our identity!"
-      },
-    "support": {
-      "name":"Name",
-      "phoneNumber":"Phone Number",
-      "District":"District",
-      "WYP":"Write Your Problem",
-      "SLS":"Select Lok Shabha",
-      "SVS":"Select VidhanShabha",
-      "SW":"Select Ward",
-      "WP":"Write your problem....",
-      
-  "Heading":"Support Form",
-  "Heading2":"Express your concerns to Manas Brother",
-  "Heading3":"By filling support form"
+    "title": "Yuva Janta Sangharsh Samiti",
+    "intro1": "The influence of youth can be clearly seen in various fields. These are the same youth who determine India's past, present, and future. The role of youth in nation-building is extremely important because they are full of innovation, courage, and confidence.",
+    "intro2": "Youth have no shortage of tolerance, courage, and fighting spirit; they are energetic and never leave the side of truth. Their ability to deal with struggles and challenges motivates them to move forward in every field.",
+    "objectives": {
+      "title": "Main Objectives and Functions of the Organization",
+      "list": [
+        "Social Justice and Equality – Fighting to provide equal rights to every section of society.",
+        "Education and Awareness – Educating youth to spread awareness in society and eliminate inequality.",
+        "Employment and Self-employment – Raising voice against unemployment and encouraging youth towards self-employment.",
+        "Women Empowerment – Working for women's safety, education, and protection of their rights.",
+        "Fight Against Corruption – Campaigning against corruption prevalent in government and non-government institutions.",
+        "Environmental Protection – Promoting cleanliness drives, tree plantation, and water conservation.",
+        "Health and Sports – Promoting availability of health services and sports activities."
+      ]
     },
+    "commitment": {
+      "title": "Our Commitment",
+      "text1": "Yuva Janta Sangharsh Samiti motivates youth to organize and work for social upliftment, justice, and equality. This organization is committed to directing youth power in the right direction and bringing positive change in society.",
+      "text2": "Together we will build an India where everyone gets equal opportunities and no one is a victim of injustice."
+    },
+    "slogan": "Struggle is our resolution, youth power is our identity!"
+  },
+  "support": {
+    "name": "Name",
+    "phoneNumber": "Phone Number",
+    "District": "District",
+    "WYP": "Write Your Problem",
+    "SLS": "Select Lok Shabha",
+    "SVS": "Select VidhanShabha",
+    "SW": "Select Ward",
+    "WP": "Write your problem....",
+    "Heading": "Support Form",
+    "Heading2": "Express your concerns to Manas Brother",
+    "Heading3": "By filling support form"
+  },
   "organization": {
     "vicePresident": "Vice President",
     "statePresident": "State President",
@@ -80,7 +79,69 @@
     "videoGallery": "Video Gallery",
     "newsGallery": "News Gallery"
   },
-  "card":{
-      "heading":"Membership Card"
-    }
+  "card": {
+    "heading": "Membership Card"
+  },
+  "footer": {
+    "organizationName": "Yuva Janta Sangharsh Samiti",
+    "address": "Uttar Pradesh, Lucknow, Kanpur",
+    "phone": "+91-7376366014",
+    "email": "yuvajantasangharssamiti@gmail.com",
+    "quickLinks": "Quick Links",
+    "membership": "Join Membership",
+    "adminLogin": "Admin Login",
+    "popularLinks": "Popular Links",
+    "followUs": "Follow Us",
+    "copyright": "© Yuva Janta Sangharsh Samiti, All Rights Reserved."
+  },
+  "aboutPage": {
+    "title": "About the Organization",
+    "organizationName": "Yuva Janta Sangharsh Samiti",
+    "section1": "The main objective of the Yuva Janta Sangharsh political organization is to bring about social and economic change. This change will be achieved through special arrangements in the fields of education, health, and employment. The youth organization is working to bring change in the field of education by providing free quality digital education to poor and helpless children across the country through schools, primary and junior schools, inter colleges, degree colleges, engineering colleges, medical colleges, law colleges, universities, and in the field of health by providing free quality treatment to every poor and helpless person through hospitals and Medicare. Considering the increasing unemployment in the country, the organization is also working strongly to provide employment to the youth of the country. The organization provides livelihood arrangements for the poor, orphans, and widows. It organizes marriages of poor girls and provides appropriate grants. Preventing women exploitation by forming special women empowerment teams is a priority of the organization.",
+    "section2": "Considering the increasing unemployment in the country, the organization is also working strongly to provide employment to the youth of the country. The organization provides livelihood arrangements for the poor, orphans, and widows. It organizes marriages of poor girls and provides appropriate grants. Preventing women exploitation by forming special women empowerment teams is a priority of the organization.",
+    "section3": "The only way to uplift the entire poor community is through a strong organization and its proper leadership, selflessly contributing with body, mind, wealth, wisdom, and intellect in whatever way possible.",
+    "section4": "Education, organization, and struggle are the only ways to escape poverty and exploitation. The day our society adopts these three elements, our welfare will be ensured."
+  },
+  "ideology": {
+    "heading": "Our Ideology",
+    "heading2": "Youth Janata Sangharsh Organization Samiti",
+    "para": "A new wave of youth politics is emerging. Considering the crimes, scams, and corruption, today’s youth are compelled to reflect. Due to political shortsightedness and a lack of social and national commitment, the image of India being formed is deeply disturbing to every citizen. Observing the crimes, scams, and corruption, the youth are left wondering—is this the same glorious India we've always heard about? In the absence of political foresight, the youth must take charge and consider that Aksai Chin, Sikkim, Arunachal, and Tawang belong to us. No part of India's territory can be compromised anymore. It is the youth who must come forward."
+  },
+  "leadership": {
+    "heading": "Our Leadership"
+  },
+  "president": {
+    "ideologyHeading": "Our Ideology",
+    "imageAlt": "President",
+    "name": "Manas Tiwari",
+    "title": "Organization President",
+    "messageHeading": "Message from the President",
+    "message": "Yuva Janta Sangharsh is a social organization actively working in Uttar Pradesh. Founded by Manas Tiwari, our goal is to unite youth and empower them socially, economically, and politically to play a significant role in the nation's progress.",
+    "subheading1": "Youth Power: The Harbinger of Change",
+    "paragraph1": "In today's era, India's greatest strength is its youth. They are the foundation of the nation's past, present, and future. Indian youth exemplify truth, struggle, and dedication. Their courage enables them to face any challenge, and their patience paves the way for change.",
+    "subheading2": "Youth: The Backbone of the Nation",
+    "paragraph2": "The progress of any country is measured by its youth population. India is fortunate to have the world's largest and most energetic youth force, driving rapid development. History shows that whenever the nation faced a crisis, the youth united to overcome it.",
+    "subheading3": "The Power of Youth and Their Role in Society",
+    "paragraph3": "When it comes to raising voices against injustice, our youth never step back. The nationwide protests during the Nirbhaya case are proof that they do not tolerate injustice. Their struggle, courage, and unity have the power to bring change.",
+    "subheading4": "Our Resolution",
+    "paragraph4": "Yuva Janta Sangharsh Samiti resolves to stand with the youth in every struggle necessary for positive societal change. We aim to organize and empower the youth to make their mark in every field.",
+    "slogan1": "\"Youth Progress, Nation Progress!\"",
+    "slogan2": "Jai Hind! Jai Bharat!"
+  },
+  "gallery": {
+    "heading": "Photo Gallery"
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send Message"
+  },
+  "supportForm":{
+    "submit":"Submit",
+    "submiting":"Submiting..."
+  }
 }

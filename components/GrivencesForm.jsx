@@ -193,7 +193,7 @@ export default function SupportForm() {
         className="w-full" 
         disabled={isSubmitting}
       >
-        {isSubmitting ? 'जमा कर रहे हैं...' : 'जमा करें'}
+        {isSubmitting ? t('supportForm.submitting') : t('supportForm.submit')}
       </Button>
     </form>
  
