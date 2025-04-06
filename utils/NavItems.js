@@ -1,95 +1,119 @@
-import { ArrowBigRight, BookAIcon, BookOpen, Contact, Globe, Home, Image, PersonStanding, PersonStandingIcon, Presentation } from "lucide-react";
-const navItems = [
+import { useEffect, useState } from "react";
+import { ArrowBigRight, BookAIcon, BookOpen, Contact, Globe, Home, Image, Presentation } from "lucide-react";
+import { t, languageService } from "@/utils/languageService"; // Import languageService
+
+const generateNavItems = () => [
     {
-        name: "होम",
-        icon:<Home className="w-4 relative -top-0.5"/>,
+        name: t("common.home"),
+        icon: <Home className="w-4 relative -top-0.5" />,
         link: "/",
         content: null
     },
     {
-        name: "हमारे बारे में",
-        icon:<BookOpen className="w-4 relative -top-0.5"/>,
+        name: t("common.about"),
+        icon: <BookOpen className="w-4 relative -top-0.5" />,
         link: "/about",
         content: [
             {
-                name:"संगठन के बारे में",
-                link:"/about/organisation"
+                name: t("about.aboutOrg"),
+                link: "/about/organisation"
             },
             {
-                name:"हमारी विचारधारा",
-                link:"/about/ideology"
+                name: t("about.ideology"),
+                link: "/about/ideology"
             },
             {
-                name:"नेतृत्व ",
-                link:"/about/leadership"
+                name: t("about.leadership"),
+                link: "/about/leadership"
             },
-           
         ]
     },
     {
-        name: "अध्यक्ष",
+        name: t("common.president"),
         link: "/president",
-        icon:<Presentation className="w-4 relative -top-0.5"/>,
+        icon: <Presentation className="w-4 relative -top-0.5" />,
         content: null
     },
     {
-        name: "संगठन",
+        name: t("common.organization"),
         link: "/group",
-        icon:<Globe className="w-4 relative -top-0.5"/>,
+        icon: <Globe className="w-4 relative -top-0.5" />,
         content: [
             {
-                name:"उपाध्यक्ष",
-                link:"/"
+                name: t("organization.vicePresident"),
+                link: "/"
             },
             {
-                name:"प्रदेश अध्यक्ष",
-                link:"/"
+                name: t("organization.statePresident"),
+                link: "/"
             },
             {
-                name:"मंडल व जिला अध्यक्ष",
-                link:"/"
+                name: t("organization.districtPresident"),
+                link: "/"
             },
             {
-                name:"सोशल मीडिया ",
-                link:"/"
+                name: t("organization.socialMedia"),
+                link: "/"
             },
             {
-                name:"प्रवक्ता ",
-                link:"/"
+                name: t("organization.spokesperson"),
+                link: "/"
             },
             {
-                name:"चुनाव कार्यक्रम",
-                link:"/"
+                name: t("organization.electionProgram"),
+                link: "/"
             },
-           
         ]
     },
     {
-        name: "गैलरी",
+        name: t("common.gallery"),
         link: null,
-        icon:<Image className="w-4 relative -top-0.5"/>,
+        icon: <Image className="w-4 relative -top-0.5" />,
         content: [
             {
-                name:"फोटो गैलरी",
-                link:"/gallery/images"
+                name: t("gallery.photoGallery"),
+                link: "/gallery/images"
             },
             {
-                name:"वीडियो गैलरी",
-                link:"/"
+                name: t("gallery.videoGallery"),
+                link: "/"
             },
             {
-                name:"समाचार गैलरी",
-                link:"/"
+                name: t("gallery.newsGallery"),
+                link: "/"
             },
-           
         ]
-        
     },
     {
-        name: "संपर्क करें",
-        icon:<Contact className="w-4 relative -top-0.5"/>,
+        name: t("common.contact"),
+        icon: <Contact className="w-4 relative -top-0.5" />,
         link: "/contact",
         content: null
     }
 ];
-export default navItems;
+
+const NavItems = () => {
+    const [navItems, setNavItems] = useState(generateNavItems);
+    const [language, setLanguage] = useState(languageService.getCurrentLanguage());
+
+    useEffect(() => {
+        const handleLanguageChange = () => {
+            setLanguage(languageService.getCurrentLanguage());
+            setNavItems(generateNavItems());
+        };
+
+        const unsubscribe = languageService.subscribe(handleLanguageChange);
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
+    useEffect(() => {
+        setNavItems(generateNavItems());
+    }, [language]);
+
+    return navItems;
+};
+
+export default NavItems;

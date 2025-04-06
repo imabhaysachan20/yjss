@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import { useTranslation } from '@/contexts/TranslationContext';
 import { TypeAnimation } from 'react-type-animation';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +12,7 @@ import districts from "@/utils/updata";
 
 
 export default function SupportForm() {
+  const { t } = useTranslation();
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedLoksabha, setSelectedLoksabha] = useState("");
   const [selectedVidansabha, setSelectedVidansabha] = useState("");
@@ -96,9 +98,9 @@ export default function SupportForm() {
           <TypeAnimation
       sequence={[
         // Same substring at the start will only be typed out once, initially
-        'अपनी बात मानस भाई तक पहुँचाएं',
+        t('support.Heading2'),
         5000, // wait 1s before replacing "Mice" with "Hamsters"
-        'सपोर्ट फॉर्म भर के',3000
+        t('support.Heading3'),,3000
       ]}
       wrapper="span"
       speed={50}
@@ -118,15 +120,15 @@ export default function SupportForm() {
         
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Support Form</h2>
-      <Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="mb-3 w-full" />
+      <h2 className="text-xl font-bold mb-4">{t('support.Heading')}</h2>
+      <Input placeholder={t('support.name')} value={name} onChange={(e) => setName(e.target.value)} className="mb-3 w-full" />
       {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
       
-      <Input placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="mb-3 w-full" type="tel" />
+      <Input placeholder={t('support.phoneNumber')} value={phone} onChange={(e) => setPhone(e.target.value)} className="mb-3 w-full" type="tel" />
       {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
       
       <Select onValueChange={setSelectedDistrict}>
-        <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select District" /></SelectTrigger>
+        <SelectTrigger className="mb-3 w-full"><SelectValue placeholder={t('support.District')} /></SelectTrigger>
         <SelectContent>
           {Object.keys(districts).map((district) => (
             <SelectItem key={district} value={district}>{district}</SelectItem>
@@ -137,7 +139,7 @@ export default function SupportForm() {
 
       {selectedDistrict && (
         <Select onValueChange={setSelectedLoksabha}>
-          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Lok Sabha" /></SelectTrigger>
+          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder={t('support.SLS')} /></SelectTrigger>
           <SelectContent>
             {districts[selectedDistrict].loksabha.map((ls) => (
               <SelectItem key={ls} value={ls}>{ls}</SelectItem>
@@ -149,7 +151,7 @@ export default function SupportForm() {
 
       {selectedLoksabha && districts[selectedDistrict]?.vidansabha?.[selectedLoksabha] && (
         <Select onValueChange={setSelectedVidansabha}>
-          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Vidhan Sabha" /></SelectTrigger>
+          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder={t('support.SVS')} /></SelectTrigger>
           <SelectContent>
             {districts[selectedDistrict]?.vidansabha?.[selectedLoksabha]?.map((vs) => (
               <SelectItem key={vs} value={vs}>{vs}</SelectItem>
@@ -161,7 +163,7 @@ export default function SupportForm() {
 
       {selectedVidansabha && districts[selectedDistrict]?.ward?.[selectedVidansabha] && (
         <Select onValueChange={setSelectedWard}>
-          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
+          <SelectTrigger className="mb-3 w-full"><SelectValue placeholder={t('support.SW')} /></SelectTrigger>
           <SelectContent>
             {districts[selectedDistrict]?.ward?.[selectedVidansabha]?.map((w) => (
               <SelectItem key={w} value={w}>{w}</SelectItem>
@@ -171,7 +173,7 @@ export default function SupportForm() {
       )}
       {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
 
-      <Textarea placeholder="Write your problem..." value={problem} onChange={(e) => setProblem(e.target.value)} className="mb-3 w-full" />
+      <Textarea placeholder={t('support.WP')} value={problem} onChange={(e) => setProblem(e.target.value)} className="mb-3 w-full" />
       {errors.problem && <p className="text-red-500 text-sm">{errors.problem}</p>}
       
       {submitStatus === 'success' && (

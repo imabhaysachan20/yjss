@@ -2,11 +2,24 @@
 import { Mail, Phone, Facebook, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
 import Container from "./Container";
-import { useEffect } from "react";
-import GoogleTranslate from "./GoogleTranslate";
+import { useEffect, useState } from "react";
+import { languageService } from "@/utils/languageService"; // Import languageService
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const TopStrip = () => {
-  
+  const [currentLanguage, setCurrentLanguage] = useState(languageService.getCurrentLanguage());
+
+  useEffect(() => {
+    const handleLanguageChange = (lang) => {
+      setCurrentLanguage(lang);
+    };
+
+    const unsubscribe = languageService.subscribe(handleLanguageChange);
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="bg-[rgb(245,61,61)] text-white py-1 px-2 sm:px-4 font-bold">
@@ -38,8 +51,8 @@ const TopStrip = () => {
             </Link>
           </div>
 
-          {/* Google Translate Dropdown */}
-          <GoogleTranslate/>
+          {/* Language Switcher */}
+          <LanguageSwitcher />
         </div>
       </Container>
     </div>

@@ -1,0 +1,86 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "contact": "Contact",
+    "president": "President",
+    "organization": "Organization",
+    "gallery": "Gallery"
+  },
+  "home": {
+    "title": "Welcome to Our Website",
+    "description": "We provide excellent services"
+  },
+  "banner": {
+    "onlineMembership": "Online Membership",
+    "pledgeForm": "Pledge Form",
+    "contribute": "Contribute",
+    "activeMembers": "Active Members"
+  },
+  "about": {
+    "aboutOrg": "About Organization",
+    "orgName": "Yuva Janta Sangharsh Samiti",
+    "description1": "Yuva Janta Sangharsh Samiti is a social organization actively working in the Indian state of Uttar Pradesh. This organization was founded by Manas Tiwari. The organization's goal is to make youth aware of social justice, equality, development, and nation-building, and to bring positive change in society.",
+    "description2": "This organization is fighting for the rights of deprived, exploited, and backward classes of society and motivates youth to work in national interest. Youth gems and youth power are getting the most respect in the country and the world today.",
+    "founder": "Founder of Yuva Janta Sangharsh Samiti:",
+    "founderName": "Manas Tiwari",
+    "headquarters": "(Headquarters Uttar Pradesh)",
+    "readMore": "Read More...",
+    "ideology": "Our Ideology",
+    "leadership": "Leadership"
+  },
+  "dialog": {
+      "title": "Yuva Janta Sangharsh Samiti",
+      "intro1": "The influence of youth can be clearly seen in various fields. These are the same youth who determine India's past, present, and future. The role of youth in nation-building is extremely important because they are full of innovation, courage, and confidence.",
+      "intro2": "Youth have no shortage of tolerance, courage, and fighting spirit; they are energetic and never leave the side of truth. Their ability to deal with struggles and challenges motivates them to move forward in every field.",
+      "objectives": {
+        "title": "Main Objectives and Functions of the Organization",
+        "list": [
+          "Social Justice and Equality – Fighting to provide equal rights to every section of society.",
+          "Education and Awareness – Educating youth to spread awareness in society and eliminate inequality.",
+          "Employment and Self-employment – Raising voice against unemployment and encouraging youth towards self-employment.",
+          "Women Empowerment – Working for women's safety, education, and protection of their rights.",
+          "Fight Against Corruption – Campaigning against corruption prevalent in government and non-government institutions.",
+          "Environmental Protection – Promoting cleanliness drives, tree plantation, and water conservation.",
+          "Health and Sports – Promoting availability of health services and sports activities."
+        ]
+      },
+      "commitment": {
+        "title": "Our Commitment",
+        "text1": "Yuva Janta Sangharsh Samiti motivates youth to organize and work for social upliftment, justice, and equality. This organization is committed to directing youth power in the right direction and bringing positive change in society.",
+        "text2": "Together we will build an India where everyone gets equal opportunities and no one is a victim of injustice."
+      },
+      "slogan": "Struggle is our resolution, youth power is our identity!"
+      },
+    "support": {
+      "name":"Name",
+      "phoneNumber":"Phone Number",
+      "District":"District",
+      "WYP":"Write Your Problem",
+      "SLS":"Select Lok Shabha",
+      "SVS":"Select VidhanShabha",
+      "SW":"Select Ward",
+      "WP":"Write your problem....",
+      
+  "Heading":"Support Form",
+  "Heading2":"Express your concerns to Manas Brother",
+  "Heading3":"By filling support form"
+    },
+  "organization": {
+    "vicePresident": "Vice President",
+    "statePresident": "State President",
+    "districtPresident": "District President",
+    "socialMedia": "Social Media",
+    "spokesperson": "Spokesperson",
+    "electionProgram": "Election Program"
+  },
+  "gallery": {
+    "photoGallery": "Photo Gallery",
+    "videoGallery": "Video Gallery",
+    "newsGallery": "News Gallery"
+  },
+  "card":{
+      "heading":"Membership Card"
+    }
+}

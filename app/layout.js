@@ -4,14 +4,13 @@ import Container from "@/components/Container";
 import Header from "@/components/Header";
 import TopStrip from "@/components/TopStrip";
 import Footer from "@/components/Footer";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
+import { TranslationProvider } from '@/contexts/TranslationContext';
 
 const Noto_Sans_DevanagariSans = Noto_Sans_Devanagari({
   variable: "--font-Noto_Sans_Devanagari-sans",
   subsets: ["devanagari"],
 });
-
-
 
 export const metadata = {
   title: "Yuva Janta Sanghars Samiti",
@@ -20,15 +19,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="hi">
       <body suppressHydrationWarning
         className={`${Noto_Sans_DevanagariSans.className} antialiased`}
       >
-        <TopStrip/>
-        <Header/>
-        {children}
-        <Footer/>        
-        <Toaster position="top-center"  richColors/>
+        <TranslationProvider>
+          <TopStrip/>
+          <Header/>
+          {children}
+          <Footer/>        
+          <Toaster position="top-center"  richColors/>
+        </TranslationProvider>
       </body>
     </html>
   );

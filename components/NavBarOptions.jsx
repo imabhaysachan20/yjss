@@ -10,13 +10,15 @@ import {
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import navItems from "@/utils/NavItems";
+import NavItems from "@/utils/NavItems"; // Import the function
 import { ArrowBigRight, BookAIcon, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { t } from "@/utils/languageService";
 
 function NavBarOptions() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navItems = NavItems(); // Call the function to get the navigation items
 
     return (
         <div className="relative">
@@ -72,7 +74,7 @@ function NavBarOptions() {
                 <Link href="/download">
                     <div className="relative -top-0.5 font-semibold flex flex-row text-white bg-[#F63D3E] p-4 rounded-b-md gap-x-2">
                         <div className="flex">
-                            <BookAIcon/> सदास्यता कार्ड 
+                            <BookAIcon/> {t('card.heading')}
                         </div>
                         <ArrowBigRight className=""/>
                     </div>
@@ -114,7 +116,7 @@ function NavBarOptions() {
                         <Link href="/download" className="mt-4">
                             <div className="font-semibold flex flex-row text-white bg-[#F63D3E] p-3 rounded-md gap-x-2">
                                 <div className="flex">
-                                    <BookAIcon/> सदास्यता कार्ड 
+                                    <BookAIcon/> {t('card.heading')}
                                 </div>
                                 <ArrowBigRight className=""/>
                             </div>
@@ -126,4 +128,4 @@ function NavBarOptions() {
     );
 }
 
-export default NavBarOptions; 
+export default NavBarOptions;
