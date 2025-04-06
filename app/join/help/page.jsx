@@ -2,7 +2,7 @@ import FormComponent from '@/components/JoinFormHelp'
 import React from 'react'
 import { FaEraser } from 'react-icons/fa'
 
-function page() {
+function Page() {
   return (
     <div className='max-w-7xl mx-auto flex flex-col justify-center items-center'>
          <div className="flex items-center flex-col">

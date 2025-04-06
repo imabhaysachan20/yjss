@@ -6,7 +6,7 @@
 import { useTranslation } from '@/contexts/TranslationContext';
   
 
-  function page() {
+  function Page() {
     const { t } = useTranslation();
     return (
       <div className='min-h-screen'>
@@ -33,4 +33,4 @@ import { useTranslation } from '@/contexts/TranslationContext';
     )
   }
 
-  export default page
+  export default Page

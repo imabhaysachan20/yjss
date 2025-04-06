@@ -4,7 +4,7 @@ import { useTranslation } from '@/contexts/TranslationContext';
 import React from 'react'
 import { FaPeopleCarry } from 'react-icons/fa'
 
-function page() {
+function Page() {
   const { t } = useTranslation();
   const images = [
     "/img1.jpg",
@@ -35,4 +35,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

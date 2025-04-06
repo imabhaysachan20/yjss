@@ -5,7 +5,7 @@ import { FaUsers, FaBookOpen, FaBriefcase, FaGlobeAsia } from "react-icons/fa";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from '@/contexts/TranslationContext';
 
-function page() {
+function Page() {
   const { t } = useTranslation();
 
   return (
@@ -55,4 +55,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
