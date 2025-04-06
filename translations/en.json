@@ -129,7 +129,10 @@
     "slogan2": "Jai Hind! Jai Bharat!"
   },
   "gallery": {
-    "heading": "Photo Gallery"
+    "heading": "Photo Gallery",
+    "photoGallery":"Photo Gallery",
+    "videoGallery":"Video Gallery",
+    "newsGallery":"News Gallery"
   },
   "contact": {
     "heading": "Contact Us",

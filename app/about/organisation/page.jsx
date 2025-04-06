@@ -11,7 +11,7 @@ function Page() {
   return (
     <div className="pb-24">
       <div className="flex items-center flex-col">
-        <h1 className="text-4xl font-bold pt-10 pb-8">
+        <h1 className="text-3xl md:text-4xl font-bold pt-10 pb-8">
           <Globe2 /> {t('aboutPage.title')}
         </h1>
         <div className="w-[100px] h-[10px] bg-[#F53D3D] rounded-3xl mb-10 relative -top-4"></div>

@@ -128,9 +128,12 @@
     "slogan1": "\"युवा बढ़े, देश बढ़े!\"",
     "slogan2": "जय हिंद! जय भारत!"
   },
-  "gallery":{
-    "heading":"फोटो गैलरी"
-  },
+  "gallery": {
+  "heading": "फ़ोटो गैलरी",
+  "photoGallery": "फ़ोटो गैलरी",
+  "videoGallery": "वीडियो गैलरी",
+  "newsGallery": "समाचार गैलरी"
+},
   "contact":{
     "heading":"संपर्क करें",
     "name": "नाम",
