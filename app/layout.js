@@ -20,6 +20,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="hi">
+
+
       <body suppressHydrationWarning
         className={`${Noto_Sans_DevanagariSans.className} antialiased`}
       >

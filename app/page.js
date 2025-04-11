@@ -1,4 +1,3 @@
-
 import AboutHome from "@/components/AboutHome";
 import Banner_below_options from "@/components/banner_below_options";
 import Container from "@/components/Container";
@@ -6,6 +5,7 @@ import GoogleTranslate from "@/components/GoogleTranslate";
 import SupportForm from "@/components/GrivencesForm";
 import Header from "@/components/Header";
 import Slider from "@/components/Slider";
+import TwitterWidget from "@/components/TwitterWidget";
 
 
 
@@ -20,6 +20,7 @@ export default function Home() {
       <Banner_below_options/>
       <AboutHome/>
       <SupportForm/>
+      <TwitterWidget/>
       </Container>
       </div>
   );
