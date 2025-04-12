@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="bg-[#F53D3D] text-white">
+      <div className="bg-[#F53D3D] text-white mt-8">
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-8 sm:py-12 lg:py-16">
             <div className="flex flex-col gap-y-2">
