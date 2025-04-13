@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState, useRef } from "react";
 import Script from 'next/script';
-import districts from "@/utils/updata";
+import districts from "@/utils/data";
 
 const states = [
   "Andaman and Nicobar Islands",
@@ -54,6 +55,9 @@ export default function FormComponent() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedLoksabha, setSelectedLoksabha] = useState("");
   const [selectedVidansabha, setSelectedVidansabha] = useState("");
+  const [areaType, setAreaType] = useState("");
+  const [selectedBlock, setSelectedBlock] = useState("");
+  const [selectedGramPanchayat, setSelectedGramPanchayat] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState({});
@@ -66,7 +70,10 @@ export default function FormComponent() {
     district: selectedDistrict,
     loksabha: selectedLoksabha,
     vidansabha: selectedVidansabha,
-    ward: selectedWard,
+    areaType: "",
+    block: "",
+    gramPanchayat: "",
+    ward: "",
     address: "",
     state: ""
   });
@@ -74,55 +81,56 @@ export default function FormComponent() {
   const validateForm = () => {
     let newErrors = {};
     
-    // Only validate district-related fields if state is Uttar Pradesh
-    if (formData.state === "Uttar Pradesh") {
-      if (!selectedDistrict) newErrors.district = "District is required";
-      if (!selectedLoksabha) newErrors.loksabha = "Lok Sabha is required";
-      if (!selectedVidansabha) newErrors.vidansabha = "Vidhan Sabha is required";
-      if (!selectedWard) newErrors.ward = "Ward is required";
-    }
-
-    // Name validation
+    // Basic validations for all states
     if (!formData.name.trim()) {
       newErrors.name = "First name is required";
     } else if (formData.name.length < 2) {
       newErrors.name = "First name must be at least 2 characters";
     }
 
-    // Last name validation
     if (!formData.lname.trim()) {
       newErrors.lname = "Last name is required";
     } else if (formData.lname.length < 2) {
       newErrors.lname = "Last name must be at least 2 characters";
     }
 
-    // Phone validation
     if (!formData.mob) {
       newErrors.mob = "Phone number is required";
     } else if (!/^[0-9]{10}$/.test(formData.mob)) {
       newErrors.mob = "Invalid phone number (must be 10 digits)";
     }
 
-    // WhatsApp validation
     if (!formData.whatno) {
       newErrors.whatno = "WhatsApp number is required";
     } else if (!/^[0-9]{10}$/.test(formData.whatno)) {
       newErrors.whatno = "Invalid WhatsApp number (must be 10 digits)";
     }
 
-    // Address validation
     if (!formData.address.trim()) {
       newErrors.address = "Address is required";
     } else if (formData.address.length < 10) {
       newErrors.address = "Please enter a complete address";
     }
 
-    // State validation
     if (!formData.state) {
       newErrors.state = "State is required";
     }
 
-    // Consent validation
+    // Additional validations only for Uttar Pradesh
+    if (formData.state === "Uttar Pradesh") {
+      if (!selectedDistrict) newErrors.district = "District is required";
+      if (!selectedLoksabha) newErrors.loksabha = "Lok Sabha is required";
+      if (!selectedVidansabha) newErrors.vidansabha = "Vidhan Sabha is required";
+      if (!areaType) newErrors.areaType = "Area type is required";
+      
+      if (areaType === "rural") {
+        if (!selectedBlock) newErrors.block = "Block is required";
+        if (!selectedGramPanchayat) newErrors.gramPanchayat = "Gram Panchayat is required";
+      } else if (areaType === "urban") {
+        if (!selectedWard) newErrors.ward = "Ward is required";
+      }
+    }
+
     if (!consent) {
       newErrors.consent = "You must agree to the terms";
     }
@@ -132,15 +140,41 @@ export default function FormComponent() {
   };
 
   const handleInputChange = (e) => {
-    formData.district = selectedDistrict;
-    formData.loksabha = selectedLoksabha;
-    formData.vidansabha = selectedVidansabha;
-    formData.ward = selectedWard;
     const { name, value } = e.target;
+    
+    // Reset UP-specific fields when state changes
+    if (name === 'state' && value !== 'Uttar Pradesh') {
+      setSelectedDistrict("");
+      setSelectedLoksabha("");
+      setSelectedVidansabha("");
+      setAreaType("");
+      setSelectedBlock("");
+      setSelectedGramPanchayat("");
+      setSelectedWard("");
+    }
+
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
+      ...(formData.state === 'Uttar Pradesh' ? {
+        district: selectedDistrict,
+        loksabha: selectedLoksabha,
+        vidansabha: selectedVidansabha,
+        areaType: areaType,
+        block: selectedBlock,
+        gramPanchayat: selectedGramPanchayat,
+        ward: selectedWard
+      } : {
+        district: "",
+        loksabha: "",
+        vidansabha: "",
+        areaType: "",
+        block: "",
+        gramPanchayat: "",
+        ward: ""
+      })
     }));
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -148,6 +182,20 @@ export default function FormComponent() {
         [name]: ""
       }));
     }
+  };
+
+  const handleAreaTypeChange = (type) => {
+    setAreaType(type);
+    setSelectedBlock("");
+    setSelectedGramPanchayat("");
+    setSelectedWard("");
+    setFormData(prev => ({
+      ...prev,
+      areaType: type,
+      block: "",
+      gramPanchayat: "",
+      ward: ""
+    }));
   };
 
   const loadRazorpay = () => {
@@ -205,7 +253,14 @@ export default function FormComponent() {
                 razorpay_signature: response.razorpay_signature,
                 formData: {
                   userId: userId.current,
-                  ...formData
+                  ...formData,
+                  district: selectedDistrict,
+                  loksabha: selectedLoksabha,
+                  vidansabha: selectedVidansabha,
+                  areaType: areaType,
+                  block: selectedBlock,
+                  gramPanchayat: selectedGramPanchayat,
+                  ward: selectedWard
                 }
               }),
             });
@@ -223,6 +278,9 @@ export default function FormComponent() {
                 district: "",
                 loksabha: "",
                 vidansabha: "",
+                areaType: "",
+                block: "",
+                gramPanchayat: "",
                 ward: "",
                 address: "",
                 state: ""
@@ -230,6 +288,9 @@ export default function FormComponent() {
               setSelectedDistrict("");
               setSelectedLoksabha("");
               setSelectedVidansabha("");
+              setAreaType("");
+              setSelectedBlock("");
+              setSelectedGramPanchayat("");
               setSelectedWard("");
               setConsent(false);
               // Generate new userId
@@ -256,25 +317,38 @@ export default function FormComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-  
-    // setIsSubmitted(true);
-    // if (validateForm()) {
-    //   // Handle form submission
-    //   console.log("Form submitted:", formData);
-    //   alert("Form submitted successfully!");
-    // }
   };
 
   const isFormValid = () => {
+    // Basic fields that are required for all states
+    const baseFieldsValid = Object.values({
+      name: formData.name,
+      lname: formData.lname,
+      mob: formData.mob,
+      whatno: formData.whatno,
+      address: formData.address,
+      state: formData.state
+    }).every(value => value !== "");
+
+    if (!baseFieldsValid || !consent) return false;
+
+    // Additional validation only for Uttar Pradesh
     if (formData.state === "Uttar Pradesh") {
-      return Object.values(formData).every(value => value !== "") && consent;
-    } else {
-      // Exclude district-related fields from validation for non-UP states
-      const { district, loksabha, vidansabha, ward, ...requiredFields } = formData;
-      return Object.values(requiredFields).every(value => value !== "") && consent;
+      const upFieldsValid = selectedDistrict && selectedLoksabha && selectedVidansabha && areaType;
+      if (!upFieldsValid) return false;
+
+      if (areaType === "rural") {
+        return selectedBlock && selectedGramPanchayat;
+      } else if (areaType === "urban") {
+        return selectedWard;
+      }
+      return false;
     }
+
+    return true;
   };
+
+  const showUrbanOption = selectedDistrict && districts[selectedDistrict]?.nagar_nikay?.ward?.length > 0;
 
   return (
     <>
@@ -417,18 +491,65 @@ export default function FormComponent() {
                 {errors.vidansabha && <p className="text-red-500 text-sm">{errors.vidansabha}</p>}
               </div>
               <div>
-                {selectedVidansabha && districts[selectedDistrict]?.ward?.[selectedVidansabha] && (
+                {selectedVidansabha && (
+                  <div className="mb-4">
+                    <RadioGroup value={areaType} onValueChange={handleAreaTypeChange} className="flex gap-4">
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="rural" id="rural" />
+                        <Label htmlFor="rural">Rural</Label>
+                      </div>
+                      {showUrbanOption && (
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="urban" id="urban" />
+                          <Label htmlFor="urban">Urban</Label>
+                        </div>
+                      )}
+                    </RadioGroup>
+                    {errors.areaType && <p className="text-red-500 text-sm">{errors.areaType}</p>}
+                  </div>
+                )}
+              </div>
+              {areaType === "rural" && selectedDistrict && (
+                <>
+                  <div>
+                    <Select onValueChange={(value)=>{setSelectedBlock(value); formData.block = value}}>
+                      <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Block" /></SelectTrigger>
+                      <SelectContent>
+                        {districts[selectedDistrict].blocks.map((block) => (
+                          <SelectItem key={block} value={block}>{block}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.block && <p className="text-red-500 text-sm">{errors.block}</p>}
+                  </div>
+                  <div>
+                    {selectedBlock && (
+                      <Select onValueChange={(value)=>{setSelectedGramPanchayat(value); formData.gramPanchayat = value}}>
+                        <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Gram Panchayat" /></SelectTrigger>
+                        <SelectContent>
+                          {districts[selectedDistrict].grampanchayat[selectedBlock].map((gp) => (
+                            <SelectItem key={gp} value={gp}>{gp}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                    {errors.gramPanchayat && <p className="text-red-500 text-sm">{errors.gramPanchayat}</p>}
+                  </div>
+                </>
+              )}
+              {areaType === "urban" && selectedDistrict && (
+                <div>
                   <Select onValueChange={(value)=>{setSelectedWard(value); formData.ward = value}}>
                     <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
                     <SelectContent>
-                      {districts[selectedDistrict]?.ward?.[selectedVidansabha]?.map((w) => (
-                        <SelectItem key={w} value={w}>{w}</SelectItem>
+                      {districts[selectedDistrict].nagar_nikay.ward.map((ward) => (
+                        <SelectItem key={ward} value={ward}>{ward}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                )}
-                {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
-              </div>
+                  {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
+                </div>
+              )}
             </>
           )}
           <div className="col-span-full mt-4">

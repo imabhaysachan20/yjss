@@ -52,7 +52,9 @@ function SupportFormEntries() {
     const matchesSearch = searchQuery === '' || 
       submission.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       submission.mob.includes(searchQuery) ||
-      submission.district.toLowerCase().includes(searchQuery.toLowerCase())
+      submission.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      submission.block?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      submission.gramPanchayat?.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesStatus && matchesSearch
   })
 
@@ -132,11 +134,15 @@ function SupportFormEntries() {
               <TableHead>Mobile</TableHead>
               <TableHead>WhatsApp</TableHead>
               <TableHead>Address</TableHead>
-              <TableHead>District</TableHead>
               <TableHead>State</TableHead>
+              <TableHead>District</TableHead>
               <TableHead>Lok Sabha</TableHead>
               <TableHead>Vidhan Sabha</TableHead>
+              <TableHead>Area Type</TableHead>
+              <TableHead>Block</TableHead>
+              <TableHead>Gram Panchayat</TableHead>
               <TableHead>Ward</TableHead>
+              <TableHead>Amount</TableHead>
               <TableHead>Payment ID</TableHead>
               <TableHead>Order ID</TableHead>
               <TableHead>Payment Status</TableHead>
@@ -151,11 +157,15 @@ function SupportFormEntries() {
                 <TableCell>{submission.mob}</TableCell>
                 <TableCell>{submission.whatno}</TableCell>
                 <TableCell>{submission.address}</TableCell>
-                <TableCell>{submission.district}</TableCell>
                 <TableCell>{submission.state}</TableCell>
+                <TableCell>{submission.district}</TableCell>
                 <TableCell>{submission.loksabha}</TableCell>
                 <TableCell>{submission.vidansabha}</TableCell>
+                <TableCell>{submission.areaType}</TableCell>
+                <TableCell>{submission.block}</TableCell>
+                <TableCell>{submission.gramPanchayat}</TableCell>
                 <TableCell>{submission.ward}</TableCell>
+                <TableCell>₹{submission.amount}</TableCell>
                 <TableCell>{submission.paymentId}</TableCell>
                 <TableCell>{submission.orderId}</TableCell>
                 <TableCell>

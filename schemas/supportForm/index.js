@@ -30,9 +30,39 @@ const supportFormJoiSchema = Joi.object({
     "string.empty": "Vidhan Sabha cannot be empty",
   }),
 
-  ward: Joi.string().trim().required().messages({
-    "any.required": "Ward is required",
-    "string.empty": "Ward cannot be empty",
+  areaType: Joi.string().valid('rural', 'urban').required().messages({
+    "any.required": "Area type is required",
+    "string.empty": "Area type cannot be empty",
+    "any.only": "Area type must be either rural or urban",
+  }),
+
+  // Rural specific fields - required only if areaType is rural
+  block: Joi.when('areaType', {
+    is: 'rural',
+    then: Joi.string().trim().required().messages({
+      "any.required": "Block is required for rural areas",
+      "string.empty": "Block cannot be empty",
+    }),
+    otherwise: Joi.string().trim().optional().allow(''),
+  }),
+
+  gramPanchayat: Joi.when('areaType', {
+    is: 'rural',
+    then: Joi.string().trim().required().messages({
+      "any.required": "Gram Panchayat is required for rural areas",
+      "string.empty": "Gram Panchayat cannot be empty",
+    }),
+    otherwise: Joi.string().trim().optional().allow(''),
+  }),
+
+  // Urban specific field - required only if areaType is urban
+  ward: Joi.when('areaType', {
+    is: 'urban',
+    then: Joi.string().trim().required().messages({
+      "any.required": "Ward is required for urban areas",
+      "string.empty": "Ward cannot be empty",
+    }),
+    otherwise: Joi.string().trim().optional().allow(''),
   }),
 
   problem: Joi.string().trim().required().messages({

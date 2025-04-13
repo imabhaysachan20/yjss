@@ -33,6 +33,7 @@ function SupportFormEntries() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [statusFilter, setStatusFilter] = useState('all')
+  const [areaTypeFilter, setAreaTypeFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedProblem, setSelectedProblem] = useState('')
   const router = useRouter()
@@ -71,11 +72,12 @@ function SupportFormEntries() {
 
   const filteredSubmissions = submissions.filter(submission => {
     const matchesStatus = statusFilter === 'all' || submission.status === statusFilter
+    const matchesAreaType = areaTypeFilter === 'all' || submission.areaType === areaTypeFilter
     const matchesSearch = searchQuery === '' || 
       submission.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       submission.phone.includes(searchQuery) ||
       submission.district.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesStatus && matchesSearch
+    return matchesStatus && matchesAreaType && matchesSearch
   })
 
   const getStatusColor = (status) => {
@@ -86,6 +88,10 @@ function SupportFormEntries() {
       case 'rejected': return 'bg-red-500'
       default: return 'bg-gray-500'
     }
+  }
+
+  const getAreaTypeColor = (areaType) => {
+    return areaType === 'rural' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
   }
 
   if (loading) {
@@ -129,6 +135,16 @@ function SupportFormEntries() {
             />
           </div>
         </div>
+        <Select value={areaTypeFilter} onValueChange={setAreaTypeFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by area type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Areas</SelectItem>
+            <SelectItem value="rural">Rural</SelectItem>
+            <SelectItem value="urban">Urban</SelectItem>
+          </SelectContent>
+        </Select>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Filter by status" />
@@ -156,7 +172,8 @@ function SupportFormEntries() {
               <TableHead>District</TableHead>
               <TableHead>Lok Sabha</TableHead>
               <TableHead>Vidhan Sabha</TableHead>
-              <TableHead>Ward</TableHead>
+              <TableHead>Area Type</TableHead>
+              <TableHead>Location Details</TableHead>
               <TableHead>Problem</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Submitted</TableHead>
@@ -171,7 +188,18 @@ function SupportFormEntries() {
                 <TableCell>{submission.district}</TableCell>
                 <TableCell>{submission.loksabha}</TableCell>
                 <TableCell>{submission.vidansabha}</TableCell>
-                <TableCell>{submission.ward}</TableCell>
+                <TableCell>
+                  <Badge className={getAreaTypeColor(submission.areaType)}>
+                    {submission.areaType}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  {submission.areaType === 'rural' ? (
+                    <span>Block: {submission.block}<br/>Gram Panchayat: {submission.gramPanchayat}</span>
+                  ) : (
+                    <span>Ward: {submission.ward}</span>
+                  )}
+                </TableCell>
                 <TableCell className="max-w-[200px] truncate">
                   <Dialog>
                     <DialogTrigger asChild>

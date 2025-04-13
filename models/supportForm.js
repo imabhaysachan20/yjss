@@ -27,9 +27,27 @@ const supportFormSchema = new mongoose.Schema({
     required: [true, 'Vidhan Sabha is required'],
     trim: true
   },
+  areaType: {
+    type: String,
+    required: [true, 'Area type is required'],
+    enum: ['rural', 'urban'],
+    trim: true
+  },
+  // Rural specific fields
+  block: {
+    type: String,
+    required: function() { return this.areaType === 'rural'; },
+    trim: true
+  },
+  gramPanchayat: {
+    type: String,
+    required: function() { return this.areaType === 'rural'; },
+    trim: true
+  },
+  // Urban specific field
   ward: {
     type: String,
-    required: [true, 'Ward is required'],
+    required: function() { return this.areaType === 'urban'; },
     trim: true
   },
   problem: {

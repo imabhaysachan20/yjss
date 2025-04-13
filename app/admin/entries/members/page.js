@@ -27,6 +27,8 @@ function MembershipEntries() {
   const [error, setError] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [paymentFilter, setPaymentFilter] = useState('all')
+  const [areaTypeFilter, setAreaTypeFilter] = useState('all')
+  const [stateFilter, setStateFilter] = useState('all')
   const router = useRouter()
 
   const fetchMembers = async () => {
@@ -49,11 +51,13 @@ function MembershipEntries() {
 
   const filteredMembers = members.filter(member => {
     const matchesPayment = paymentFilter === 'all' || member.paymentStatus === paymentFilter
+    const matchesAreaType = areaTypeFilter === 'all' || member.areaType === areaTypeFilter
+    const matchesState = stateFilter === 'all' || member.state === stateFilter
     const matchesSearch = searchQuery === '' || 
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       member.mob.includes(searchQuery) ||
-      member.district.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesPayment && matchesSearch
+      (member.district && member.district.toLowerCase().includes(searchQuery.toLowerCase()))
+    return matchesPayment && matchesAreaType && matchesState && matchesSearch
   })
 
   const getPaymentStatusColor = (status) => {
@@ -64,6 +68,12 @@ function MembershipEntries() {
       default: return 'bg-gray-500'
     }
   }
+
+  const getAreaTypeColor = (areaType) => {
+    return areaType === 'rural' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+  }
+
+  const uniqueStates = [...new Set(members.map(member => member.state))].sort()
 
   if (loading) {
     return (
@@ -105,6 +115,29 @@ function MembershipEntries() {
             />
           </div>
         </div>
+        <Select value={stateFilter} onValueChange={setStateFilter}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by state" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All States</SelectItem>
+            {uniqueStates.map(state => (
+              <SelectItem key={state} value={state}>{state}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {stateFilter === 'Uttar Pradesh' && (
+          <Select value={areaTypeFilter} onValueChange={setAreaTypeFilter}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Filter by area type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Areas</SelectItem>
+              <SelectItem value="rural">Rural</SelectItem>
+              <SelectItem value="urban">Urban</SelectItem>
+            </SelectContent>
+          </Select>
+        )}
         <Select value={paymentFilter} onValueChange={setPaymentFilter}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Filter by payment" />
@@ -131,10 +164,15 @@ function MembershipEntries() {
               <TableHead>WhatsApp</TableHead>
               <TableHead>Address</TableHead>
               <TableHead>State</TableHead>
-              <TableHead>District</TableHead>
-              <TableHead>Lok Sabha</TableHead>
-              <TableHead>Vidhan Sabha</TableHead>
-              <TableHead>Ward</TableHead>
+              {stateFilter === 'Uttar Pradesh' && (
+                <>
+                  <TableHead>District</TableHead>
+                  <TableHead>Lok Sabha</TableHead>
+                  <TableHead>Vidhan Sabha</TableHead>
+                  <TableHead>Area Type</TableHead>
+                  <TableHead>Location Details</TableHead>
+                </>
+              )}
               <TableHead>Payment ID</TableHead>
               <TableHead>Order ID</TableHead>
               <TableHead>Payment Status</TableHead>
@@ -149,10 +187,25 @@ function MembershipEntries() {
                 <TableCell>{member.whatno}</TableCell>
                 <TableCell>{member.address}</TableCell>
                 <TableCell>{member.state}</TableCell>
-                <TableCell>{member.district}</TableCell>
-                <TableCell>{member.loksabha}</TableCell>
-                <TableCell>{member.vidansabha}</TableCell>
-                <TableCell>{member.ward}</TableCell>
+                {member.state === 'Uttar Pradesh' && (
+                  <>
+                    <TableCell>{member.district}</TableCell>
+                    <TableCell>{member.loksabha}</TableCell>
+                    <TableCell>{member.vidansabha}</TableCell>
+                    <TableCell>
+                      <Badge className={getAreaTypeColor(member.areaType)}>
+                        {member.areaType}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      {member.areaType === 'rural' ? (
+                        <span>Block: {member.block}<br/>Gram Panchayat: {member.gramPanchayat}</span>
+                      ) : (
+                        <span>Ward: {member.ward}</span>
+                      )}
+                    </TableCell>
+                  </>
+                )}
                 <TableCell>{member.paymentId}</TableCell>
                 <TableCell>{member.orderId}</TableCell>
                 <TableCell>

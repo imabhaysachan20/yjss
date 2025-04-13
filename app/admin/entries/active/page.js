@@ -39,7 +39,9 @@ function ActiveMembersEntries() {
       member.name?.toLowerCase().includes(searchLower) ||
       member.lname?.toLowerCase().includes(searchLower) ||
       member.mob?.includes(searchQuery) ||
-      member.district?.toLowerCase().includes(searchLower)
+      member.district?.toLowerCase().includes(searchLower) ||
+      member.block?.toLowerCase().includes(searchLower) ||
+      member.gramPanchayat?.toLowerCase().includes(searchLower)
   })
 
   if (loading) {
@@ -101,6 +103,9 @@ function ActiveMembersEntries() {
               <TableHead>District</TableHead>
               <TableHead>Lok Sabha</TableHead>
               <TableHead>Vidhan Sabha</TableHead>
+              <TableHead>Area Type</TableHead>
+              <TableHead>Block</TableHead>
+              <TableHead>Gram Panchayat</TableHead>
               <TableHead>Ward</TableHead>
               <TableHead>Payment ID</TableHead>
               <TableHead>Order ID</TableHead>
@@ -120,6 +125,9 @@ function ActiveMembersEntries() {
                 <TableCell>{member.district}</TableCell>
                 <TableCell>{member.loksabha}</TableCell>
                 <TableCell>{member.vidansabha}</TableCell>
+                <TableCell>{member.areaType}</TableCell>
+                <TableCell>{member.block}</TableCell>
+                <TableCell>{member.gramPanchayat}</TableCell>
                 <TableCell>{member.ward}</TableCell>
                 <TableCell>{member.paymentId}</TableCell>
                 <TableCell>{member.orderId}</TableCell>
