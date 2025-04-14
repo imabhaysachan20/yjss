@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+const kalyanpur =['नवाबगंज ', 'विष्णुपुरी ', 'पुराना कानपुर ', 'ख्योरा ', 'नारामऊ ', 'बेनाझाबर ', 'तिलक नगर ', 'आवास विकास ', 'कल्याणपुर उत्तरी ', 'कल्याणपुर दक्षिण ', 'गीता नगर ', 'कल्याणपुर पश्चिम', 'पनकी ', 'नानकारी ', 'आंबेडकर नगर काकादेव ', 'काकादेव ', 'अशोक नगर']
 import { useTranslation } from '@/contexts/TranslationContext';
 import { TypeAnimation } from 'react-type-animation';
 import { Input } from "@/components/ui/input";
@@ -66,6 +67,7 @@ export default function SupportForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
     if (!validateForm()) return;
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -77,7 +79,7 @@ export default function SupportForm() {
         district: selectedDistrict,
         loksabha: selectedLoksabha,
         vidansabha: selectedVidansabha,
-        areaType,
+        areaType:selectedVidansabha=='कल्याणपुर'?"urban":areaType,
         ...(areaType === "rural" ? {
           block: selectedBlock,
           gramPanchayat: selectedGramPanchayat
@@ -87,7 +89,7 @@ export default function SupportForm() {
         problem,
         submittedAt: new Date().toISOString()
       };
-
+console.log(formData);
       const response = await fetch('/api/submit/supportForm', {
         method: 'POST',
         headers: {
@@ -192,7 +194,11 @@ export default function SupportForm() {
         )}
         {errors.vidansabha && <p className="text-red-500 text-sm">{errors.vidansabha}</p>}
 
-        {selectedDistrict && (
+        {
+
+        }
+
+        {selectedDistrict && selectedVidansabha!="कल्याणपुर" && (
           <div className="mb-4">
             <RadioGroup value={areaType} onValueChange={handleAreaTypeChange} className="flex gap-4">
               <div className="flex items-center space-x-2">
@@ -235,7 +241,17 @@ export default function SupportForm() {
             {errors.gramPanchayat && <p className="text-red-500 text-sm">{errors.gramPanchayat}</p>}
           </>
         )}
-
+        {selectedVidansabha=="कल्याणपुर" &&  <>
+            <Select onValueChange={setSelectedWard}>
+              <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
+              <SelectContent>
+                {kalyanpur.map((ward) => (
+                  <SelectItem key={ward} value={ward}>{ward}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
+          </>}
         {areaType === "urban" && selectedDistrict && (
           <>
             <Select onValueChange={setSelectedWard}>

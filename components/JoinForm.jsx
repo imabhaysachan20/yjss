@@ -1,5 +1,7 @@
 "use client"
 import { toast } from "sonner"
+
+const kalyanpur =['नवाबगंज ', 'विष्णुपुरी ', 'पुराना कानपुर ', 'ख्योरा ', 'नारामऊ ', 'बेनाझाबर ', 'तिलक नगर ', 'आवास विकास ', 'कल्याणपुर उत्तरी ', 'कल्याणपुर दक्षिण ', 'गीता नगर ', 'कल्याणपुर पश्चिम', 'पनकी ', 'नानकारी ', 'आंबेडकर नगर काकादेव ', 'काकादेव ', 'अशोक नगर']
 import { ObjectId } from "bson";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Script from 'next/script';
 import districts from "@/utils/data";
 
@@ -79,6 +81,7 @@ export default function FormComponent() {
   });
 
   const validateForm = () => {
+    
     let newErrors = {};
     
     // Basic validations for all states
@@ -213,6 +216,7 @@ export default function FormComponent() {
   };
 
   const handlePayNow = async () => {
+    selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
     if (!validateForm()) return;
     setIsSubmitting(true);
     try {
@@ -349,7 +353,9 @@ export default function FormComponent() {
   };
 
   const showUrbanOption = selectedDistrict && districts[selectedDistrict]?.nagar_nikay?.ward?.length > 0;
-
+  useEffect(()=>{
+    selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
+  },[selectedVidansabha])
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
@@ -491,7 +497,7 @@ export default function FormComponent() {
                 {errors.vidansabha && <p className="text-red-500 text-sm">{errors.vidansabha}</p>}
               </div>
               <div>
-                {selectedVidansabha && (
+                {selectedVidansabha &&  selectedVidansabha!="कल्याणपुर" &&(
                   <div className="mb-4">
                     <RadioGroup value={areaType} onValueChange={handleAreaTypeChange} className="flex gap-4">
                       <div className="flex items-center space-x-2">
@@ -508,6 +514,17 @@ export default function FormComponent() {
                     {errors.areaType && <p className="text-red-500 text-sm">{errors.areaType}</p>}
                   </div>
                 )}
+                {selectedVidansabha=="कल्याणपुर" &&  <>
+            <Select onValueChange={setSelectedWard}>
+              <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
+              <SelectContent>
+                {kalyanpur.map((ward) => (
+                  <SelectItem key={ward} value={ward}>{ward}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
+          </>}
               </div>
               {areaType === "rural" && selectedDistrict && (
                 <>
@@ -537,7 +554,7 @@ export default function FormComponent() {
                   </div>
                 </>
               )}
-              {areaType === "urban" && selectedDistrict && (
+              {areaType === "urban" && selectedDistrict &&  selectedVidansabha!="कल्याणपुर" && (
                 <div>
                   <Select onValueChange={(value)=>{setSelectedWard(value); formData.ward = value}}>
                     <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
