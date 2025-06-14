@@ -366,7 +366,7 @@ export default function FormComponent() {
           </div>
           <div>
             <Label htmlFor="amount">Payment Amount:</Label>
-            <Input id="amount" name="amount" value="251" readOnly />
+            <Input id="amount" name="amount" value="251"  />
           </div>
           <div>
             <Label htmlFor="name">First Name</Label>

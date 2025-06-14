@@ -7,7 +7,6 @@ const razorpay = new Razorpay({
 });
 const amounts = {
   'newMember':10000,
-  'activeMember':25100,
 }
 
 export async function POST(request) {
@@ -30,7 +29,7 @@ export async function POST(request) {
 
     }
     const options = {
-      amount:data.membership_type=='donate'?amount: Number(amounts[data.membership_type]),
+      amount:data.membership_type!='newMember'?amount: Number(amounts[data.membership_type]),
       currency: "INR",
       receipt: `receipt_${data.userId}`,
       notes: {
