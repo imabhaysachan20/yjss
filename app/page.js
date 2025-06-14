@@ -6,6 +6,7 @@ import SupportForm from "@/components/GrivencesForm";
 import Header from "@/components/Header";
 import Slider from "@/components/Slider";
 import TwitterWidget from "@/components/TwitterWidget";
+import RecentImages from "@/components/RecentImages";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Banner_below_options/>
       <AboutHome/>
       <SupportForm/>
+      <RecentImages/>
       <TwitterWidget/>
       </Container>
       </div>

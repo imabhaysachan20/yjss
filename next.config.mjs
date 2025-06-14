@@ -3,12 +3,17 @@ const nextConfig = {
     images: {
         remotePatterns: [
           {
+            protocol: "https",
+            hostname: "images.ctfassets.net",
+            pathname: "/**",
+          },
+          {
             protocol: "http",
-            hostname: "yjss.org", // Replace with your image host
-            pathname: "/img/**", // Adjust based on image path structure
+            hostname: "yjss.org",
+            pathname: "/img/**",
           },
         ],
-        domains: ["http://yjss.org"], // Add allowed hosts
+        domains: ["http://yjss.org", "images.ctfassets.net"],
       },
 };
 
