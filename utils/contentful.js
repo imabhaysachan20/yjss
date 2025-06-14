@@ -1,8 +1,8 @@
 import { createClient } from 'contentful';
 
 const client = createClient({
-    accessToken: "yQgohBCOllUj5aOwkvYphsU472D_JGIx-usTKaNBOHk",
-    space: "qs73wmg7kure"
+    accessToken: "pAOMso-Xvy6h43yKioAA8aGh9Si7pLJJyysEOTCCK0c",
+    space: "mo655ch1gd2r"
 });
 
 export const getImages = async() => {

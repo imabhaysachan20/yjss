@@ -106,18 +106,19 @@ function GalleryPage() {
                   fill
                   className={`object-cover transition-all duration-500 ${
                     loadedImages[index] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                  } group-hover:opacity-75`}
+                  } cursor-pointer sm:group-hover:opacity-75`}
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   unoptimized
                   priority={index < 4}
                   onLoad={() => handleImageLoad(index)}
+                  onClick={() => setSelectedImage(img)}
                   onError={(e) => {
                     console.error(`Error loading image ${index}:`, img);
                     e.target.style.display = 'none';
                   }}
                 />
               </div>
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/50 opacity-0 hidden sm:flex group-hover:opacity-100 transition-all duration-300 items-center justify-center">
                 <button 
                   className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100"
                   onClick={() => setSelectedImage(img)}
