@@ -52,6 +52,10 @@ const states = [
 ];
 
 export default function FormComponent() {
+  const value = null;
+  useEffect(()=>{
+    
+  },[])
   const userId = useRef("yjss"+Date.now().toString());
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedLoksabha, setSelectedLoksabha] = useState("");

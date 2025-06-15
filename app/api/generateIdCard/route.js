@@ -2,6 +2,10 @@ import { connectDB } from "@/utils/connectToDb";
 import Member from "@/models/Member";
 import sharp from "sharp";
 import { NextResponse } from "next/server";
+import path from 'path';
+
+// Configure Sharp to handle font issues in Vercel
+sharp.cache(false);
 
 export async function POST(request) {
   try {
