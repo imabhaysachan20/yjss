@@ -35,41 +35,7 @@ export async function POST(request) {
             <stop offset="100%" stop-color="#ACB6E5" />
           </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#bgGradient)" />
-        <rect x="10" y="10" width="580" height="380" fill="none" stroke="#2c3e50" stroke-width="5" rx="15" ry="15" />
-        <text x="50%" y="60" font-family="serif" font-size="28" font-weight="bold" fill="#2c3e50" text-anchor="middle">
-          युवा जनता संघर्ष समिति
-        </text>
-        <text x="50%" y="100" font-family="serif" font-size="16" font-weight="bold" fill="#34495e" text-anchor="middle">
-          Membership ID Card
-        </text>
-        <text x="50" y="140" font-family="serif" font-size="18" fill="#2c3e50">
-          ID: ${member.userId || ""}
-        </text>
-        <text x="50" y="170" font-family="serif" font-size="18" fill="#2c3e50">
-          Name: ${member.name || ""}
-        </text>
-        <text x="50" y="200" font-family="serif" font-size="18" fill="#2c3e50">
-          Mobile No: ${member.mob || ""}
-        </text>
-        <text x="50" y="230" font-family="serif" font-size="18" fill="#2c3e50">
-          Date of Join: ${formattedDate}
-        </text>
-        <text x="50" y="260" font-family="serif" font-size="18" fill="#2c3e50">
-          Lok Sabha: ${member.loksabha || ""}
-        </text>
-        <text x="50" y="290" font-family="serif" font-size="18" fill="#2c3e50">
-          Vidhan Sabha: ${member.vidansabha || ""}
-        </text>
-        <text x="50" y="320" font-family="serif" font-size="18" fill="#2c3e50">
-          District: ${member.district || ""}
-        </text>
-        <text x="50" y="350" font-family="serif" font-size="18" fill="#2c3e50">
-          State: ${member.state || ""}
-        </text>
-        <text x="50%" y="380" class="hindi" font-size="16" fill="#27ae60" text-anchor="middle">
-          मोबाइल नंबर: 7676366014 | सदस्यता ग्रहण करने के लिए आपका धन्यवाद。
-        </text>
+       
       </svg>
     `;
 
