@@ -21,7 +21,11 @@ export async function POST(request) {
       return NextResponse.json({ message:"invalid request" }, { status: 400 });
     }
     if (data.membership_type=='donate') {
-      
+      const amount = Number(data.amount);
+      if (!amount) {
+        return NextResponse.json({ message:"invalid request" }, { status: 400 });
+      }
+    if (data.membership_type=='activeMember') {
       const amount = Number(data.amount);
       if (!amount) {
         return NextResponse.json({ message:"invalid request" }, { status: 400 });

@@ -5,6 +5,7 @@ const kalyanpur =['नवाबगंज ', 'विष्णुपुरी ', '
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState, useRef, useEffect } from "react";
@@ -58,6 +59,7 @@ export default function FormComponent() {
   },[])
   const userId = useRef("yjss"+Date.now().toString());
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [donateAmount, setdonateAmount] = useState("251");
   const [selectedLoksabha, setSelectedLoksabha] = useState("");
   const [selectedVidansabha, setSelectedVidansabha] = useState("");
   const [areaType, setAreaType] = useState("");
@@ -141,7 +143,10 @@ export default function FormComponent() {
 
   const validateForm = () => {
     let newErrors = {};
-    
+    if (Number(donateAmount)<251) {
+      toast.error('minimum donation amount is 251');
+      return false;
+    }
     // Basic validations for all states
     if (!formData.name.trim()) {
       newErrors.name = "First name is required";
@@ -229,7 +234,7 @@ export default function FormComponent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId: userId.current,membership_type:"activeMember" }),
+        body: JSON.stringify({ userId: userId.current,membership_type:"activeMember",amount: Number(donateAmount)*100}),
       });
       const { orderId } = await orderResponse.json();
 
@@ -370,7 +375,7 @@ export default function FormComponent() {
           </div>
           <div>
             <Label htmlFor="amount">Payment Amount:</Label>
-            <Input id="amount" name="amount" defaultValue={251}  />
+            <Input id="amount" name="amount" defaultValue={251} onChange={(e)=>{setdonateAmount(e.target.value)}} />
           </div>
           <div>
             <Label htmlFor="name">First Name</Label>
