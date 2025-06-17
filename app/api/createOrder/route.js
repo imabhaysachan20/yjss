@@ -6,34 +6,31 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_SECRET
 });
 const amounts = {
-  'newMember':10000,
-}
+  'newMember': 10000,
+  // Add more fixed types if needed
+};
 
 export async function POST(request) {
-
   try {
     const data = await request.json();
-    const amount = 0;
     if (!data.membership_type) {
-      return NextResponse.json({ message:"invalid request" }, { status: 400 });
+      return NextResponse.json({ message: "invalid request" }, { status: 400 });
     }
-    if (!Object.keys(amounts).includes(data.membership_type) ) {
-      return NextResponse.json({ message:"invalid request" }, { status: 400 });
-    }
-    if (data.membership_type=='donate') {
-      const amount = Number(data.amount);
-      if (!amount) {
-        return NextResponse.json({ message:"invalid request" }, { status: 400 });
-      }
-    if (data.membership_type=='activeMember') {
-      const amount = Number(data.amount);
-      if (!amount) {
-        return NextResponse.json({ message:"invalid request" }, { status: 400 });
-      }
 
+    let amount = 0;
+    if (data.membership_type === 'donate' || data.membership_type === 'activeMember') {
+      amount = Number(data.amount);
+      if (!amount) {
+        return NextResponse.json({ message: "invalid request" }, { status: 400 });
+      }
+    } else if (Object.keys(amounts).includes(data.membership_type)) {
+      amount = Number(amounts[data.membership_type]);
+    } else {
+      return NextResponse.json({ message: "invalid request" }, { status: 400 });
     }
+
     const options = {
-      amount:data.membership_type!='newMember'?amount: Number(amounts[data.membership_type]),
+      amount: amount,
       currency: "INR",
       receipt: `receipt_${data.userId}`,
       notes: {
