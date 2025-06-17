@@ -94,6 +94,7 @@ function ActiveMembersEntries() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Id</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Last Name</TableHead>
               <TableHead>Mobile</TableHead>
@@ -116,6 +117,7 @@ function ActiveMembersEntries() {
           <TableBody>
             {filteredMembers.map((member) => (
               <TableRow key={member._id}>
+                <TableCell>{member.userId}</TableCell>
                 <TableCell>{member.name}</TableCell>
                 <TableCell>{member.lname}</TableCell>
                 <TableCell>{member.mob}</TableCell>

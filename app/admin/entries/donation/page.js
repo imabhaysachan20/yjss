@@ -129,6 +129,7 @@ function SupportFormEntries() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Id</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Last Name</TableHead>
               <TableHead>Mobile</TableHead>
@@ -152,6 +153,7 @@ function SupportFormEntries() {
           <TableBody>
             {filteredSubmissions.map((submission) => (
               <TableRow key={submission._id}>
+                <TableCell>{submission.userId}</TableCell>
                 <TableCell>{submission.name}</TableCell>
                 <TableCell>{submission.lname}</TableCell>
                 <TableCell>{submission.mob}</TableCell>

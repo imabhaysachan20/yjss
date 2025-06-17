@@ -272,7 +272,7 @@ export default function FormComponent() {
             const data = await verifyResponse.json();
             if (data.success) {
               setIsSubmitting(false);
-              toast.success("Payment successful! Your membership is now active.")
+              
               // Reset form
               setFormData({
                 name: "",
@@ -298,7 +298,8 @@ export default function FormComponent() {
               setSelectedWard("");
               setConsent(false);
               // Generate new userId
-              userId.current = new ObjectId().toString();
+              alert("युवा जनता संघर्ष की सदस्यता ग्रहण करने के लिए धन्यवाद। आपके फ़ोन नंबर  से आप अपना सदस्यता कार्ड डाउनलोड कर सकते है।")
+              userId.current = "yjss"+Date.now().toString();
             }
           } catch (err) {
             setIsSubmitting(false);

@@ -285,7 +285,7 @@ export default function FormComponent() {
               setSelectedGramPanchayat("");
               setConsent(false);
               // Generate new userId
-              userId.current = new ObjectId().toString();
+              userId.current = "yjss"+Date.now().toString();
             }
           } catch (err) {
             setIsSubmitting(false);

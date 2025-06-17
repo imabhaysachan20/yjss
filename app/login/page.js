@@ -32,7 +32,7 @@ function LoginPage() {
         throw new Error(data.message || 'Login failed')
       }
       
-      // Redirect to admin dashboard
+      
       router.push('/admin/dashboard')
     } catch (err) {
       setError(err.message || 'Invalid credentials')

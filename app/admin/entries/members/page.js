@@ -159,6 +159,7 @@ function MembershipEntries() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Id</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Mobile</TableHead>
               <TableHead>WhatsApp</TableHead>
@@ -182,6 +183,7 @@ function MembershipEntries() {
           <TableBody>
             {filteredMembers.map((member) => (
               <TableRow key={member._id}>
+                <TableCell>{member.userId}</TableCell>
                 <TableCell>{`${member.name} ${member.lname}`}</TableCell>
                 <TableCell>{member.mob}</TableCell>
                 <TableCell>{member.whatno}</TableCell>
