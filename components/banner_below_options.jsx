@@ -1,5 +1,5 @@
 "use client";
-import { ActivitySquare, HelpingHand, NotebookPen, Pointer } from "lucide-react";
+import { ActivitySquare, HelpingHand, Lock, NotebookPen, Pointer } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from '@/contexts/TranslationContext';
 
@@ -14,7 +14,7 @@ const Banner_below_options = () => {
     },
     {
       name: t('banner.pledgeForm'),
-      icon: <NotebookPen/>,
+      icon: <Lock/>,
       link: "/join/sankalppatra"
     },
     {

@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, RefreshCw, ArrowLeft } from 'lucide-react'
+import { exportToExcel } from "@/utils/exportToExcel"
 
 function ActiveMembersEntries() {
   const [members, setMembers] = useState([])
@@ -44,6 +45,30 @@ function ActiveMembersEntries() {
       member.gramPanchayat?.toLowerCase().includes(searchLower)
   })
 
+  // Helper to format data for Excel export
+  const getExportData = () => {
+    return filteredMembers.map(member => ({
+      Id: member.userId,
+      Name: member.name,
+      "Last Name": member.lname,
+      Mobile: member.mob,
+      WhatsApp: member.whatno,
+      Address: member.address,
+      State: member.state,
+      District: member.district,
+      "Lok Sabha": member.loksabha,
+      "Vidhan Sabha": member.vidansabha,
+      "Area Type": member.areaType,
+      Block: member.block,
+      "Gram Panchayat": member.gramPanchayat,
+      Ward: member.ward,
+      "Payment ID": member.paymentId,
+      "Order ID": member.orderId,
+      "Payment Status": member.paymentStatus,
+      "Membership Date": new Date(member.membershipDate).toLocaleDateString(),
+    }));
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -64,6 +89,16 @@ function ActiveMembersEntries() {
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <h2 className="text-2xl font-semibold">Active Members</h2>
+      </div>
+
+      {/* Export to Excel Button */}
+      <div className="flex justify-end mb-4">
+        <Button
+          variant="outline"
+          onClick={() => exportToExcel(getExportData(), "ActiveMembers")}
+        >
+          Export to Excel
+        </Button>
       </div>
 
       {error && (

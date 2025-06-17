@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Search, RefreshCw, ArrowLeft } from 'lucide-react'
+import { exportToExcel } from "@/utils/exportToExcel"
 
 function MembershipEntries() {
   const [members, setMembers] = useState([])
@@ -75,6 +76,34 @@ function MembershipEntries() {
 
   const uniqueStates = [...new Set(members.map(member => member.state))].sort()
 
+  // Helper to format data for Excel export
+  const getExportData = () => {
+    return filteredMembers.map(member => {
+      const base = {
+        Id: member.userId,
+        Name: `${member.name} ${member.lname}`,
+        Mobile: member.mob,
+        WhatsApp: member.whatno,
+        Address: member.address,
+        State: member.state,
+      };
+      if (stateFilter === 'Uttar Pradesh' || member.state === 'Uttar Pradesh') {
+        base["District"] = member.district;
+        base["Lok Sabha"] = member.loksabha;
+        base["Vidhan Sabha"] = member.vidansabha;
+        base["Area Type"] = member.areaType;
+        base["Location Details"] = member.areaType === 'rural'
+          ? `Block: ${member.block}\nGram Panchayat: ${member.gramPanchayat}`
+          : `Ward: ${member.ward}`;
+      }
+      base["Payment ID"] = member.paymentId;
+      base["Order ID"] = member.orderId;
+      base["Payment Status"] = member.paymentStatus;
+      base["Membership Date"] = new Date(member.membershipDate).toLocaleDateString();
+      return base;
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -95,6 +124,16 @@ function MembershipEntries() {
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <h2 className="text-2xl font-semibold">Membership Entries</h2>
+      </div>
+
+      {/* Export to Excel Button */}
+      <div className="flex justify-end mb-4">
+        <Button
+          variant="outline"
+          onClick={() => exportToExcel(getExportData(), "MembershipEntries")}
+        >
+          Export to Excel
+        </Button>
       </div>
 
       {error && (

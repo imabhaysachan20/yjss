@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Search, RefreshCw, ArrowLeft } from 'lucide-react'
+import { exportToExcel } from "@/utils/exportToExcel"
 
 function SupportFormEntries() {
   const [submissions, setSubmissions] = useState([])
@@ -66,6 +67,55 @@ function SupportFormEntries() {
       default: return 'bg-gray-500'
     }
   }
+
+  // Add this helper to format data for Excel export
+  const handleExportToExcel = () => {
+    // Define headers in the same order as the table
+    const headers = [
+      "Id",
+      "Name",
+      "Last Name",
+      "Mobile",
+      "WhatsApp",
+      "Address",
+      "State",
+      "District",
+      "Lok Sabha",
+      "Vidhan Sabha",
+      "Area Type",
+      "Block",
+      "Gram Panchayat",
+      "Ward",
+      "Amount",
+      "Payment ID",
+      "Order ID",
+      "Payment Status",
+      "Date"
+    ];
+    // Map filtered submissions to match the headers
+    const data = filteredSubmissions.map((submission) => [
+      submission.userId || "",
+      submission.name || "",
+      submission.lname || "",
+      submission.mob || "",
+      submission.whatno || "",
+      submission.address || "",
+      submission.state || "",
+      submission.district || "",
+      submission.loksabha || "",
+      submission.vidansabha || "",
+      submission.areaType || "",
+      submission.block || "",
+      submission.gramPanchayat || "",
+      submission.ward || "",
+      submission.amount ? `₹${submission.amount}` : "",
+      submission.paymentId || "",
+      submission.orderId || "",
+      submission.paymentStatus || "pending",
+      submission.membershipDate ? new Date(submission.membershipDate).toLocaleDateString() : ""
+    ]);
+    exportToExcel(headers, data, "donation_entries.xlsx");
+  };
 
   if (loading) {
     return (
@@ -119,6 +169,9 @@ function SupportFormEntries() {
             <SelectItem value="failed">Failed</SelectItem>
           </SelectContent>
         </Select>
+        <Button onClick={handleExportToExcel} variant="outline" className="flex items-center gap-2">
+          Export to Excel
+        </Button>
         <Button onClick={fetchSubmissions} variant="outline" className="flex items-center gap-2">
           <RefreshCw className="h-4 w-4" />
           Refresh
