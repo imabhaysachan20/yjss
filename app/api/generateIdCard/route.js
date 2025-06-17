@@ -1,9 +1,11 @@
 import { connectDB } from "@/utils/connectToDb";
 import Member from "@/models/Member";
-import sharp from "sharp";
 import { NextResponse } from "next/server";
-import path from "path";
+import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "fs";
+import path from "path";
+
+const hindiFontPath = path.resolve(process.cwd(), "public/font/NotoSansDevanagari-Regular.ttf");
 
 export async function POST(request) {
   try {
@@ -23,68 +25,65 @@ export async function POST(request) {
       ? new Date(member.membershipDate).toLocaleDateString("hi-IN")
       : "";
 
-    // Noto Sans Devanagari base64 (truncated for brevity)
-  
+    // Embed Hindi font
+    const hindiFontBytes = fs.readFileSync(hindiFontPath);
+    const pdfDoc = await PDFDocument.create();
+    // Dynamically require fontkit and register on the instance
+    const fontkit = require("fontkit");
+    pdfDoc.registerFontkit(fontkit);
+    const hindiFont = await pdfDoc.embedFont(hindiFontBytes);
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const page = pdfDoc.addPage([600, 400]);
 
-    const svgContent = `
-      <svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="bgGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#74ebd5" />
-            <stop offset="100%" stop-color="#ACB6E5" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#bgGradient)" />
-        <rect x="10" y="10" width="580" height="380" fill="none" stroke="#2c3e50" stroke-width="5" rx="15" ry="15" />
-        <text x="50%" y="60" font-size="28" font-weight="bold" fill="#2c3e50" text-anchor="middle">
-          युवा जनता संघर्ष समिति
-        </text>
-        <text x="50%" y="100" font-size="16" font-weight="bold" fill="#34495e" text-anchor="middle">
-          Membership ID Card
-        </text>
-        <text x="50" y="140" font-size="18" fill="#2c3e50">
-          ID: ${member.userId || ""}
-        </text>
-        <text x="50" y="170" font-size="18" fill="#2c3e50">
-          Name: ${member.name || ""}
-        </text>
-        <text x="50" y="200" font-size="18" fill="#2c3e50">
-          Mobile No: ${member.mob || ""}
-        </text>
-        <text x="50" y="230" font-size="18" fill="#2c3e50">
-          Date of Join: ${formattedDate}
-        </text>
-        <text x="50" y="260" font-size="18" fill="#2c3e50">
-          Lok Sabha: ${member.loksabha || ""}
-        </text>
-        <text x="50" y="290" font-size="18" fill="#2c3e50">
-          Vidhan Sabha: ${member.vidansabha || ""}
-        </text>
-        <text x="50" y="320" font-size="18" fill="#2c3e50">
-          District: ${member.district || ""}
-        </text>
-        <text x="50" y="350" font-size="18" fill="#2c3e50">
-          State: ${member.state || ""}
-        </text>
-        <text x="50%" y="380" font-size="16" fill="#27ae60" text-anchor="middle">
-          मोबाइल नंबर: 7676366014 | सदस्यता ग्रहण करने के लिए आपका धन्यवाद。
-        </text>
-      </svg>
-    `;
+    // Draw background gradient (approximate with rectangles)
+    page.drawRectangle({
+      x: 0, y: 0, width: 600, height: 400,
+      color: rgb(0.67, 0.92, 0.84), // #ACB6E5 (approx)
+    });
+    page.drawRectangle({
+      x: 0, y: 200, width: 600, height: 200,
+      color: rgb(0.45, 0.92, 0.84), // #74ebd5 (approx)
+      opacity: 0.5,
+    });
+    // Draw border
+    page.drawRectangle({
+      x: 10, y: 10, width: 580, height: 380,
+      borderColor: rgb(0.17, 0.24, 0.31),
+      borderWidth: 5,
+      color: undefined,
+    });
 
-    const buffer = await sharp(Buffer.from(svgContent))
-      .png()
-      .toBuffer();
+    // Draw Hindi and English text
+    page.drawText("युवा जनता संघर्ष समिति", {
+      x: 120, y: 340, size: 28, font: hindiFont, color: rgb(0.17, 0.24, 0.31),
+    });
+    page.drawText("Membership ID Card", {
+      x: 200, y: 310, size: 16, font, color: rgb(0.20, 0.29, 0.37),
+    });
+    page.drawText(`ID: ${member.userId || ""}`, { x: 50, y: 270, size: 18, font, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`Name: ${member.name || ""}`, { x: 50, y: 240, size: 18, font, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`Mobile No: ${member.mob || ""}`, { x: 50, y: 210, size: 18, font, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`Date of Join: ${formattedDate}`, { x: 50, y: 180, size: 18, font, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`Lok Sabha: ${member.loksabha || ""}`, { x: 50, y: 150, size: 18, font: hindiFont, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`Vidhan Sabha: ${member.vidansabha || ""}`, { x: 50, y: 120, size: 18, font: hindiFont, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`District: ${member.district || ""}`, { x: 50, y: 90, size: 18, font: hindiFont, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText(`State: ${member.state || ""}`, { x: 50, y: 60, size: 18, font: hindiFont, color: rgb(0.17, 0.24, 0.31) });
+    page.drawText("मोबाइल नंबर: 7676366014 | सदस्यता ग्रहण करने के लिए आपका धन्यवाद।", {
+      x: 50, y: 30, size: 14, font: hindiFont, color: rgb(0.15, 0.66, 0.38),
+    });
 
-    return new NextResponse(buffer, {
+    const pdfBytes = await pdfDoc.save();
+
+    return new NextResponse(Buffer.from(pdfBytes), {
       status: 200,
       headers: {
-        "Content-Type": "image/png",
-        "Content-Length": buffer.length,
+        "Content-Type": "application/pdf",
+        "Content-Length": pdfBytes.length,
+        "Content-Disposition": "inline; filename=IDCard.pdf",
       },
     });
   } catch (error) {
-    console.error("Error generating image:", error);
+    console.error("Error generating PDF:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
