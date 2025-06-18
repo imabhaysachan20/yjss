@@ -79,10 +79,10 @@ export default function FormComponent() {
 
   const validateForm = () => {
     let newErrors = {};
-    if (Number(donateAmount)<200) {
-      toast.error('minimum donation amount is 200');
-      return false;
-    }
+    // if (Number(donateAmount)<200) {
+    //   toast.error('minimum donation amount is 200');
+    //   return false;
+    // }
     
     // Basic validations for all states
     if (!formData.name.trim()) {

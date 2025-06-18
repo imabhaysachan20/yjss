@@ -7,6 +7,8 @@ import path from "path";
 
 const hindiFontPath = path.resolve(process.cwd(), "public/font/NotoSansDevanagari-Regular.ttf");
 const logoPath = path.resolve(process.cwd(), "public/logo.png");
+// Function to translate Hindi text to English using Cloudflare API with fetch
+
 
 export async function POST(request) {
   try {
@@ -35,7 +37,7 @@ export async function POST(request) {
     const hindiFont = await pdfDoc.embedFont(hindiFontBytes);
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const page = pdfDoc.addPage([600, 400]);
-
+    
     // Draw modern gradient background (top to bottom, #F53D3D shades)
     for (let i = 0; i < 400; i += 10) {
       const t = i / 400;
@@ -120,9 +122,8 @@ export async function POST(request) {
     y -= gap;
     page.drawText("State:", { x: leftX, y, size: labelFontSize, font, color: rgb(0.5, 0.1, 0.1), });
     page.drawText(`${member.state || ""}`, { x: leftX + 70, y, size: valueFontSize, font, color: rgb(0.20, 0.20, 0.20), });
-
-    // Footer message (centered, theme color)
-    
+ 
+ 
     const pdfBytes = await pdfDoc.save();
 
     return new NextResponse(Buffer.from(pdfBytes), {
