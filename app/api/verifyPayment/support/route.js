@@ -20,7 +20,7 @@ export async function POST(request) {
 
     // Connect to database
     await connectDB();
-
+    
     // Create new member
     const member = new Member({
       ...formData,
@@ -28,7 +28,7 @@ export async function POST(request) {
       orderId: razorpay_order_id,
       paymentStatus: 'success'
     });
-
+    
     await member.save();
 
     return NextResponse.json({ success: true });

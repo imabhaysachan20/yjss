@@ -1,5 +1,7 @@
 import { connectDB } from "@/utils/connectToDb";
 import Member from "@/models/Member";
+import MemberA from "@/models/Active";
+import MemberD from "@/models/Doner";
 import { NextResponse } from "next/server";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "fs";
@@ -18,9 +20,15 @@ export async function POST(request) {
       return NextResponse.json({ error: "Mobile number is required" }, { status: 400 });
     }
 
-    const member = await Member.findOne({ mob: mobileNumber });
+    let member = await Member.findOne({ mob: mobileNumber });
     if (!member) {
-      return NextResponse.json({ error: "Member not found" }, { status: 404 });
+      member = await MemberA.findOne({mob:mobileNumber})
+      if(!member) {
+        member = await MemberD.findOne({mob:mobileNumber})
+        if (!member) {
+          return NextResponse.json({ error: "Member not found" }, { status: 404 });
+        }
+      }
     }
     
    

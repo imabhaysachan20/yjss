@@ -55,12 +55,7 @@ export default function FormComponent() {
   const userId = useRef("yjss"+Date.now().toString());
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [donateAmount, setdonateAmount] = useState("200");
-  const [selectedLoksabha, setSelectedLoksabha] = useState("");
-  const [selectedVidansabha, setSelectedVidansabha] = useState("");
-  const [areaType, setAreaType] = useState("");
-  const [selectedBlock, setSelectedBlock] = useState("");
-  const [selectedGramPanchayat, setSelectedGramPanchayat] = useState("");
-  const [selectedWard, setSelectedWard] = useState("");
+ 
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,10 +64,7 @@ export default function FormComponent() {
     lname: "",
     mob: "",
     whatno: "",
-    district: selectedDistrict,
-    loksabha: selectedLoksabha,
-    vidansabha: selectedVidansabha,
-    ward: selectedWard,
+
     address: "",
     state: ""
   });
@@ -122,14 +114,7 @@ export default function FormComponent() {
     // Additional validations only for Uttar Pradesh
     if (formData.state === "Uttar Pradesh") {
       if (!selectedDistrict) newErrors.district = "District is required";
-      if (!selectedLoksabha) newErrors.loksabha = "Lok Sabha is required";
-      if (!selectedVidansabha) newErrors.vidansabha = "Vidhan Sabha is required";
-      if (!selectedWard) newErrors.ward = "Ward is required";
-      if (!areaType) newErrors.areaType = "Area type is required";
-      if (areaType === "rural") {
-        if (!selectedBlock) newErrors.block = "Block is required";
-        if (!selectedGramPanchayat) newErrors.gramPanchayat = "Gram Panchayat is required";
-      }
+      
     }
 
     if (!consent) {
@@ -146,12 +131,6 @@ export default function FormComponent() {
     // Reset UP-specific fields when state changes
     if (name === 'state' && value !== 'Uttar Pradesh') {
       setSelectedDistrict("");
-      setSelectedLoksabha("");
-      setSelectedVidansabha("");
-      setAreaType("");
-      setSelectedBlock("");
-      setSelectedGramPanchayat("");
-      setSelectedWard("");
     }
 
     setFormData(prev => ({
@@ -159,20 +138,9 @@ export default function FormComponent() {
       [name]: value,
       ...(formData.state === 'Uttar Pradesh' ? {
         district: selectedDistrict,
-        loksabha: selectedLoksabha,
-        vidansabha: selectedVidansabha,
-        areaType: areaType,
-        block: selectedBlock,
-        gramPanchayat: selectedGramPanchayat,
-        ward: selectedWard
       } : {
         district: "",
-        loksabha: "",
-        vidansabha: "",
-        areaType: "",
-        block: "",
-        gramPanchayat: "",
-        ward: ""
+       
       })
     }));
 
@@ -212,9 +180,7 @@ export default function FormComponent() {
       document.body.appendChild(script);
     });
   };
-  useEffect(()=>{
-    selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
-  },[selectedVidansabha])
+
   const handlePayNow = async () => {
     selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
     if (!validateForm()) return;
@@ -246,7 +212,8 @@ export default function FormComponent() {
         order_id: orderId,
         handler: async function (response) {
           try {
-            const verifyResponse = await fetch('/api/verifyPayment/donate', {
+            
+            const verifyResponse = await fetch('/api/verifyPayment/support', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -273,19 +240,10 @@ export default function FormComponent() {
                 mob: "",
                 whatno: "",
                 district: "",
-                loksabha: "",
-                vidansabha: "",
-                ward: "",
-                address: "",
+              
                 state: ""
               });
-              setSelectedDistrict("");
-              setSelectedLoksabha("");
-              setSelectedVidansabha("");
-              setSelectedWard("");
-              setAreaType("");
-              setSelectedBlock("");
-              setSelectedGramPanchayat("");
+              
               setConsent(false);
               // Generate new userId
               userId.current = "yjss"+Date.now().toString();
@@ -465,105 +423,10 @@ export default function FormComponent() {
                 </Select>
                 {errors.district && <p className="text-red-500 text-sm">{errors.district}</p>}
               </div>
-              <div>
-                {selectedDistrict && (
-                  <Select onValueChange={(value)=>{setSelectedLoksabha(value); formData.loksabha = value}}>
-                    <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Lok Sabha" /></SelectTrigger>
-                    <SelectContent>
-                      {districts[selectedDistrict].loksabha.map((ls) => (
-                        <SelectItem key={ls} value={ls}>{ls}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-                {errors.loksabha && <p className="text-red-500 text-sm">{errors.loksabha}</p>}
-              </div>
-              <div>
-                {selectedLoksabha && districts[selectedDistrict]?.vidansabha?.[selectedLoksabha] && (
-                  <Select onValueChange={(value)=>{setSelectedVidansabha(value); formData.vidansabha = value}}>
-                    <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Vidhan Sabha" /></SelectTrigger>
-                    <SelectContent>
-                      {districts[selectedDistrict]?.vidansabha?.[selectedLoksabha]?.map((vs) => (
-                        <SelectItem key={vs} value={vs}>{vs}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-                {errors.vidansabha && <p className="text-red-500 text-sm">{errors.vidansabha}</p>}
-              </div>
-              <div>
-                {selectedVidansabha && selectedVidansabha!="कल्याणपुर" && (
-                  <div className="mb-4">
-                    <RadioGroup value={areaType} onValueChange={handleAreaTypeChange} className="flex gap-4">
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="rural" id="rural" />
-                        <Label htmlFor="rural">Rural</Label>
-                      </div>
-                      {showUrbanOption && (
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="urban" id="urban" />
-                          <Label htmlFor="urban">Urban</Label>
-                        </div>
-                      )}
-                    </RadioGroup>
-                    {errors.areaType && <p className="text-red-500 text-sm">{errors.areaType}</p>}
-                  </div>
-                )}
-              </div>
-              {areaType === "rural" && selectedDistrict && (
-                <>
-                  <div>
-                    <Select onValueChange={(value)=>{setSelectedBlock(value); formData.block = value}}>
-                      <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Block" /></SelectTrigger>
-                      <SelectContent>
-                        {districts[selectedDistrict].blocks.map((block) => (
-                          <SelectItem key={block} value={block}>{block}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {errors.block && <p className="text-red-500 text-sm">{errors.block}</p>}
-                  </div>
-                  <div>
-                    {selectedBlock && (
-                      <Select onValueChange={(value)=>{setSelectedGramPanchayat(value); formData.gramPanchayat = value}}>
-                        <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Gram Panchayat" /></SelectTrigger>
-                        <SelectContent>
-                          {districts[selectedDistrict].grampanchayat[selectedBlock].map((gp) => (
-                            <SelectItem key={gp} value={gp}>{gp}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                    {errors.gramPanchayat && <p className="text-red-500 text-sm">{errors.gramPanchayat}</p>}
-                  </div>
-                </>
-              )}
-              {areaType === "urban" && selectedDistrict && selectedVidansabha!="कल्याणपुर" && (
-                <div>
-                  <Select onValueChange={(value)=>{setSelectedWard(value); formData.ward = value}}>
-                    <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
-                    <SelectContent>
-                      {districts[selectedDistrict].nagar_nikay.ward.map((ward) => (
-                        <SelectItem key={ward} value={ward}>{ward}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
-                </div>
-              )}
+            
             </>
           )}
-           {selectedVidansabha=="कल्याणपुर" &&  <>
-            <Select onValueChange={setSelectedWard}>
-              <SelectTrigger className="mb-3 w-full"><SelectValue placeholder="Select Ward" /></SelectTrigger>
-              <SelectContent>
-                {kalyanpur.map((ward) => (
-                  <SelectItem key={ward} value={ward}>{ward}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.ward && <p className="text-red-500 text-sm">{errors.ward}</p>}
-          </>}
+          
           <div className="col-span-full mt-4">
             <div className="flex items-start space-x-2">
               <Checkbox 
