@@ -27,7 +27,11 @@ function Page() {
                 if (response.ok) {
                     const resp = await response.json()
                     localStorage.setItem("card",JSON.stringify(resp))
-                    router.push("/generateCard")
+                    setTimeout(()=>{
+                        setIsLoading(false); // Reset loading state
+                        router.push("/generateCard")
+                    },1000)
+                    
                     // const blob = await response.blob();
                     // const url = URL.createObjectURL(blob);
 
@@ -44,9 +48,8 @@ function Page() {
             } catch (error) {
                 console.log(error)
                 alert("An error occurred while downloading the ID card.");
-            } finally {
-                setIsLoading(false); // Reset loading state
-            }
+                   setIsLoading(false); // Reset loading state
+            } 
         } else {
             alert("Please enter a valid 10-digit mobile number.");
         }
