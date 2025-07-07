@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { connectDB } from "@/utils/connectToDb"
-import Member from '@/models/Member';
+import Member from '@/models/Donerr';
 
 export async function POST(request) {
   try {

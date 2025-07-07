@@ -31,33 +31,6 @@ const memberSchema = new mongoose.Schema({
     type: String,
     required: function() { return this.state === 'Uttar Pradesh'; }
   },
-  loksabha: {
-    type: String,
-    required: function() { return this.state === 'Uttar Pradesh'; }
-  },
-  vidansabha: {
-    type: String,
-    required: function() { return this.state === 'Uttar Pradesh'; }
-  },
-  areaType: {
-    type: String,
-    enum: ['rural', 'urban'],
-    required: function() { return this.state === 'Uttar Pradesh'; }
-  },
-  // Rural specific fields
-  block: {
-    type: String,
-    required: function() { return this.state === 'Uttar Pradesh' && this.areaType === 'rural'; }
-  },
-  gramPanchayat: {
-    type: String,
-    required: function() { return this.state === 'Uttar Pradesh' && this.areaType === 'rural'; }
-  },
-  // Urban specific field
-  ward: {
-    type: String,
-    required: function() { return this.state === 'Uttar Pradesh' && this.areaType === 'urban'; }
-  },
   paymentId: String,
   orderId: String,
   paymentStatus: String,
