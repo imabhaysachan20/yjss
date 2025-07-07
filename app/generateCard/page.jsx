@@ -46,10 +46,10 @@ export default function ScreenshotComponent() {
   };
 
   return (
-    <div className="p-4">
+    <div className="">
       <div
         ref={captureRef}
-        className="p-4 rounded max-w-[600px] overflow-hidden border-none"
+        className="rounded w-[600px] overflow-hidden bg-white border-none"
       >
         <img src='banner.png' alt="Banner" />
         <div className="mt-4">
