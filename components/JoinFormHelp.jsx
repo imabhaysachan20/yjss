@@ -182,7 +182,7 @@ export default function FormComponent() {
   };
 
   const handlePayNow = async () => {
-    selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
+    
     if (!validateForm()) return;
     setIsSubmitting(true);
     try {
@@ -293,15 +293,8 @@ export default function FormComponent() {
 
     // Additional validation only for Uttar Pradesh
     if (formData.state === "Uttar Pradesh") {
-      const upFieldsValid = selectedDistrict && selectedLoksabha && selectedVidansabha && areaType;
+      const upFieldsValid = selectedDistrict;
       if (!upFieldsValid) return false;
-
-      if (areaType === "rural") {
-        return selectedBlock && selectedGramPanchayat;
-      } else if (areaType === "urban") {
-        return selectedWard;
-      }
-      return false;
     }
 
     return true;
