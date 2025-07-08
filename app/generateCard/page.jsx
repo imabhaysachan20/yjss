@@ -32,13 +32,15 @@ export default function ScreenshotComponent() {
 
   const handleCapture = () => {
     if (!captureRef.current) return;
-
+    captureRef.current.style.width="600px";
+    
     domtoimage.toPng(captureRef.current)
       .then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'screenshot.png';
         link.click();   
+        captureRef.current.style.width="auto";
       })
       .catch((err) => {
         console.error('Screenshot failed', err);
@@ -49,7 +51,7 @@ export default function ScreenshotComponent() {
     <div className="">
       <div
         ref={captureRef}
-        className="rounded w-[600px] overflow-hidden bg-white border-none"
+        className="rounded max-w-[600px] overflow-hidden bg-white border-none"
       >
         <img src='banner.png' alt="Banner" />
         <div className="mt-4">
