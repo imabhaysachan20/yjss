@@ -65,7 +65,7 @@ export default function ScreenshotComponent() {
             ) : null
           ))}
           <div className='flex items-center justify-center text-center bg-green-200 p-2'>
-            "Thank You For Accepting The Membership."<br/>
+            {card?.MEMBER_TYPE}<br/>
             Contact Number: 7376366014		
           </div>
         </div>

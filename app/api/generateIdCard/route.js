@@ -3,15 +3,10 @@ import Member from "@/models/Member";
 import MemberA from "@/models/Active";
 import MemberD from "@/models/Doner";
 import { NextResponse } from "next/server";
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
-import fs from "fs";
-import path from "path";
-
-const hindiFontPath = path.resolve(process.cwd(), "public/font/NotoSansDevanagari-Regular.ttf");
-const logoPath = path.resolve(process.cwd(), "public/logo.png");
 
 
 export async function POST(request) {
+  const MEMBER_TYPE = "Thank You For Accepting The Membership.";
   try {
     await connectDB();
 
@@ -23,17 +18,19 @@ export async function POST(request) {
     let member = await Member.findOne({ mob: mobileNumber });
     if (!member) {
       member = await MemberA.findOne({mob:mobileNumber})
+      MEMBER_TYPE="Thank you for accepting the active membership."
       if(!member) {
         member = await MemberD.findOne({mob:mobileNumber})
+        MEMBER_TYPE="Thank you for supporting the organization."
         if (!member) {
           return NextResponse.json({ error: "Member not found" }, { status: 404 });
         }
       }
     }
-    
+    console.log({...member,MEMBER_TYPE})
    
 
-    return NextResponse.json(member, {
+    return NextResponse.json({...member._doc,MEMBER_TYPE}, {
       status: 200,
     });
   } catch (error) {
