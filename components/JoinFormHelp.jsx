@@ -321,7 +321,7 @@ export default function FormComponent() {
           </div>
           <div>
             <Label htmlFor="amount">Payment Amount:</Label>
-            <Input id="amount" name="amount" defaultValue={200}  onChange={(e)=>{setdonateAmount(e.target.value)}}/>
+            <Input id="amount" name="amount" defaultValue={200} readOnly />
           </div>
           <div>
             <Label htmlFor="name">First Name</Label>
