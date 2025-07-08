@@ -71,12 +71,12 @@ export default function FormComponent() {
 
   const validateForm = () => {
     let newErrors = {};
-    // if (Number(donateAmount)<200) {
-    //   toast.error('minimum donation amount is 200');
-    //   return false;
-    // }
+    if (Number(donateAmount)<200) {
+      toast.error('minimum donation amount is 200');
+      return false;
+    }
     
-    // Basic validations for all states
+    
     if (!formData.name.trim()) {
       newErrors.name = "First name is required";
     } else if (formData.name.length < 2) {
@@ -321,7 +321,7 @@ export default function FormComponent() {
           </div>
           <div>
             <Label htmlFor="amount">Payment Amount:</Label>
-            <Input id="amount" name="amount" defaultValue={200} readOnly />
+            <Input id="amount" name="amount" defaultValue={200} onChange={(e)=>setdonateAmount(e.target.value)} />
           </div>
           <div>
             <Label htmlFor="name">First Name</Label>

@@ -48,7 +48,7 @@ export default function ScreenshotComponent() {
   };
 
   return (
-    <div className="">
+    <div className="flex items-center justify-center flex-col pt-8">
       <div
         ref={captureRef}
         className="rounded max-w-[600px] overflow-hidden bg-white border-none"
