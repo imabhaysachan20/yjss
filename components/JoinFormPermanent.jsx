@@ -187,11 +187,14 @@ export default function FormComponent() {
       if (!selectedDistrict) newErrors.district = "District is required";
       if (!selectedLoksabha) newErrors.loksabha = "Lok Sabha is required";
       if (!selectedVidansabha) newErrors.vidansabha = "Vidhan Sabha is required";
-      if (!selectedWard) newErrors.ward = "Ward is required";
+      
       if (!areaType) newErrors.areaType = "Area type is required";
       if (areaType === "rural") {
         if (!selectedBlock) newErrors.block = "Block is required";
         if (!selectedGramPanchayat) newErrors.gramPanchayat = "Gram Panchayat is required";
+      }
+      else if (areaType === "urban") {
+        if (!selectedWard) newErrors.ward = "Ward is required";
       }
     }
 
@@ -200,6 +203,7 @@ export default function FormComponent() {
     }
 
     setErrors(newErrors);
+    console.log(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -218,8 +222,10 @@ export default function FormComponent() {
   };
 
   const handlePayNow = async () => {
+    console.log("hey")
     selectedVidansabha=='कल्याणपुर'?setAreaType("urban"):"";
     if (!validateForm()) return;
+    console.log("hey2")
     setIsSubmitting(true);
     try {
       const res = await loadRazorpay();
