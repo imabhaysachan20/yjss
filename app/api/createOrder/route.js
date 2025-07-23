@@ -34,7 +34,7 @@ export async function POST(request) {
       currency: "INR",
       receipt: `receipt_${data.userId}`,
       notes: {
-        userId: data.userId
+        user: data
       }
     };
 
