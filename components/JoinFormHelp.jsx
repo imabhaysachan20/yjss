@@ -54,7 +54,7 @@ const states = [
 export default function FormComponent() {
   const userId = useRef("yjss"+Date.now().toString());
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [donateAmount, setdonateAmount] = useState("21");
+  const [donateAmount, setdonateAmount] = useState("200");
  
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState({});
@@ -321,7 +321,7 @@ export default function FormComponent() {
           </div>
           <div>
             <Label htmlFor="amount">Payment Amount:</Label>
-            <Input id="amount" name="amount" defaultValue={21} onChange={(e)=>setdonateAmount(e.target.value)} />
+            <Input id="amount" name="amount" defaultValue={200} onChange={(e)=>setdonateAmount(e.target.value)} />
           </div>
           <div>
             <Label htmlFor="name">First Name</Label>
