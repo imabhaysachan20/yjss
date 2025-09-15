@@ -12,7 +12,7 @@ const supportFormSchema = new mongoose.Schema({
     match: [/^[0-9]{10}$/, 'Please enter a valid 10-digit phone number'],
     trim: true
   },
-  phone: {
+  email: {
     type: String,
     required: [true, 'Email is required'],
     trim: true
