@@ -46,8 +46,14 @@ export async function PATCH(request) {
 
     // Send email notification if status changed from pending
     let emailResult = { success: false, message: 'No email sent' };
+
+     const shouldSendEmail = (
+      (status === 'resolved' && oldStatus !== 'resolved') ||
+      (status === 'rejected' && oldStatus !== 'rejected') ||
+      (status === 'in_progress' && oldStatus === 'pending')
+    );
     
-    if (oldStatus === 'pending' && ['resolved', 'rejected', 'in_progress'].includes(status)) {
+     if (shouldSendEmail) {
       emailResult = await sendStatusUpdateEmail(
         supportForm.email,
         supportForm.name,
@@ -63,7 +69,8 @@ export async function PATCH(request) {
       data: {
         supportForm,
         emailSent: emailResult.success,
-        emailMessage: emailResult.message || emailResult.error
+        emailMessage: emailResult.message || emailResult.error,
+        statusChange: `${oldStatus} → ${status}`
       }
     }, { status: 200 });
 
