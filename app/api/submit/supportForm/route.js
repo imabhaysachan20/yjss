@@ -1,7 +1,8 @@
 import { connectDB } from "@/utils/connectToDb"
-import supportFormJoiSchema from "@/schemas/supportForm"; // Adjust the path
-import SupportForm from "@/models/supportForm"; // Mongoose model
+import supportFormJoiSchema from "@/schemas/supportForm";
+import SupportForm from "@/models/supportForm";
 import { NextResponse } from "next/server";
+import { sendStatusUpdateEmail, sendSubmissionConfirmationEmail } from "@/utils/emailConfig";
 
 export async function POST(request) {
   await connectDB();
@@ -11,7 +12,7 @@ export async function POST(request) {
     // Validate the form data
     const { error, value } = supportFormJoiSchema.validate(body, { 
       abortEarly: false,
-      stripUnknown: true // Remove any fields that aren't in the schema
+      stripUnknown: true
     });
 
     if (error) {
@@ -26,11 +27,21 @@ export async function POST(request) {
     const newSupportForm = new SupportForm(value);
     await newSupportForm.save();
 
+    // Send confirmation email to user
+    const emailResult = await sendSubmissionConfirmationEmail(
+      value.email,
+      value.name,
+      value.problem
+    );
+
     return NextResponse.json({ 
       success: true, 
       message: "Form submitted successfully",
-      data: newSupportForm 
+      data: newSupportForm,
+      emailSent: emailResult.success,
+      emailMessage: emailResult.message || emailResult.error
     }, { status: 201 });
+
   } catch (err) {
     console.error('Support form submission error:', err);
     return NextResponse.json({ 

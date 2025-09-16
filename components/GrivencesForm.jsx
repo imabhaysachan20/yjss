@@ -23,6 +23,7 @@ export default function SupportForm() {
   const [selectedWard, setSelectedWard] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [problem, setProblem] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,6 +34,8 @@ export default function SupportForm() {
     if (!name) newErrors.name = "Name is required";
     if (!phone) newErrors.phone = "Phone number is required";
     else if (!/^[0-9]{10}$/.test(phone)) newErrors.phone = "Invalid phone number";
+    if (!email) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format";
     if (!selectedDistrict) newErrors.district = "District is required";
     if (!selectedLoksabha) newErrors.loksabha = "Lok Sabha is required";
     if (!selectedVidansabha) newErrors.vidansabha = "Vidhan Sabha is required";
@@ -76,6 +79,7 @@ export default function SupportForm() {
       const formData = {
         name,
         phone,
+        email,
         district: selectedDistrict,
         loksabha: selectedLoksabha,
         vidansabha: selectedVidansabha,
@@ -108,6 +112,7 @@ console.log(formData);
       // Reset form
       setName('');
       setPhone('');
+      setEmail('');
       setSelectedDistrict('');
       setSelectedLoksabha('');
       setSelectedVidansabha('');
@@ -159,6 +164,9 @@ console.log(formData);
         
         <Input placeholder={t('support.phoneNumber')} value={phone} onChange={(e) => setPhone(e.target.value)} className="mb-3 w-full" type="tel" />
         {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+
+        <Input placeholder={t('support.email')} value={email} onChange={(e) => setEmail(e.target.value)} className="mb-3 w-full" type="email" />
+        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         
         <Select onValueChange={handleDistrictChange}>
           <SelectTrigger className="mb-3 w-full"><SelectValue placeholder={t('support.District')} /></SelectTrigger>

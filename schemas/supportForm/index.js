@@ -15,6 +15,16 @@ const supportFormJoiSchema = Joi.object({
       "string.pattern.base": "Please enter a valid 10-digit phone number",
     }),
 
+   email: Joi.string()
+    .email({ tlds: { allow: false } }) 
+    .trim()
+    .required()
+    .messages({
+      "any.required": "Email is required",
+      "string.empty": "Email cannot be empty",
+      "string.email": "Please enter a valid email address"
+    }),
+
   district: Joi.string().trim().required().messages({
     "any.required": "District is required",
     "string.empty": "District cannot be empty",
