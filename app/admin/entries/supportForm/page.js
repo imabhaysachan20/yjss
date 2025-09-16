@@ -36,6 +36,7 @@ function SupportFormEntries() {
   const [areaTypeFilter, setAreaTypeFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedProblem, setSelectedProblem] = useState('')
+  const [updatingId, setUpdatingId] = useState(null);
   const router = useRouter()
 
   const fetchSubmissions = async () => {
@@ -58,12 +59,21 @@ function SupportFormEntries() {
 
   const handleStatusUpdate = async (id, newStatus) => {
     try {
-      const response = await fetch(`/api/admin/submissions/${id}`, {
+      const response = await fetch(`/api/submit/supportForm/update-status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
+        body: JSON.stringify({formId: id, status: newStatus })
       })
-      if (!response.ok) throw new Error('Failed to update status')
+     if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error === 'Support form not found'
+            ? 'The selected form was not found.'
+            : errorData.error === 'Invalid status'
+            ? 'Invalid status selected.'
+            : errorData.error || 'Failed to update status'
+        );
+      }
       fetchSubmissions() // Refresh the list
     } catch (err) {
       setError(err.message)
