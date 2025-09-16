@@ -59,7 +59,7 @@ function SupportFormEntries() {
 
   const handleStatusUpdate = async (id, newStatus) => {
     try {
-      const response = await fetch(`/api/submit/supportForm/update-status`, {
+      const response = await fetch(`/api/submit/update-status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({formId: id, status: newStatus })
