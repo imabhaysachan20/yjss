@@ -99,8 +99,8 @@ const emailTemplates = {
           <p>कृपया अधिक जानकारी के लिए या वैकल्पिक समाधान के लिए हमारी टीम से संपर्क करें। हम आपकी सहायता करने के लिए प्रतिबद्ध हैं।</p>
           
           <p>संपर्क विवरण:<br>
-          ईमेल: support@yourwebsite.com<br>
-          फोन: +91-XXXXXXXXXX</p>
+          ईमेल: yjssofficial@gmail.com<br>
+          फोन: +91-7376366014</p>
           
           <p>धन्यवाद,<br>
           <strong>सहायता टीम</strong></p>
