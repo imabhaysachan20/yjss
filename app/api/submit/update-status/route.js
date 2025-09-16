@@ -8,10 +8,10 @@ export async function PATCH(request) {
   await connectDB();
   
   try {
-    const { formId, newStatus } = await request.json();
+    const { formId, status } = await request.json();
     
     // Validate required fields
-    if (!formId || !newStatus) {
+    if (!formId || !status) {
       return NextResponse.json({ 
         success: false, 
         error: "Form ID and new status are required" 
@@ -20,7 +20,7 @@ export async function PATCH(request) {
 
     // Validate status
     const validStatuses = ['pending', 'in_progress', 'resolved', 'rejected'];
-    if (!validStatuses.includes(newStatus)) {
+    if (!validStatuses.includes(status)) {
       return NextResponse.json({ 
         success: false, 
         error: "Invalid status" 
@@ -40,19 +40,19 @@ export async function PATCH(request) {
     const oldStatus = supportForm.status;
     
     // Update the status
-    supportForm.status = newStatus;
+    supportForm.status = status;
     supportForm.lastUpdated = new Date();
     await supportForm.save();
 
     // Send email notification if status changed from pending
     let emailResult = { success: false, message: 'No email sent' };
     
-    if (oldStatus === 'pending' && ['resolved', 'rejected', 'in_progress'].includes(newStatus)) {
+    if (oldStatus === 'pending' && ['resolved', 'rejected', 'in_progress'].includes(status)) {
       emailResult = await sendStatusUpdateEmail(
         supportForm.email,
         supportForm.name,
         supportForm.problem,
-        newStatus,
+        status,
         oldStatus
       );
     }

@@ -45,6 +45,8 @@ function SupportFormEntries() {
       const response = await fetch('/api/admin/submissions/supportForm')
       if (!response.ok) throw new Error('Failed to fetch submissions')
       const data = await response.json()
+       console.log('Fetched submissions:', data); 
+      setSubmissions(data.data?.supportForms || data);
       setSubmissions(data)
     } catch (err) {
       setError(err.message)
@@ -58,6 +60,8 @@ function SupportFormEntries() {
   }, [])
 
   const handleStatusUpdate = async (id, newStatus) => {
+    console.log('Updating status:', { id, newStatus }); // Debug log
+    setUpdatingId(id);
     try {
       const response = await fetch(`/api/submit/update-status`, {
         method: 'PATCH',
@@ -77,6 +81,8 @@ function SupportFormEntries() {
       fetchSubmissions() // Refresh the list
     } catch (err) {
       setError(err.message)
+    }finally {
+      setUpdatingId(null);
     }
   }
 
