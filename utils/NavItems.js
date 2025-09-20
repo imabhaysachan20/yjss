@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowBigRight, BookAIcon, BookOpen, Contact, Globe, Home, Image, Presentation } from "lucide-react";
+import { ArrowBigRight, BookAIcon, BookOpen, Contact, Globe, Home, Image, Presentation,FileBadge } from "lucide-react";
 import { t, languageService } from "@/utils/languageService"; // Import languageService
 
 const generateNavItems = () => [
@@ -88,6 +88,12 @@ const generateNavItems = () => [
         name: t("common.contact"),
         icon: <Contact className="w-4 relative -top-0.5" />,
         link: "/contact",
+        content: null
+    },
+    {
+        name: t("common.padavedan"),
+        icon: <FileBadge className="w-4 relative -top-0.5" />,
+        link: "/padavedan",
         content: null
     }
 ];

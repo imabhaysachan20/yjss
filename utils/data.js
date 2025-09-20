@@ -66928,11 +66928,11 @@ const districts = {
     },
     "ललितपुर": {
         "loksabha": [
-            
+            "ललितपुर",
         ],
-        "vidansabha": {
-            
-        },
+        "vidansabha": [
+            "ललितपुर"
+        ],
         "blocks": [
             "मडावरा",
             "तालबेहट",
