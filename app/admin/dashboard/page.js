@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { FileText, ClipboardList, FileSpreadsheet } from 'lucide-react'
+import { FileText, ClipboardList, FileSpreadsheet,Award } from 'lucide-react'
 
 function DashboardPage() {
   const router = useRouter()
@@ -22,6 +22,13 @@ function DashboardPage() {
       icon: ClipboardList,
       link: "/admin/entries/members",
       color: "text-green-500"
+    },
+    {
+      title: "पद आवेदन",
+      description: "Manage position application submissions",
+      icon: Award,
+      link: "/admin/entries/padAvedan",
+      color: "text-orange-500"
     },
     {
       title: "सहयोग करें",
