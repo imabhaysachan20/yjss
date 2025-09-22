@@ -22,20 +22,20 @@ const upZones = {
       "मेरठ मंडल": ["मेरठ", "गाजियाबाद", "गौतम बुद्ध नगर", "हापुड़", "बुलंदशहर", "बागपत"],
       "आगरा मंडल": ["आगरा", "फिरोजाबाद", "मैनपुरी", "मथुरा"],
       "अलीगढ़ मंडल": ["अलीगढ़", "हाथरस", "कासगंज", "एटा"],
-      "सहारनपुर मंडल": ["सहारनपुर", "मुजफ्फरनगर", "शामली"],
-      "मुरादाबाद मंडल": ["मुरादाबाद", "रामपुर", "ज्योतिबा फुले नगर", "बिजनौर", "संभल"],
-      "बरेली मंडल": ["बरेली", "बदायूं", "पीलीभीत", "शाहजहांपुर"]
+      "सहारनपुर मंडल": ["सहारनपुर", "मुज़फ्फरनगर", "शामली"],
+      "मुरादाबाद मंडल": ["मुरादाबाद", "रामपुर", "ज्योतिबा फुले नगर", "बिजनौर", "सम्भल"],
+      "बरेली मंडल": ["बरेली", "बदायूं", "पीलीभीत", "शाहजहाँपुर"]
     }
   },
   "पूर्वांचल": {
     mandals: ["गोरखपुर मंडल", "देवीपाटन मंडल", "बस्ती मंडल", "आजमगढ़ मंडल", "वाराणसी मंडल", "मिर्जापुर मंडल"],
     districts: {
-      "गोरखपुर मंडल": ["गोरखपुर", "कुशीनगर", "देवरिया", "महराजगंज"],
+      "गोरखपुर मंडल": ["गोरखपुर", "कुशी नगर", "देवरिया", "महराजगंज"],
       "देवीपाटन मंडल": ["गोंडा", "बहराइच", "श्रावस्ती", "बलरामपुर"],
-      "बस्ती मंडल": ["बस्ती", "सिद्धार्थनगर", "संत कबीर नगर"],
-      "आजमगढ़ मंडल": ["आजमगढ़", "मऊ", "बलिया", "अंबेडकर नगर"],
-      "वाराणसी मंडल": ["वाराणसी", "चंदौली", "जौनपुर", "गाजीपुर", "भदोही"],
-      "मिर्जापुर मंडल": ["मिर्जापुर", "सोनभद्र"]
+      "बस्ती मंडल": ["बस्ती", "सिद्धार्थ नगर", "संत कबीर नगर"],
+      "आजमगढ़ मंडल": ["आज़मगढ़", "मऊ", "बलिया", "अम्बेडकर नगर"],
+      "वाराणसी मंडल": ["वाराणसी", "चन्दौली", "जौनपुर", "गाजीपुर", "भदोही(संत रविदास नगर)"],
+      "मिर्जापुर मंडल": ["मीरजापुर", "सोनभद्र"]
     }
   },
   "मध्यांचल": {
@@ -51,7 +51,7 @@ const upZones = {
     mandals: ["झांसी मंडल", "चित्रकूट मंडल"],
     districts: {
       "झांसी मंडल": ["झांसी", "जालौन", "ललितपुर", "हमीरपुर", "महोबा"],
-      "चित्रकूट मंडल": ["चित्रकूट", "बांदा"]
+      "चित्रकूट मंडल": ["चित्रकूट", "बाँदा"]
     }
   }
 };
@@ -363,7 +363,8 @@ function Page() {
                     <Input placeholder="पिता का नाम" value={fatherName} onChange={(e) => setFatherName(e.target.value)} className="mb-3 w-full" />
                     {errors.fatherName && <p className="text-red-500 text-sm mb-2">{errors.fatherName}</p>}
                     
-                    <Input placeholder="जन्म तिथि" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} className="mb-3 w-full" type="date"/>
+                    <Label htmlFor="dob_date">जन्म तिथि</Label>
+                    <Input id="dob_date" placeholder="जन्म तिथि" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} className="mb-3 w-full" type="date"/>
                     {errors.birthDate && <p className="text-red-500 text-sm mb-2">{errors.birthDate}</p>}
                     
                     <Input placeholder="शिक्षा" value={education} onChange={(e) => setEducation(e.target.value)} className="mb-3 w-full" />
@@ -407,7 +408,8 @@ function Page() {
                     <Input placeholder="ईमेल" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-3 w-full" type="email" />
                     {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
                     
-                    <Input placeholder="आवेदन की तिथि" value={applicationDate} onChange={(e) => setApplicationDate(e.target.value)} className="mb-3 w-full" type="date" />
+                    <Label htmlFor="application_date">आवेदन की तिथि</Label>
+                    <Input id="application_date" placeholder="आवेदन की तिथि" value={applicationDate} onChange={(e) => setApplicationDate(e.target.value)} className="mb-3 w-full" type="date" />
                     {errors.applicationDate && <p className="text-red-500 text-sm mb-2">{errors.applicationDate}</p>}
 
                     {/* State Selection */}
