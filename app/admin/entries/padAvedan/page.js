@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { toast } from "sonner"
 
-function Page() {
+function PadAvedanPage() {
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedSubmission, setSelectedSubmission] = useState(null)
@@ -532,4 +532,4 @@ function Page() {
   )
 }
 
-export default Page
+export default PadAvedanPage
