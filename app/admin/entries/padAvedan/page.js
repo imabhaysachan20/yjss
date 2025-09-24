@@ -54,7 +54,7 @@ function PadAvedanPage() {
       if (committeeFilter !== 'all') queryParams.append('committee', committeeFilter)
       if (searchTerm) queryParams.append('search', searchTerm)
       
-      const response = await fetch(`/api/admin/submissions/padAvedan?${queryParams}`)
+      const response = await fetch(`/api/admin/submissions/padAvedan`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch submissions')
