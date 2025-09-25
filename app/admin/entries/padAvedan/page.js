@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { toast } from "sonner"
 
-function PadAvedanPage() {
+function PadAvedanAdminPage() {
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedSubmission, setSelectedSubmission] = useState(null)
@@ -54,7 +54,7 @@ function PadAvedanPage() {
       if (committeeFilter !== 'all') queryParams.append('committee', committeeFilter)
       if (searchTerm) queryParams.append('search', searchTerm)
       
-      const response = await fetch(`/api/admin/submissions/padAvedan`)
+      const response = await fetch(`/api/admin/submissions/padAvedan?${queryParams}`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch submissions')
@@ -104,7 +104,7 @@ function PadAvedanPage() {
   const exportToCSV = () => {
     const headers = [
       'Serial Number', 'Name', 'Father Name', 'Email', 'Phone',
-      'Position', 'Committee', 'State', 'Status', 'Application Date', 'Created At'
+      'Position', 'Committee', 'State', 'Application Date', 'Created At'
     ]
     
     const csvData = submissions.map(submission => [
@@ -116,7 +116,6 @@ function PadAvedanPage() {
       submission.position,
       submission.executiveCommittee,
       submission.state,
-      submission.status,
       new Date(submission.applicationDate).toLocaleDateString(),
       new Date(submission.createdAt).toLocaleDateString()
     ])
@@ -532,4 +531,4 @@ function PadAvedanPage() {
   )
 }
 
-export default PadAvedanPage
+export default PadAvedanAdminPage
