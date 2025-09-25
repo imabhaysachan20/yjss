@@ -27,7 +27,6 @@ export async function GET(request) {
     
     // Get query parameters for filtering and pagination
     const { searchParams } = new URL(request.url)
-    const status = searchParams.get('status')
     const committee = searchParams.get('committee')
     const position = searchParams.get('position')
     const state = searchParams.get('state')
@@ -37,10 +36,6 @@ export async function GET(request) {
     
     // Build filter query
     let filter = {}
-    
-    if (status && status !== 'all') {
-      filter.status = status
-    }
     
     if (committee && committee !== 'all') {
       filter.executiveCommittee = committee
@@ -70,33 +65,6 @@ export async function GET(request) {
     const hasNextPage = page < totalPages
     const hasPrevPage = page > 1
     
-    // Get aggregated statistics
-    const stats = await collection.aggregate([
-      {
-        $group: {
-          _id: "$status",
-          count: { $sum: 1 }
-        }
-      }
-    ]).toArray()
-    
-    const statusStats = stats.reduce((acc, stat) => {
-      acc[stat._id] = stat.count
-      return acc
-    }, {})
-    
-    // Get committee-wise statistics
-    const committeeStats = await collection.aggregate([
-      {
-        $group: {
-          _id: "$executiveCommittee",
-          count: { $sum: 1 }
-        }
-      },
-      {
-        $sort: { count: -1 }
-      }
-    ]).toArray()
     
     return NextResponse.json({
       success: true,
@@ -109,11 +77,6 @@ export async function GET(request) {
           hasNextPage,
           hasPrevPage,
           limit
-        },
-        statistics: {
-          total: totalCount,
-          byStatus: statusStats,
-          byCommittee: committeeStats
         }
       }
     })
