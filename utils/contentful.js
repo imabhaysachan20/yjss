@@ -30,3 +30,37 @@ export const getImages = async() => {
         return [];
     }
 }
+
+
+
+export const getVideos = async () => {
+    try {
+        const res = await client.getEntries({ content_type: "videos" });
+        if (!res.items) return [];
+
+        return res.items.map((item) => ({
+            title: item.fields.title,
+            videoUrl: formatUrl(item.fields.video.fields.file.url)
+        }));
+    } catch (error) {
+        console.error('Error fetching videos:', error);
+        return [];
+    }
+};
+
+export const getNews = async () => {
+    try {
+        const res = await client.getEntries({ content_type: "news" });
+        if (!res.items) return [];
+
+        return res.items.map((item) => ({
+            title: item.fields.title,
+            summary: item.fields.summary,
+            imageUrl: formatUrl(item.fields.image.fields.file.url),
+            link: item.fields.link || '#'
+        }));
+    } catch (error) {
+        console.error('Error fetching news:', error);
+        return [];
+    }
+};
