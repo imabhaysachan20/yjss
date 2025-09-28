@@ -139,7 +139,7 @@ function Page() {
         if (!address) newErrors.address = "पूरा पता आवश्यक है";
         if (!executiveCommittee) newErrors.executiveCommittee = "कार्यकारणी का चयन आवश्यक है";
         if (!position) newErrors.position = "पद का चयन आवश्यक है";
-        if (!executiveId) newErrors.executiveId = "कार्यकारणी आईडी आवश्यक है";
+        if (!executiveId) newErrors.executiveId = "सदस्यता कार्ड आईडी आवश्यक है";
         if (!phone || !/^[0-9]{10}$/.test(phone)) newErrors.phone = "वैध 10-अंकीय फोन नंबर दर्ज करें";
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "वैध ईमेल दर्ज करें";
         if (!applicationDate) newErrors.applicationDate = "आवेदन की तिथि आवश्यक है";
@@ -390,7 +390,7 @@ function Page() {
                     )}
                     {errors.position && <p className="text-red-500 text-sm mb-2">{errors.position}</p>}
                     
-                    <Input placeholder="कार्यकारणी आईडी संख्या" value={executiveId} onChange={(e) => setExecutiveId(e.target.value)} className="mb-3 w-full" />
+                    <Input placeholder="सदस्यता कार्ड की संख्या" value={executiveId} onChange={(e) => setExecutiveId(e.target.value)} className="mb-3 w-full" />
                     {errors.executiveId && <p className="text-red-500 text-sm mb-2">{errors.executiveId}</p>}
                     
                     <Textarea placeholder="पूर्व अनुभव" value={experience} onChange={(e) => setExperience(e.target.value)} className="mb-3 w-full" />
