@@ -78,7 +78,6 @@ export default function PadAvedanAdminPage() {
       "Father's Name": submission.fatherName,
       "Birth Date": new Date(submission.birthDate).toLocaleDateString(),
       "Education": submission.education,
-      "Aadhar Number": submission.aadharNumber,
       "Executive ID": submission.executiveId,
       "Phone": submission.phone,
       "Email": submission.email,
@@ -259,7 +258,6 @@ export default function PadAvedanAdminPage() {
                 <p><strong>Father’s Name:</strong> {selectedSubmission.fatherName}</p>
                 <p><strong>Birth Date:</strong> {new Date(selectedSubmission.birthDate).toLocaleDateString()}</p>
                 <p><strong>Education:</strong> {selectedSubmission.education}</p>
-                <p><strong>Aadhar Number:</strong> {selectedSubmission.aadharNumber}</p>
                 <p><strong>Executive ID:</strong> {selectedSubmission.executiveId}</p>
                 <p><strong>Phone:</strong> {selectedSubmission.phone}</p>
                 <p><strong>Email:</strong> {selectedSubmission.email}</p>

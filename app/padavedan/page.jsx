@@ -356,7 +356,7 @@ function Page() {
                     <Input placeholder="नाम" value={name} onChange={(e) => setName(e.target.value)} className="mb-3 w-full" />
                     {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
 
-                    <Input placeholder="पिता का नाम" value={fatherName} onChange={(e) => setFatherName(e.target.value)} className="mb-3 w-full" />
+                    <Input placeholder="पिता /पति /माता का नाम" value={fatherName} onChange={(e) => setFatherName(e.target.value)} className="mb-3 w-full" />
                     {errors.fatherName && <p className="text-red-500 text-sm mb-2">{errors.fatherName}</p>}
                     
                     <Label htmlFor="dob_date">जन्म तिथि</Label>
