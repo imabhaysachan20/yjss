@@ -105,7 +105,6 @@ function Page() {
     const [birthDate, setBirthDate] = useState("");
     const [education, setEducation] = useState("");
     const [address, setAddress] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
     const [executiveCommittee, setExecutiveCommittee] = useState("");
     const [position, setPosition] = useState("");
     const [executiveId, setExecutiveId] = useState("");
@@ -138,7 +137,6 @@ function Page() {
         if (!fatherName) newErrors.fatherName = "पिता का नाम आवश्यक है";
         if (!birthDate) newErrors.birthDate = "जन्म तिथि आवश्यक है";
         if (!address) newErrors.address = "पूरा पता आवश्यक है";
-        if (!aadharNumber || !/^[0-9]{12}$/.test(aadharNumber)) newErrors.aadharNumber = "वैध 12-अंकीय आधार संख्या दर्ज करें";
         if (!executiveCommittee) newErrors.executiveCommittee = "कार्यकारणी का चयन आवश्यक है";
         if (!position) newErrors.position = "पद का चयन आवश्यक है";
         if (!executiveId) newErrors.executiveId = "कार्यकारणी आईडी आवश्यक है";
@@ -268,7 +266,6 @@ function Page() {
         try {
             const formData = {
                 serialNumber: serialNumberRef.current, name, fatherName, birthDate, education, address,
-                aadharNumber, executiveCommittee, position, executiveId, experience,
                 phone, email, applicationDate, state: selectedState,
                 zone: selectedZone, mandal: selectedMandal, district: selectedDistrict, 
                 loksabha: selectedLoksabha, vidansabha: selectedVidansabha, 
@@ -295,7 +292,6 @@ function Page() {
             setBirthDate("");
             setEducation("");
             setAddress("");
-            setAadharNumber("");
             setExecutiveCommittee("");
             setPosition("");
             setExecutiveId("");
@@ -372,9 +368,6 @@ function Page() {
 
                     <Textarea placeholder="पूरा पता" value={address} onChange={(e) => setAddress(e.target.value)} className="mb-3 w-full" />
                     {errors.address && <p className="text-red-500 text-sm mb-2">{errors.address}</p>}
-
-                    <Input placeholder="आधार संख्या" value={aadharNumber} onChange={(e) => setAadharNumber(e.target.value)} className="mb-3 w-full" maxLength={12}/>
-                    {errors.aadharNumber && <p className="text-red-500 text-sm mb-2">{errors.aadharNumber}</p>}
                     
                     {/* Executive & Position */}
                     <Select onValueChange={handleExecutiveCommitteeChange}>

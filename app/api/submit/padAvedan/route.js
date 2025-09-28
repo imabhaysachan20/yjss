@@ -27,7 +27,7 @@ export async function POST(request) {
     // Validate required fields
     const requiredFields = [
       'serialNumber', 'name', 'fatherName', 'birthDate', 'address',
-      'aadharNumber', 'executiveCommittee', 'position', 'executiveId',
+       'executiveCommittee', 'position', 'executiveId',
       'phone', 'email', 'applicationDate', 'state'
     ];
 
@@ -98,17 +98,6 @@ export async function POST(request) {
         { 
           success: false, 
           error: "Invalid phone number. Must be 10 digits." 
-        },
-        { status: 400 }
-      );
-    }
-
-    // Validate Aadhar number (12 digits)
-    if (!/^[0-9]{12}$/.test(formData.aadharNumber)) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: "Invalid Aadhar number. Must be 12 digits." 
         },
         { status: 400 }
       );
