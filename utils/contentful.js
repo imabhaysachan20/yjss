@@ -5,6 +5,11 @@ const client = createClient({
     space: "mo655ch1gd2r"
 });
 
+const formatUrl = (url) => {
+       if (!url) return '';
+       return url.startsWith('//') ? `https:${url}` : url;
+   };
+
 export const getImages = async() => {
     try {
         const res = await client.getEntries({
