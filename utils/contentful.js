@@ -89,9 +89,9 @@ export const getNews = async () => {
                 summary: item.fields.summary,
                 mediaUrl: formatUrl(mediaUrl),
                 mediaType: isVideo ? 'video' : 'image',
-                link: item.fields.link || '#'
+                link: item.fields.link
             };
-        }).filter(Boolean); // Remove null entries
+        }).filter(Boolean);
         
         console.log('Processed news items:', newsItems);
         return newsItems;
