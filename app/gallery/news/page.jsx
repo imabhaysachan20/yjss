@@ -7,14 +7,14 @@ import Image from 'next/image'
 import { Skeleton } from "@/components/ui/skeleton"
 import { Newspaper, PlayCircle } from 'lucide-react'
 import { useTranslation } from '@/contexts/TranslationContext'
-import { NewsDetailModal } from '@/components/NewsModalDetail' 
+import { NewsModalDetail } from '@/components/NewsModalDetail' 
 
 function NewsGalleryPage() {
     const { t } = useTranslation();
     const [newsItems, setNewsItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedNews, setSelectedNews] = useState(null); // State for the selected news item
+    const [selectedNews, setSelectedNews] = useState(null); 
 
     useEffect(() => {
         // ... (fetchNews function remains the same)
@@ -101,7 +101,7 @@ function NewsGalleryPage() {
             </div>
 
             {/* Render the Modal */}
-            <NewsDetailModal 
+            <NewsModalDetail
                 isOpen={!!selectedNews} 
                 newsItem={selectedNews} 
                 onClose={() => setSelectedNews(null)} 
