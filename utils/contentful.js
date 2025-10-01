@@ -50,10 +50,19 @@ export const getVideos = async () => {
 export const getNews = async () => {
     try {
         const res = await client.getEntries({ content_type: "news" });
-        if (!res.items) return [];
+        
+        console.log('Contentful news response:', res);
+        console.log('Number of news items:', res.items?.length);
+        
+        if (!res.items || res.items.length === 0) {
+            console.warn('No news items found in Contentful');
+            return [];
+        }
 
-        return res.items.map((item) => {
-            // Check for media in different field names (image, video, or media)
+        const newsItems = res.items.map((item) => {
+            console.log('Processing news item:', item.fields.title);
+            
+            // Check for media in different field names (media, image, or video)
             const mediaField = item.fields.media || item.fields.image || item.fields.video;
             
             if (!mediaField?.fields?.file) {
@@ -63,6 +72,9 @@ export const getNews = async () => {
 
             const mediaUrl = mediaField.fields.file.url;
             const contentType = mediaField.fields.file.contentType;
+            
+            console.log('Media URL:', mediaUrl);
+            console.log('Content Type:', contentType);
             
             // Determine if media is video based on content type
             const isVideo = contentType?.startsWith('video/');
@@ -75,8 +87,13 @@ export const getNews = async () => {
                 link: item.fields.link || '#'
             };
         }).filter(Boolean); // Remove null entries
+        
+        console.log('Processed news items:', newsItems);
+        return newsItems;
+        
     } catch (error) {
         console.error('Error fetching news:', error);
+        console.error('Error details:', error.message);
         return [];
     }
 };
