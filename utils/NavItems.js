@@ -76,11 +76,11 @@ const generateNavItems = () => [
             },
             {
                 name: t("gallery.videoGallery"),
-                link: "/"
+                link: "/gallery/videos"
             },
             {
                 name: t("gallery.newsGallery"),
-                link: "/"
+                link: "/gallery/news"
             },
         ]
     },

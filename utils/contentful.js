@@ -30,3 +30,53 @@ export const getImages = async() => {
         return [];
     }
 }
+
+
+
+export const getVideos = async () => {
+    try {
+        const res = await client.getEntries({ content_type: "videos" });
+        if (!res.items) return [];
+
+        return res.items.map((item) => ({
+            title: item.fields.title,
+            videoUrl: formatUrl(item.fields.video.fields.file.url)
+        }));
+    } catch (error) {
+        console.error('Error fetching videos:', error);
+        return [];
+    }
+};
+export const getNews = async () => {
+    try {
+        const res = await client.getEntries({ content_type: "news" });
+        if (!res.items) return [];
+
+        return res.items.map((item) => {
+            // Check for media in different field names (image, video, or media)
+            const mediaField = item.fields.media || item.fields.image || item.fields.video;
+            
+            if (!mediaField?.fields?.file) {
+                console.warn('No media found for news item:', item.fields.title);
+                return null;
+            }
+
+            const mediaUrl = mediaField.fields.file.url;
+            const contentType = mediaField.fields.file.contentType;
+            
+            // Determine if media is video based on content type
+            const isVideo = contentType?.startsWith('video/');
+
+            return {
+                title: item.fields.title,
+                summary: item.fields.summary,
+                mediaUrl: formatUrl(mediaUrl),
+                mediaType: isVideo ? 'video' : 'image',
+                link: item.fields.link || '#'
+            };
+        }).filter(Boolean); // Remove null entries
+    } catch (error) {
+        console.error('Error fetching news:', error);
+        return [];
+    }
+};
