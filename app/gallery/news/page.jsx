@@ -58,14 +58,26 @@ function NewsGalleryPage() {
                     newsItems.map((item, index) => (
                         <Link href={item.link} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 group">
-                                <div className="relative w-full h-48">
-                                    <Image
-                                        src={item.imageUrl}
-                                        alt={item.title}
-                                        fill
-                                        className="object-cover"
-                                        unoptimized
-                                    />
+                                <div className="relative w-full h-48 bg-gray-100">
+                                    {item.mediaType === 'video' ? (
+                                        <video
+                                            src={item.mediaUrl}
+                                            className="w-full h-full object-cover"
+                                            controls
+                                            preload="metadata"
+                                            onClick={(e) => e.preventDefault()}
+                                        >
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    ) : (
+                                        <Image
+                                            src={item.mediaUrl}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover"
+                                            unoptimized
+                                        />
+                                    )}
                                 </div>
                                 <div className="p-4">
                                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#F53D3D]">{item.title}</h3>
