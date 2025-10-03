@@ -18,7 +18,7 @@ export default function RecentNews() {
   useEffect(() => {
     const fetchNews = async () => {
       const allNews = await getNews();
-       console.log("RECEIVED NEWS DATA:", allNews);
+    //    console.log("RECEIVED NEWS DATA:", allNews);
       setNewsItems(allNews.slice(0, 3));
       setLoading(false);
     };
@@ -56,9 +56,6 @@ export default function RecentNews() {
                 <div className="relative w-full h-48 bg-gray-100">
                   {item.mediaType === 'video' ? (
                     <>
-                      <div className="absolute inset-0 bg-black bg-opacity-30 z-10 flex items-center justify-center">
-                        <PlayCircle className="text-white opacity-80" size={64} />
-                      </div>
                       <video
                         src={item.mediaUrl}
                         poster={item.thumbnailUrl} 
