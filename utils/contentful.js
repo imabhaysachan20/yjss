@@ -28,7 +28,6 @@ export const getImages = async() => {
             return url.startsWith('//') ? `https:${url}` : url;
         });
         
-        console.log('Contentful images:', images); // Debug log
         return images;
     } catch (error) {
         console.error('Error fetching images from Contentful:', error);
@@ -56,9 +55,7 @@ export const getNews = async () => {
     try {
         const res = await client.getEntries({ content_type: "news" });
         
-        console.log('Contentful news response:', res);
-        console.log('Number of news items:', res.items?.length);
-        
+
         if (!res.items || res.items.length === 0) {
             console.warn('No news items found in Contentful');
             return [];
@@ -78,8 +75,7 @@ export const getNews = async () => {
             const mediaUrl = mediaField.fields.file.url;
             const contentType = mediaField.fields.file.contentType;
             
-            console.log('Media URL:', mediaUrl);
-            console.log('Content Type:', contentType);
+ 
             
             // Determine if media is video based on content type
             const isVideo = contentType?.startsWith('video/');
@@ -89,11 +85,11 @@ export const getNews = async () => {
                 summary: item.fields.summary,
                 mediaUrl: formatUrl(mediaUrl),
                 mediaType: isVideo ? 'video' : 'image',
+                thumbnailUrl: formatUrl(item.fields.thumbnail?.fields?.file.url),
                 link: item.fields.link
             };
         }).filter(Boolean);
         
-        console.log('Processed news items:', newsItems);
         return newsItems;
         
     } catch (error) {
