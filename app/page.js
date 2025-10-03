@@ -2,11 +2,12 @@ import AboutHome from "@/components/AboutHome";
 import Banner_below_options from "@/components/banner_below_options";
 import Container from "@/components/Container";
 import GoogleTranslate from "@/components/GoogleTranslate";
-import SupportForm from "@/components/GrivencesForm";
 import Header from "@/components/Header";
 import Slider from "@/components/Slider";
 import TwitterWidget from "@/components/TwitterWidget";
 import RecentImages from "@/components/RecentImages";
+import RecentNews from "@/components/RecentNews";
+import RecentVideos from "@/components/RecentVideos";
 
 
 
@@ -20,7 +21,8 @@ export default function Home() {
       <Container>
       <Banner_below_options/>
       <AboutHome/>
-      <SupportForm/>
+      <RecentNews />
+      <RecentVideos />
       <RecentImages/>
       <TwitterWidget/>
       </Container>

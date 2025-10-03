@@ -189,9 +189,9 @@ export default function SupportForm() {
         </h1>
       </div>
       <div className="flex justify-between items-center">
-        <div className="hidden md:block w-[20%] grow-1">
-          <img className="w-full" src="/contact.png" alt="Contact" />
-        </div>
+        {/* <div className="hidden md:block w-[20%] grow-1">
+          <img className="w-[80%]" src="/contact.png" alt="Contact" />
+        </div> */}
         <form
           onSubmit={handleSubmit}
           className="max-w-lg mx-auto p-6 bg-white shadow-lg grow-1 rounded-xl"

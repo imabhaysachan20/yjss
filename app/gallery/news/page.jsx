@@ -75,6 +75,7 @@ function NewsGalleryPage() {
                                             </div>
                                             <video
                                                 src={item.mediaUrl}
+                                                poster={item.thumbnailUrl} 
                                                 className="w-full h-full object-cover"
                                                 preload="metadata"
                                             />
