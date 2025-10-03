@@ -62,7 +62,7 @@ export const getNews = async () => {
         }
 
         const newsItems = res.items.map((item) => {
-            console.log('Processing news item:', item.fields.title);
+            // console.log('Processing news item:', item.fields.title);
             
             // Check for media in different field names (media, image, or video)
             const mediaField = item.fields.media || item.fields.image || item.fields.video;
