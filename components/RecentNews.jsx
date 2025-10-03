@@ -18,6 +18,7 @@ export default function RecentNews() {
   useEffect(() => {
     const fetchNews = async () => {
       const allNews = await getNews();
+       console.log("RECEIVED NEWS DATA:", allNews);
       setNewsItems(allNews.slice(0, 3));
       setLoading(false);
     };
