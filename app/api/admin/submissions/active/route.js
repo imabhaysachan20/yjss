@@ -1,12 +1,12 @@
 import { connectDB } from "@/utils/connectToDb"
-import Donners from "@/models/Active"
+import Active from "@/models/Active"
 import { NextResponse } from "next/server"
 
 export async function GET() {
   try {
     await connectDB()
     
-    const submissions = await Donners.find()
+    const submissions = await Active.find()
       .sort({ membershipDate: -1 }) // Sort by newest first
       console.log(submissions)
     return NextResponse.json(submissions)
