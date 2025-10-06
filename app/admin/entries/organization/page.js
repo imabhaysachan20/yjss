@@ -161,7 +161,7 @@ function OrganizationAdminPage() {
                         />
                     )}
                 </div>
-                <Button type="submit" className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
+                <Button type="submit" disabled={uploading || !formData.photoUrl} className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
                 {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
             </form>
 

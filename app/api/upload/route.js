@@ -1,48 +1,55 @@
-import multer from "multer";
-import path from "path";
+import { IncomingForm } from "formidable";
 import fs from "fs";
+import path from "path";
 
+// Disable default body parser
 export const config = {
   api: {
     bodyParser: false,
   },
 };
 
-// setup storage in /public/uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadDir = path.join(process.cwd(), "public/uploads");
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + "-" + file.originalname.replace(/\s+/g, "_");
-    cb(null, uniqueName);
-  },
-});
+export async function POST(req) {
+  const form = new IncomingForm({
+    multiples: false,
+    keepExtensions: true,
+    uploadDir: path.join(process.cwd(), "public/uploads"),
+  });
 
-const upload = multer({ storage });
-const uploadMiddleware = upload.single("image");
+  // Ensure upload directory exists
+  const uploadDir = path.join(process.cwd(), "public/uploads");
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
 
-function runMiddleware(req, res, fn) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) return reject(result);
-      return resolve(result);
+  return new Promise((resolve) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        console.error("Upload error:", err);
+        return resolve(
+          new Response(JSON.stringify({ error: "Image upload failed" }), { status: 500 })
+        );
+      }
+
+      const file = files.image;
+      if (!file) {
+        return resolve(
+          new Response(JSON.stringify({ error: "No file uploaded" }), { status: 400 })
+        );
+      }
+
+      // Rename the file to ensure uniqueness
+      const ext = path.extname(file.originalFilename);
+      const fileName = `${Date.now()}-${file.originalFilename.replace(/\s+/g, "_")}`;
+      const newPath = path.join(uploadDir, fileName);
+
+      fs.renameSync(file.filepath, newPath);
+
+      // Return the image URL
+      const imageUrl = `/uploads/${fileName}`;
+      resolve(
+        new Response(JSON.stringify({ imageUrl }), { status: 200 })
+      );
     });
   });
-}
-
-export async function POST(req, res) {
-  const reqAny = req;
-  const resAny = res;
-
-  await runMiddleware(reqAny, resAny, uploadMiddleware);
-
-  const filename = reqAny.file.filename;
-  const imageUrl = `https://www.yjss.org/uploads/${filename}`;
-
-  return new Response(JSON.stringify({ imageUrl }), { status: 200 });
 }
