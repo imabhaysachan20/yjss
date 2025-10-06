@@ -36,32 +36,32 @@ const generateNavItems = () => [
     },
     {
         name: t("common.organization"),
-        link: "/group",
+        link: null,
         icon: <Globe className="w-4 relative -top-0.5" />,
         content: [
             {
                 name: t("organization.vicePresident"),
-                link: "/"
+                link: "/organization/vice-president"
             },
             {
                 name: t("organization.statePresident"),
-                link: "/"
+                link: "/organization/state-president"
             },
             {
                 name: t("organization.districtPresident"),
-                link: "/"
+                link: "/organization/district-president"
             },
             {
                 name: t("organization.socialMedia"),
-                link: "/"
+                link: "/organization/social-media"
             },
             {
                 name: t("organization.spokesperson"),
-                link: "/"
+                link: "/organization/spokesperson"
             },
             {
                 name: t("organization.electionProgram"),
-                link: "/"
+                link: "/organization/election-program"
             },
         ]
     },

@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { FileText, ClipboardList, FileSpreadsheet, Award } from 'lucide-react'
+import { FileText, ClipboardList, FileSpreadsheet, Award,UserSquare } from 'lucide-react'
 
 function DashboardPage() {
   const router = useRouter()
@@ -50,6 +50,13 @@ function DashboardPage() {
       icon: FileText,
       link: "/admin/entries/contact",
       color: "text-indigo-500 bg-indigo-100 dark:bg-indigo-900/30"
+    },
+    {
+      title: "कार्यकारिणी एवं पदाधिकारियों ",
+      description: "Add and Manage organization form .",
+      icon: UserSquare,
+      link: "/admin/entries/organization",
+      color: "text-teal-500 bg-teal-100 dark:bg-teal-900/30"
     }
   ]
 
