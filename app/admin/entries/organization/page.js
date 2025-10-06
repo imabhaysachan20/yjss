@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Base64Upload from '@/components/Base64upload'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
@@ -41,9 +40,7 @@ function OrganizationAdminPage() {
     const handleSelectChange = (value) => {
         setFormData(prev => ({ ...prev, pad: value }));
     };
-     const handlePhotoUpload = (base64String) => {
-        setFormData(prev => ({ ...prev, photoUrl: base64String }));
-    };
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -108,13 +105,7 @@ function OrganizationAdminPage() {
                 <Input name="sampark" placeholder="संपर्क" value={formData.sampark} onChange={handleInputChange} />
                 <Input name="jila" placeholder="जिला" value={formData.jila} onChange={handleInputChange} />
                 <Input name="atiriktZimedari" placeholder="अतिरिक्त जिम्मेदारी" value={formData.atiriktZimedari} onChange={handleInputChange} />
-                <div className="lg:col-span-2">
-                    <Label>Photo</Label>
-                    <Base64Upload 
-                        value={formData.photoUrl} 
-                        onUpload={handlePhotoUpload}
-                    />
-                </div>
+                 <Input name="photoUrl" placeholder="Photo URL" value={formData.photoUrl} onChange={handleInputChange} required />
                 <Button type="submit" className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
                  {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
             </form>
