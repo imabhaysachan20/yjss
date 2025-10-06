@@ -12,6 +12,11 @@ const nextConfig = {
             hostname: "yjss.org",
             pathname: "/img/**",
           },
+        {
+          protocol: "http",
+          hostname: "yjss.org",
+          pathname: "/uploads/**", 
+        },
         ],
         domains: ["http://yjss.org", "images.ctfassets.net"],
       },

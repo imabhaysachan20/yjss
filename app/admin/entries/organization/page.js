@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
+import Image from "next/image";
 
 
 const positions = [
@@ -131,7 +132,35 @@ function OrganizationAdminPage() {
                     </SelectContent>
                 </Select>
                 <Input name="atiriktZimedari" placeholder="अतिरिक्त जिम्मेदारी" value={formData.atiriktZimedari} onChange={handleInputChange} />
-                <Input name="photoUrl" placeholder="Photo URL" value={formData.photoUrl} onChange={handleInputChange} required />
+                <div className="flex items-center space-x-2">
+                    <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                            const file = e.target.files[0];
+                            if (!file) return;
+                            const formDataUpload = new FormData();
+                            formDataUpload.append("image", file);
+
+                            const res = await fetch("/api/upload", {
+                                method: "POST",
+                                body: formDataUpload,
+                            });
+
+                            const data = await res.json();
+                            setFormData((prev) => ({ ...prev, photoUrl: data.imageUrl }));
+                            toast.success("Image uploaded successfully!");
+                        }}
+                    />
+
+                    {formData.photoUrl && (
+                        <Image
+                            src={formData.photoUrl}
+                            alt="Preview"
+                            className="w-16 h-16 rounded object-cover border"
+                        />
+                    )}
+                </div>
                 <Button type="submit" className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
                 {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
             </form>
