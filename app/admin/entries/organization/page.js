@@ -9,8 +9,23 @@ import { toast } from "sonner";
 
 
 const positions = [
-    'Vice President', 'State President', 'District President', 
+    'Vice President', 'State President', 'District President',
     'Social Media', 'Spokesperson', 'Election Program'
+];
+
+const upDistricts = [
+    'Agra', 'Aligarh', 'Allahabad', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Auraiya',
+    'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia', 'Balrampur', 'Banda', 'Barabanki',
+    'Bareilly', 'Basti', 'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr', 'Chandauli',
+    'Chitrakoot', 'Deoria', 'Etah', 'Etawah', 'Faizabad', 'Farrukhabad', 'Fatehpur',
+    'Firozabad', 'Gautam Buddha Nagar', 'Ghaziabad', 'Ghazipur', 'Gonda', 'Gorakhpur',
+    'Hamirpur', 'Hapur', 'Hardoi', 'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj',
+    'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kushinagar', 'Lakhimpur Kheri',
+    'Lalitpur', 'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri', 'Mathura', 'Mau',
+    'Meerut', 'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh',
+    'Raebareli', 'Rampur', 'Saharanpur', 'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur',
+    'Shamli', 'Shravasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur',
+    'Unnao', 'Varanasi'
 ];
 
 const initialFormState = {
@@ -36,11 +51,11 @@ function OrganizationAdminPage() {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
-    
+
     const handleSelectChange = (value) => {
         setFormData(prev => ({ ...prev, pad: value }));
     };
-   
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,7 +93,7 @@ function OrganizationAdminPage() {
 
     const handleDelete = async (id) => {
         if (!confirm('Are you sure you want to delete this member?')) return;
-        
+
         const response = await fetch(`/api/admin/organization/${id}`, { method: 'DELETE' });
         if (response.ok) {
             toast.success('Member deleted successfully!');
@@ -103,11 +118,22 @@ function OrganizationAdminPage() {
                     </SelectContent>
                 </Select>
                 <Input name="sampark" placeholder="संपर्क" value={formData.sampark} onChange={handleInputChange} />
-                <Input name="jila" placeholder="जिला" value={formData.jila} onChange={handleInputChange} />
+                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, jila: value }))} value={formData.jila}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="जिला" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {upDistricts.map(district => (
+                            <SelectItem key={district} value={district}>
+                                {district}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
                 <Input name="atiriktZimedari" placeholder="अतिरिक्त जिम्मेदारी" value={formData.atiriktZimedari} onChange={handleInputChange} />
-                 <Input name="photoUrl" placeholder="Photo URL" value={formData.photoUrl} onChange={handleInputChange} required />
+                <Input name="photoUrl" placeholder="Photo URL" value={formData.photoUrl} onChange={handleInputChange} required />
                 <Button type="submit" className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
-                 {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
+                {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
             </form>
 
             {/* Table of existing members */}
