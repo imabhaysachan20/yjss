@@ -37,6 +37,8 @@ function OrganizationAdminPage() {
     const [members, setMembers] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
     const [editingId, setEditingId] = useState(null);
+    const [uploading, setUploading] = useState(false);
+
 
     const fetchMembers = async () => {
         const response = await fetch('/api/admin/organization');
@@ -139,15 +141,18 @@ function OrganizationAdminPage() {
                         onChange={async (e) => {
                             const file = e.target.files[0];
                             if (!file) return;
+                             setUploading(true);
 
                             const reader = new FileReader();
                             reader.readAsDataURL(file); // converts image to Base64
                             reader.onload = () => {
                                 setFormData((prev) => ({ ...prev, photoUrl: reader.result }));
                                 toast.success("Image converted to Base64!");
+                                setUploading(false);
                             };
                             reader.onerror = () => {
                                 toast.error("Failed to convert image.");
+                                 setUploading(false);
                             };
                         }}
                     />
