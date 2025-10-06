@@ -139,27 +139,30 @@ function OrganizationAdminPage() {
                         onChange={async (e) => {
                             const file = e.target.files[0];
                             if (!file) return;
-                            const formDataUpload = new FormData();
-                            formDataUpload.append("image", file);
 
-                            const res = await fetch("/api/upload", {
-                                method: "POST",
-                                body: formDataUpload,
-                            });
-
-                            const data = await res.json();
-                            setFormData((prev) => ({ ...prev, photoUrl: data.imageUrl }));
-                            toast.success("Image uploaded successfully!");
+                            const reader = new FileReader();
+                            reader.readAsDataURL(file); // converts image to Base64
+                            reader.onload = () => {
+                                setFormData((prev) => ({ ...prev, photoUrl: reader.result }));
+                                toast.success("Image converted to Base64!");
+                            };
+                            reader.onerror = () => {
+                                toast.error("Failed to convert image.");
+                            };
                         }}
                     />
 
+
                     {formData.photoUrl && (
                         <Image
-                            src={formData.photoUrl}
+                            src={formData.photoUrl} 
                             alt="Preview"
                             className="w-16 h-16 rounded object-cover border"
+                            width={64}
+                            height={64}
                         />
                     )}
+
                 </div>
                 <Button type="submit" disabled={uploading || !formData.photoUrl} className="col-span-full">{editingId ? 'Update Member' : 'Add Member'}</Button>
                 {editingId && <Button variant="secondary" onClick={() => { setEditingId(null); setFormData(initialFormState); }}>Cancel Edit</Button>}
