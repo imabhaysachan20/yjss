@@ -29,7 +29,7 @@ export async function middleware(request) {
   if (isAdminPath && token) {
     try {
       // Verify the JWT token
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'your-secret-key')
+     const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'thisisthesecret')
       await jwtVerify(token, secret)
       
       // Token is valid, allow the request to proceed

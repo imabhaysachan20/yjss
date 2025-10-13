@@ -70,12 +70,15 @@
     "Heading3": "By filling support form"
   },
   "organization": {
-    "vicePresident": "Vice President",
-    "statePresident": "State President",
-    "districtPresident": "District President",
+    "nationalexecutive": "National Executive",
+    "stateexecutive": "State Executive",
+    "divisionalcommittee":"Divisional Committee",
+    "districtcommittee": "District Committee", 
+    "assemblycommittee":"Assembly Committee",
+    "wardcommittee":"Ward Committee",
+    "boothcommittee":"Booth Committee",
     "socialMedia": "Social Media",
-    "spokesperson": "Spokesperson",
-    "electionProgram": "Election Program"
+    "spokesperson": "Spokesperson"
   },
   "gallery": {
     "photoGallery": "Photo Gallery",

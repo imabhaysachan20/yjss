@@ -9,17 +9,14 @@ function slugToTitleCase(slug) {
 
 export async function GET(request, { params }) {
     try {
-        // --- FIX STARTS HERE ---
-        
-        // 1. Safely get the category from params
+
         const { category } = params;
 
-        // 2. Add a check to ensure the parameter exists
         if (!category) {
             return NextResponse.json({ error: 'Category parameter is missing' }, { status: 400 });
         }
         
-        // --- FIX ENDS HERE ---
+    
 
         await connectDB();
         
@@ -33,7 +30,7 @@ export async function GET(request, { params }) {
         
         return NextResponse.json(members);
     } catch (error) {
-        console.error("API Error:", error); // Added more detailed logging
+        console.error("API Error:", error); 
         return NextResponse.json({ error: 'Failed to fetch members' }, { status: 500 });
     }
 }

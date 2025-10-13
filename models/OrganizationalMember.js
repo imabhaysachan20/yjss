@@ -1,39 +1,31 @@
 import mongoose from 'mongoose';
 
 const organizationalMemberSchema = new mongoose.Schema({
-    kramSankhya: { // Serial Number
-        type: Number,
-        required: true,
-    },
-    naam: { // Name
-        type: String,
-        required: [true, 'Name is required.'],
-    },
+    kramSankhya: { type: Number, required: true },
+    naam: { type: String, required: true },
     pad: { // Position/Designation
         type: String,
-        required: [true, 'Position is required.'],
+        required: true,
+        // UPDATED ENUM to match your new admin form
         enum: [
-            'Vice President',
-            'State President',
-            'District President',
-            'Social Media',
-            'Spokesperson',
-            'Election Program'
+            'National Executive', 'State Executive', 'Divisional Committee', 
+            'District Committee', 'Assembly Committee', 'Ward Committee', 
+            'Booth Committee', 'Social Media', 'Spokesperson'
         ]
     },
-    sampark: { // Contact
-        type: String,
-    },
-    jila: { // District
-        type: String,
-    },
-    atiriktZimedari: { // Additional Responsibility
-        type: String,
-    },
-    photoUrl: { // Photo URL
-        type: String,
-        required: [true, 'Photo URL is required.'],
-    }
+    sampark: { type: String },
+    zimedari: { type: String },
+    photoUrl: { type: String, required: true },
+    zone: { type: String },
+    mandal: { type: String },
+    jila: { type: String },
+    loksabha: { type: String },
+    vidansabha: { type: String },
+    areaType: { type: String },
+    block: { type: String },
+    gramPanchayat: { type: String },
+    ward: { type: String },
+    
 }, {
     timestamps: true 
 });

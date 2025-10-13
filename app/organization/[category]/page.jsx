@@ -53,10 +53,10 @@ function OrganizationCategoryPage() {
                                 <Image src={member.photoUrl} alt={member.naam} layout="fill" objectFit="cover" />
                             </div>
                             <h3 className="font-bold text-lg">{member.naam}</h3>
-                            <p className="text-sm text-red-600">{member.pad}</p>
+                            {/* <p className="text-sm text-red-600">{member.pad}</p> */}
+                            {member.zimedari && <p className="text-sm text-red-600">({member.zimedari})</p>}
                             <p className="text-sm text-gray-600">{member.jila}</p>
                             {member.sampark && <p className="text-sm text-gray-500">संपर्क: {member.sampark}</p>}
-                            {member.atiriktZimedari && <p className="text-xs text-gray-500 mt-1">({member.atiriktZimedari})</p>}
                         </div>
                     ))}
                 </div>

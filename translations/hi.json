@@ -64,12 +64,15 @@
     "slogan": "संघर्ष ही हमारा संकल्प, युवा शक्ति ही हमारी पहचान!"
   },
   "organization": {
-    "vicePresident": "उपाध्यक्ष",
-    "statePresident": "प्रदेश अध्यक्ष",
-    "districtPresident": "जिला अध्यक्ष",
+    "nationalexecutive": "राष्ट्रीय कार्यकारणी",
+    "stateexecutive": "प्रदेश कार्यकारणी",
+    "divisionalcommittee":"मंडल कमेटी",
+    "districtcommittee": "जिला कमेटी",
+    "assemblycommittee":"विधानसभा कमेटी",
+    "wardcommittee":"वॉर्ड कमेटी",
+    "boothcommittee":"बूथ कमेटी",
     "socialMedia": "सोशल मीडिया",
-    "spokesperson": "प्रवक्ता",
-    "electionProgram": "चुनाव कार्यक्रम"
+    "spokesperson": "प्रवक्ता"
   },
   "gallery": {
     "photoGallery": "फोटो गैलरी",

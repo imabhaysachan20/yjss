@@ -40,29 +40,38 @@ const generateNavItems = () => [
         icon: <Globe className="w-4 relative -top-0.5" />,
         content: [
             {
-                name: t("organization.vicePresident"),
-                link: "/organization/vice-president"
+                name: t("organization.nationalexecutive"),
+                link: "/organization/national-executive"
             },
             {
-                name: t("organization.statePresident"),
-                link: "/organization/state-president"
+                name: t("organization.stateexecutive"),
+                link: "/organization/state-executive"
             },
             {
-                name: t("organization.districtPresident"),
-                link: "/organization/district-president"
+                name: t("organization.divisionalcommittee"),
+                link: "/organization/divisional-committee"
             },
             {
-                name: t("organization.socialMedia"),
-                link: "/organization/social-media"
+                name: t("organization.districtcommittee"),
+                link: "/organization/district-committee"
+            },
+            {
+                name: t("organization.assemblycommittee"),
+                link: "/organization/assembly-committee"
+            },
+            {
+                name: t("organization.wardcommittee"),
+                link: "/organization/ward-committee"
+            },
+            {
+                name: t("organization.boothcommittee"),
+                link: "/organization/booth-committee"
             },
             {
                 name: t("organization.spokesperson"),
                 link: "/organization/spokesperson"
             },
-            {
-                name: t("organization.electionProgram"),
-                link: "/organization/election-program"
-            },
+          
         ]
     },
     {
