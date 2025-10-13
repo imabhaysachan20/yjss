@@ -9,12 +9,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import Image from "next/image";
 import districts from "@/utils/data";
+import { exportToExcel } from '@/utils/exportToExcel'; 
 
 // (Your data structures like kalyanpur, upZones, positions, and initialFormState remain the same)
 const kalyanpur = ['नवाबगंज ', 'विष्णुपुरी ', 'पुराना कानपुर ', 'ख्योरा ', 'नारामऊ ', 'बेनाझाबर ', 'तिलक नगर ', 'आवास विकास ', 'कल्याणपुर उत्तरी ', 'कल्याणपुर दक्षिण ', 'गीता नगर ', 'कल्याणपुर पश्चिम', 'पनकी ', 'नानकारी ', 'आंबेडकर नगर काकादेव ', 'काकादेव ', 'अशोक नगर'];
 const upZones = { "पश्चिमांचल": { mandals: ["मेरठ मंडल", "आगरा मंडल", "अलीगढ़ मंडल", "सहारनपुर मंडल", "मुरादाबाद मंडल", "बरेली मंडल"], districts: { "मेरठ मंडल": ["मेरठ", "गाजियाबाद", "गौतम बुद्ध नगर", "हापुड़", "बुलंदशहर", "बागपत"], "आगरा मंडल": ["आगरा", "फिरोजाबाद", "मैनपुरी", "मथुरा"], "अलीगढ़ मंडल": ["अलीगढ़", "हाथरस", "कासगंज", "एटा"], "सहारनपुर मंडल": ["सहारनपुर", "मुज़फ्फरनगर", "शामली"], "मुरादाबाद मंडल": ["मुरादाबाद", "रामपुर", "ज्योतिबा फुले नगर", "बिजनौर", "सम्भल"], "बरेली मंडल": ["बरेली", "बदायूं", "पीलीभीत", "शाहजहाँपुर"] } }, "पूर्वांचल": { mandals: ["गोरखपुर मंडल", "देवीपाटन मंडल", "बस्ती मंडल", "आजमगढ़ मंडल", "वाराणसी मंडल", "मिर्जापुर मंडल"], districts: { "गोरखपुर मंडल": ["गोरखपुर", "कुशी नगर", "देवरिया", "महराजगंज"], "देवीपाटन मंडल": ["गोंडा", "बहराइच", "श्रावस्ती", "बलरामपुर"], "बस्ती मंडल": ["बस्ती", "सिद्धार्थ नगर", "संत कबीर नगर"], "आजमगढ़ मंडल": ["आजमगढ़", "मऊ", "बलिया", "अम्बेडकर नगर"], "वाराणसी मंडल": ["वाराणसी", "चन्दौली", "जौनपुर", "गाजीपुर", "भदोही(संत रविदास नगर)"], "मिर्जापुर मंडल": ["मीरजापुर", "सोनभद्र"] } }, "मध्यांचल": { mandals: ["लखनऊ मंडल", "फैजाबाद मंडल", "इलाहाबाद मंडल", "कानपुर मंडल"], districts: { "लखनऊ मंडल": ["लखनऊ", "अयोध्या", "रायबरेली", "उन्नाव", "सीतापुर", "हरदोई", "लखीमपुर खीरी"], "फैजाबाद मंडल": ["फैजाबाद", "अमेठी", "सुल्तानपुर", "बाराबंकी"], "इलाहाबाद मंडल": ["प्रयागराज", "कौशाम्बी", "प्रतापगढ़", "फतेहपुर"], "कानपुर मंडल": ["कानपुर देहात", "कानपुर नगर", "औरैया", "इटावा", "फर्रुखाबाद", "कन्नौज"] } }, "बुंदेलखंड": { mandals: ["झांसी मंडल", "चित्रकूट मंडल"], districts: { "झांसी मंडल": ["झांसी", "जालौन", "ललितपुर", "हमीरपुर", "महोबा"], "चित्रकूट मंडल": ["चित्रकूट", "बाँदा"] } } };
 const positions = ['National Executive', 'State Executive', 'Divisional Committee', 'District Committee', 'Assembly Committee', 'Ward Committee', 'Booth Committee', 'Social Media', 'Spokesperson'];
-const initialFormState = { kramSankhya: '', naam: '', pad: '', sampark: '', zimedari: '', photoUrl: '', zone: '', mandal: '', jila: '', loksabha: '', vidansabha: '', areaType: '', block: '', gramPanchayat: '', ward: '' };
+const initialFormState = { kramSankhya: '', naam: '',fatherName: '', address: '', pad: '', sampark: '', zimedari: '', photoUrl: '', zone: '', mandal: '', jila: '', loksabha: '', vidansabha: '', areaType: '', block: '', gramPanchayat: '', ward: '' };
 
 
 function OrganizationAdminPage() {
@@ -69,6 +70,8 @@ function OrganizationAdminPage() {
         setFormData({
             kramSankhya: member.kramSankhya || '',
             naam: member.naam || '',
+            fatherName: member.fatherName || '',
+            address: member.address || '',
             pad: member.pad || '',
             sampark: member.sampark || '',
             zimedari: member.zimedari || '',
@@ -86,22 +89,61 @@ function OrganizationAdminPage() {
     };
     
     const handleDelete = async (id) => { /* ... (no change) ... */ };
+
+     const handleExport = () => {
+        if (members.length === 0) {
+            toast.error("No data to export.");
+            return;
+        }
+
+        // Prepare the data with user-friendly headers
+        const dataToExport = members.map(member => ({
+        'क्र.सं.': member.kramSankhya,
+        'नाम': member.naam,
+        'पिता/पति/माता का नाम': member.fatherName,
+        'पद': member.pad,
+        'जिम्मेदारी': member.zimedari,
+        'संपर्क': member.sampark,
+        'पूरा पता': member.address,
+        'Zone': member.zone,
+        'Mandal': member.mandal,
+        'जिला': member.jila,
+        'Loksabha': member.loksabha,
+        'Vidansabha': member.vidansabha,
+        'Area Type': member.areaType,
+        'Block': member.block,
+        'Gram Panchayat': member.gramPanchayat,
+        'Ward': member.ward,
+        }));
+
+        // Call your reusable utility function
+        exportToExcel(dataToExport, "OrganizationMembers");
+        toast.success("Data exported successfully!");
+    };
     
     const showUrbanOption = formData.jila && districts[formData.jila]?.nagar_nikay?.ward?.length > 0;
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Manage Organization Members</h2>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Manage Organization Members</h2>
+                <Button onClick={handleExport} disabled={members.length === 0}>
+                    Export to Excel
+                </Button>
+            </div>
 
             {/* Your form JSX is correct, no changes needed here */}
             <form onSubmit={handleSubmit} className="mb-8 p-4 border rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
                 {/* ... all your form inputs ... */}
                  <Input name="kramSankhya" type="number" placeholder="क्र.सं." value={formData.kramSankhya} onChange={handleInputChange} required />
                 <Input name="naam" placeholder="नाम" value={formData.naam} onChange={handleInputChange} required />
+                <Input name="fatherName" placeholder="पिता/पति/माता का नाम" value={formData.fatherName} onChange={handleInputChange} />
+                <Input name="address" placeholder="पूरा पता" value={formData.address} onChange={handleInputChange} />      
                 <Select onValueChange={(value) => handleSelectChange('pad', value)} value={formData.pad}>
                     <SelectTrigger><SelectValue placeholder="पद" /></SelectTrigger>
                     <SelectContent>{positions.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}</SelectContent>
                 </Select>
+
                 <Input name="sampark" placeholder="संपर्क" value={formData.sampark} onChange={handleInputChange} />
                 <Input name="zimedari" placeholder="जिम्मेदारी" value={formData.zimedari} onChange={handleInputChange} />
                 <Select onValueChange={(value) => handleSelectChange('zone', value)} value={formData.zone}>

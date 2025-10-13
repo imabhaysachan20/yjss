@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const organizationalMemberSchema = new mongoose.Schema({
     kramSankhya: { type: Number, required: true },
     naam: { type: String, required: true },
+    fatherName: { type: String }, 
     pad: { // Position/Designation
         type: String,
         required: true,
@@ -13,6 +14,7 @@ const organizationalMemberSchema = new mongoose.Schema({
             'Booth Committee', 'Social Media', 'Spokesperson'
         ]
     },
+    address: { type: String },
     sampark: { type: String },
     zimedari: { type: String },
     photoUrl: { type: String, required: true },

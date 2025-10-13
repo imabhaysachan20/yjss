@@ -255,7 +255,7 @@ export default function PadAvedanAdminPage() {
             <div className="grid grid-cols-2 gap-4 text-sm">
                 <p><strong>Serial Number:</strong> {selectedSubmission.serialNumber}</p>
                 <p><strong>Name:</strong> {selectedSubmission.name}</p>
-                <p><strong>Father’s Name:</strong> {selectedSubmission.fatherName}</p>
+                <p><strong>Family Member Name:</strong> {selectedSubmission.fatherName}</p>
                 <p><strong>Birth Date:</strong> {new Date(selectedSubmission.birthDate).toLocaleDateString()}</p>
                 <p><strong>Education:</strong> {selectedSubmission.education}</p>
                 <p><strong>Executive ID:</strong> {selectedSubmission.executiveId}</p>
