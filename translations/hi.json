@@ -77,7 +77,8 @@
   "gallery": {
     "photoGallery": "फोटो गैलरी",
     "videoGallery": "वीडियो गैलरी",
-    "newsGallery": "समाचार गैलरी"
+    "newsGallery": "समाचार गैलरी",
+    "pressRelease":"प्रेस विज्ञप्ति"
   },
   "support": {
     "name": "नाम",

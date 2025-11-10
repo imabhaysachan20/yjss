@@ -23,13 +23,13 @@ function DashboardPage() {
       link: "/admin/entries/members",
       color: "text-green-500 bg-green-100 dark:bg-green-900/30"
     },
-    {
-      title: "पद आवेदन",
-      description: "Manage position applications.",
-      icon: Award,
-      link: "/admin/entries/padAvedan",
-      color: "text-orange-500 bg-orange-100 dark:bg-orange-900/30"
-    },
+    // {
+    //   title: "पद आवेदन",
+    //   description: "Manage position applications.",
+    //   icon: Award,
+    //   link: "/admin/entries/padAvedan",
+    //   color: "text-orange-500 bg-orange-100 dark:bg-orange-900/30"
+    // },
     {
       title: "सहयोग करें",
       description: "Track and manage donations.",
@@ -51,13 +51,20 @@ function DashboardPage() {
       link: "/admin/entries/contact",
       color: "text-indigo-500 bg-indigo-100 dark:bg-indigo-900/30"
     },
-    {
-      title: "कार्यकारिणी एवं पदाधिकारियों ",
-      description: "Add and Manage organization form .",
-      icon: UserSquare,
-      link: "/admin/entries/organization",
-      color: "text-teal-500 bg-teal-100 dark:bg-teal-900/30"
-    }
+    // {
+    //   title: "कार्यकारिणी एवं पदाधिकारियों ",
+    //   description: "Add and Manage organization form .",
+    //   icon: UserSquare,
+    //   link: "/admin/entries/organization",
+    //   color: "text-teal-500 bg-teal-100 dark:bg-teal-900/30"
+    // },
+    // {
+    //   title: "कार्यकारिणी एवं पदाधिकारियों ",
+    //   description: "Add and Manage organization form .",
+    //   icon: UserSquare,
+    //   link: "/admin/entries/pressrelease",
+    //   color: "text-teal-500 bg-teal-100 dark:bg-teal-900/30"
+    // }
   ]
 
   return (

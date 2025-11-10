@@ -8,6 +8,7 @@ import TwitterWidget from "@/components/TwitterWidget";
 import RecentImages from "@/components/RecentImages";
 import RecentNews from "@/components/RecentNews";
 import RecentVideos from "@/components/RecentVideos";
+import PressReleaseModal from "@/components/PressReleaseModal";
 
 
 
@@ -21,8 +22,9 @@ export default function Home() {
       <Container>
       <Banner_below_options/>
       <AboutHome/>
-      <RecentNews />
-      <RecentVideos />
+      {/* <RecentNews /> */}
+      {/* <PressReleaseModal /> */}
+      {/* <RecentVideos /> */}
       <RecentImages/>
       <TwitterWidget/>
       </Container>

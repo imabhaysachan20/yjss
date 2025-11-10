@@ -30,7 +30,8 @@ const generateNavItems = () => [
     },
     {
         name: t("common.president"),
-        link: "/president",
+        link:"/",
+        // link: "/president",
         icon: <Presentation className="w-4 relative -top-0.5" />,
         content: null
     },
@@ -41,35 +42,43 @@ const generateNavItems = () => [
         content: [
             {
                 name: t("organization.nationalexecutive"),
-                link: "/organization/national-executive"
+                link:"/"
+                // link: "/organization/national-executive"
             },
             {
                 name: t("organization.stateexecutive"),
-                link: "/organization/state-executive"
+                link:"/"
+                // link: "/organization/state-executive"
             },
             {
                 name: t("organization.divisionalcommittee"),
-                link: "/organization/divisional-committee"
+                link:"/"
+                // link: "/organization/divisional-committee"
             },
             {
                 name: t("organization.districtcommittee"),
-                link: "/organization/district-committee"
+                link:"/"
+                // link: "/organization/district-committee"
             },
             {
                 name: t("organization.assemblycommittee"),
-                link: "/organization/assembly-committee"
+                link:"/"
+                // link: "/organization/assembly-committee"
             },
             {
                 name: t("organization.wardcommittee"),
-                link: "/organization/ward-committee"
+                link:"/"
+                // link: "/organization/ward-committee"
             },
             {
                 name: t("organization.boothcommittee"),
-                link: "/organization/booth-committee"
+                link:"/"
+                // link: "/organization/booth-committee"
             },
             {
                 name: t("organization.spokesperson"),
-                link: "/organization/spokesperson"
+                link:"/"
+                // link: "/organization/spokesperson"
             },
           
         ]
@@ -85,12 +94,19 @@ const generateNavItems = () => [
             },
             {
                 name: t("gallery.videoGallery"),
-                link: "/gallery/videos"
+                link:"/"
+                // link: "/gallery/videos"
             },
             {
                 name: t("gallery.newsGallery"),
-                link: "/gallery/news"
+                link:"/"
+                // link: "/gallery/news"
             },
+            // {
+            //     name: t("gallery.pressRelease"),
+            //     link:"/"
+            //     // link: "/gallery/pressrelease"
+            // },
         ]
     },
     {
@@ -99,12 +115,12 @@ const generateNavItems = () => [
         link: "/contact",
         content: null
     },
-    {
-        name: t("common.padavedan"),
-        icon: <FileBadge className="w-4 relative -top-0.5" />,
-        link: "/padavedan",
-        content: null
-    },
+    // {
+    //     name: t("common.padavedan"),
+    //     icon: <FileBadge className="w-4 relative -top-0.5" />,
+    //     link: "/padavedan",
+    //     content: null
+    // },
     {
         name: t("common.grivences"),
         icon: <FileUser className="w-4 relative -top-0.5" />,
